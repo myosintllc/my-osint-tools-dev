@@ -167,7 +167,7 @@
 
                   <td><img class="mx-auto d-block" alt="Facebook icon" src="https://tools.myosint.training/images/fb.png"><p class="text-center">Facebook, social, user, id</p></td>
 
-                  <td>2024-07-31</td>
+                  <td>2025-02-13</td>
                 </tr>
                 <tr>
                   <td><div ondrop="drop(event)" ondragover="allowDrop(event)"><a class="btn btn-success" role="button" draggable="true" ondragstart="drag(event)" href="javascript:(function(){try{var%20e=/userID%22:%22(%5Cd+)%22/,r=document.documentElement.outerHTML.match(e);if(r&&r[1]){var%20t=r[1],url=%22https://www.facebook.com/marketplace/?seller_profile=%22+t;window.open(url,%22_blank%22)}else%20alert(%22Facebook%20ID%20not%20found!%22)}catch(e){alert(%22Error%20processing%20request:%20%22+e.message)}})();">Facebook Marketplace Profile Bookmarklet</a></div></td>
@@ -230,7 +230,7 @@
 
                   <td><img class="mx-auto d-block" alt="Instagram icon" src="https://tools.myosint.training/images/ig.png"><p class="text-center">Instagram, social, user, profile, id</p></td>
 
-                  <td>2024-07-31</td>
+                  <td>2025-02-13</td>
                 </tr>
                 <tr>
                   <td><div ondrop="drop(event)" ondragover="allowDrop(event)"><a class="btn btn-success" role="button" draggable="true" ondragstart="drag(event)" href="javascript:(function(){try{function findProfilePicUrl(){var imgTags=document.querySelectorAll('img');for(var img of imgTags){if(img.alt&&img.alt.includes(%22's profile picture%22)){return img.src;}}return null;}var profilePicUrl=findProfilePicUrl();if(profilePicUrl){var newWindow=window.open();newWindow.document.write(`<html><head><title>Profile Image</title><style>body{display:flex;justify-content:center;align-items:center;height:100vh;margin:0;background-color:#f0f0f0;}img{max-width:100%;max-height:100%;border:1px solid #ccc;box-shadow:0 4px 8px rgba(0,0,0,0.1);}.message{position:fixed;top:10px;left:50%;transform:translateX(-50%);background-color:white;border:1px solid black;padding:10px;z-index:10000;}</style></head><body><img src=%22${profilePicUrl}%22 alt=%22Profile Image%22 /><div class=%22message%22>Right click on the image to save it</div></body></html>`);newWindow.document.close();}else{alert(%22Profile image URL not found!%22);}}catch(e){alert('Error processing request: '+e.message);}})();">Instagram Profile Picture Bookmarklet</a></div></td>
