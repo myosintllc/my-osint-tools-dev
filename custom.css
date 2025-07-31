@@ -20,7 +20,6 @@
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
      border-radius: 10px;
-     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
   }
   .button-social {
     font-family: "Roboto", sans-serif;
@@ -35,7 +34,6 @@
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
      border-radius: 10px;
-     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
   }
   .button-country {
     font-family: "Roboto", sans-serif;
@@ -50,7 +48,6 @@
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
      border-radius: 10px;
-     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
   }
   .th-general {
     font-family: "Roboto", sans-serif;
