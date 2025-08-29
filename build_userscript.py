@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[115]:
-
-
 import requests
 from bs4 import BeautifulSoup
 import json
@@ -22,7 +19,7 @@ HEADER = f"""
 // ==/UserScript==
 """
 
-FOOTER = """
+FOOTER = r"""
 const currentDomain = window.location.hostname.replace(/^www\./, '');
 
 if (window.top === window.self) {
@@ -54,7 +51,7 @@ def get_bookmarklets_from_github():
     url = "https://raw.githubusercontent.com/janhalendk/my-osint-tools-dev/refs/heads/main/index.html"
     r = requests.get(url)
     html = r.text
-    soup = BeautifulSoup(html)
+    soup = BeautifulSoup(html, "html.parser")
     bookmarklets = soup.select("tr a[data-name]")
     print(f"{len(bookmarklets)} bookmarklets retrieved from Github")
     keys = {
@@ -69,7 +66,7 @@ def get_bookmarklets_from_github():
             try:
                 tag_value = bml_tag.get(v)
                 tag_value = json.loads(tag_value)
-            except:
+            except Exception:
                 pass
             bml[k] = tag_value
         bml["js"] = bml_tag.get("href")
@@ -95,7 +92,7 @@ def build_js_definitions(bookmarklet_definitions):
     return js_def_str
 
 def build_userscript():
-    bookmarklet_definitions_str = get_bookmarklets_from_github()
+    bookmarklet_definitions = get_bookmarklets_from_github()
     bookmark_list_str = generate_js_bookmarklets(bookmarklet_definitions)
     javascript_definitions_str = build_js_definitions(bookmarklet_definitions)
     user_script_elements = [HEADER.strip(), javascript_definitions_str.strip(), bookmark_list_str.strip(), FOOTER.strip()]
@@ -104,16 +101,3 @@ def build_userscript():
 
 user_script = build_userscript()
 print(user_script)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
