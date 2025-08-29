@@ -53,7 +53,6 @@ def get_bookmarklets_from_github():
     html = r.text
     soup = BeautifulSoup(html, "html.parser")
     bookmarklets = soup.select("tr a[data-name]")
-    print(f"{len(bookmarklets)} bookmarklets retrieved from Github")
     keys = {
         "domain": "data-domain",
         "name": "data-name",
