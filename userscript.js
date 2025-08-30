@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         My OSINT Training
 // @namespace    http://tampermonkey.net/
-// @version      1.0.1
+// @version      1.0.2
 // @description  Tamper before bookmarklets
 // @match        *://*/*
 // @grant        GM_registerMenuCommand
@@ -35,6 +35,8 @@ const TM_instagramPhotoDisplay = (function(){var url=window.location.href;if(loc
 const TM_instagramUserID = (function(){var modal=document.createElement('div');modal.style.position='fixed';modal.style.top='50%';modal.style.left='50%';modal.style.transform='translate(-50%, -50%)';modal.style.backgroundColor='#333';modal.style.color='white';modal.style.zIndex='10000';modal.style.fontFamily='Arial, sans-serif';modal.style.fontSize='20px';modal.style.padding='20px';modal.style.boxSizing='border-box';modal.style.borderRadius='8px';var content=document.createElement('div');content.style.textAlign='left';var url=window.location.href;let userStr=document.querySelector('meta[name=\'description\']').getAttribute('content').match(/ - (.*?) on Instagram:/)[1];let[,displayName,username]=userStr.match(/(.*?) ?\(?@(.+?)\)?$/);let[,instagramId]=document.body.innerHTML.match(/profilePage_(.*?)"/);displayName=displayName||'Not Found';username=username||'Not Found';instagramId=instagramId||'Not Found';content.innerHTML=`<p style='font-size: 24px;font-weight: bold;text-align: center;'>Instagram User Profile Details</h2><p>Username: ${username}</p><p>Display Name: ${displayName}</p><p>Instagram ID: ${instagramId}</p><p>Current URL: ${url}</p>`;modal.appendChild(content);document.body.appendChild(modal);modal.onclick=function(){document.body.removeChild(modal)}});
 
 const TM_instagramProfilePicture = (function(){try{function findProfilePicUrl(){var imgTags=document.querySelectorAll('img');for(var img of imgTags){if(img.alt&&img.alt.includes('\'s profile picture')){return img.src}}return null}var profilePicUrl=findProfilePicUrl();if(profilePicUrl){var newWindow=window.open();newWindow.document.write(`<html><head><title>Profile Image</title><style>body{display:flex;justify-content:center;align-items:center;height:100vh;margin:0;background-color:#f0f0f0;}img{max-width:100%;max-height:100%;border:1px solid #ccc;box-shadow:0 4px 8px rgba(0,0,0,0.1);}.message{position:fixed;top:10px;left:50%;transform:translateX(-50%);background-color:white;border:1px solid black;padding:10px;z-index:10000;}</style></head><body><img src='${profilePicUrl}' alt='Profile Image' /><div class='message'>Right click on the image to save it</div></body></html>`);newWindow.document.close()}else{alert('Profile image URL not found!')}}catch(e){alert('Error processing request: '+e.message)}});
+
+const TM_instagramSaveSingleImage = (function(){var newUrl=window.location.href+'media/?size=l';var newWindow=window.open();newWindow.document.write(`<html><head><title>Image Viewer</title><style>body{display:flex;justify-content:center;align-items:center;height:100vh;margin:0;background-color:#f0f0f0;}img{max-width:100%;max-height:100%;border:1px solid #ccc;box-shadow:0 4px 8px rgba(0,0,0,0.1);}.message{position:fixed;top:10px;left:50%;transform:translateX(-50%);background-color:white;border:1px solid black;padding:10px;z-index:10000;}</style></head><body><img src='${newUrl}' alt='Image' /><div class='message'>Right click on the image to save it</div></body></html>`);newWindow.document.close()});
 
 const TM_snapchatUserID = (function(){function findProfileInfo(){if('18'==document.documentElement.innerHTML.match(/"pageType":(\d\d)/)[1]){var e=document.documentElement.innerHTML.match(/"dateCreated":"(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z)"/);var o=document.documentElement.innerHTML.match(/"dateModified":"(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z)"/);var t=e?e[1]:'[Not Present]';var n=o?o[1]:'[Not Present]';var r=document.getElementById('__NEXT_DATA__');var l=JSON.parse(r.text).props.pageProps.userProfile.publicProfileInfo;return{createdDate:t,modifiedDate:n,username:l.username,displayName:l.title?l.title:'[Not Present]',bio:l.bio?l.bio:'[Not Present]',location:l.address?l.address:'[Not Present]',websiteUrl:l.websiteUrl?l.websiteUrl:'[Not Present]'}}return alert('Sorry. This Snapchat user has no public profile.')}var profileInfo=findProfileInfo();if(profileInfo){var infoHtml='<strong>Username:</strong> @'+profileInfo.username+'<br><strong>Display Name:</strong> '+profileInfo.displayName+'<br><strong>Location:</strong> '+profileInfo.location+'<br><strong>Bio:</strong> '+profileInfo.bio+'<br><strong>Website:</strong> '+profileInfo.websiteUrl+'<br><strong>Created Timestamp:</strong> '+profileInfo.createdDate+'<br><strong>Modified Timestamp:</strong> '+profileInfo.modifiedDate+'<br><strong>Current URL:</strong> '+document.URL;let modal=document.createElement('div');modal.style.position='fixed';modal.style.top='50%';modal.style.left='50%';modal.style.transform='translate(-50%, -50%)';modal.style.backgroundColor='#333';modal.style.color='#fff';modal.style.padding='20px';modal.style.border='2px solid #fff';modal.style.borderRadius='10px';modal.style.zIndex='10000';modal.style.maxWidth='80%';modal.style.textAlign='left';var closeBtn=document.createElement('button');closeBtn.innerText='Close';closeBtn.style.marginTop='10px';closeBtn.style.padding='5px 10px';closeBtn.style.backgroundColor='#fff';closeBtn.style.color='#333';closeBtn.style.border='none';closeBtn.style.cursor='pointer';closeBtn.style.borderRadius='5px';closeBtn.onclick=function(){document.body.removeChild(modal)};modal.innerHTML='<div style=\'font-family: Arial, sans-serif; white-space: pre-wrap;\'>'+infoHtml+'</div>';modal.appendChild(closeBtn);document.body.appendChild(modal)}});
 
@@ -131,6 +133,11 @@ const bookmarkletsJSON = [
   {
     title: "Instagram Profile Picture Bookmarklet",
     js: TM_instagramProfilePicture,
+    domain: "instagram.com",
+  },
+  {
+    title: "Instagram Save Single Image Bookmarklet",
+    js: TM_instagramSaveSingleImage,
     domain: "instagram.com",
   },
   {
