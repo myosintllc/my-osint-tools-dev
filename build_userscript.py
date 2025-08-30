@@ -1,11 +1,11 @@
-#!/usr/bin/env python
 # coding: utf-8
+import json
 
 import requests
 from bs4 import BeautifulSoup
-import json
 
-VERSION = "1.3"
+with open("version", "r") as f:
+    VERSION = f.read().strip()
 
 HEADER = f"""
 // ==UserScript==
