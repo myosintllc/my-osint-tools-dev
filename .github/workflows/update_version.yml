@@ -20,6 +20,7 @@ jobs:
       
       # Bump patch version
       - name: Bump patch version
+        working-directory: tampermonkey
         shell: bash
         run: |
           set -x
@@ -45,12 +46,14 @@ jobs:
 
       # run the build script
       - name: Generate a new userscript.js based on the updates in index.html 
+        working-directory: tampermonkey
         shell: bash
         run: |
           python3 build_userscript.py
 
       # commit and push changes
       - name: Commit & push changes
+        working-directory: tampermonkey
         shell: bash
         run: |
             git config user.name "github-actions[bot]"
