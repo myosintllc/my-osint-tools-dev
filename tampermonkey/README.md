@@ -138,7 +138,7 @@ Pretty fantastic.
 Replacing `"` with an HTML entity will by the way not break the userscript since it extracts the bookmarklets from [index.html](../index.html) using the Python library [BeautifulSoup](https://pypi.org/project/beautifulsoup4/) which also decodes the HTML-entities from the `href`s.
 
 
-## A warning about the implications of userscripts
+# A warning about the implications of userscripts
 
 Browser extensions can be awesome. But they sure can also be malicious. Extensions might be able to read (and alter) all requests your browser make, screenshot it etc. And they might also be able to transmit those data to someone else without you knowing about it.
 
