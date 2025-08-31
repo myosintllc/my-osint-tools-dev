@@ -47,17 +47,17 @@ When you right click on e.g. TikTok now, the bookmarklets - plus the global ones
 <img alt="image" src="assets/tiktok.png" />
 
 
-## Special properties used to generate userscript.js
+## Special atrributes used to generate userscript.js
 
 A bookmarklet is a bookmark that consist of Javascript and not a URL.
 
 The [userscript.js](userscript.js) consist of all the bookmarklets found on [index.html](../index.html). The userscript is automatically compiled using Github Actions when this page changes by running [build_userscript.py](./build_userscript.py).
 
-In order for this to work each bookmarklet must have at couple of `data-` properties.
+In order for this to work each bookmarklet must have at couple of `data-` attributes.
 
 The purpose of each of these are explained below:
 
-- `data-name` (required): The build script will compile a list of Javascript functions. The value of this property is used to declare the bookmarklet as a function.
+- `data-name` (required): The build script will compile a list of Javascript functions. The value of this attribute is used to declare the bookmarklet as a function.
 - `data-domain`(required): The scope for the bookmarklet, e.g. "instagram.com". If set to "*" the bookmarklet will be available on every domain.
 - `data-replace-open`(optional): If set (and set to "true") the build script will replace all occurences of `window.open` with `GM_openInTab` for the particular bookmarklet. Browsers typically block attempts to open a bunch of new tabs in one go using `window.open` - extensions, however, do not have this limitation and Tampermonkey enables you to open as many new tabs as you'd like using the method `GM_openInTab`. 
 
