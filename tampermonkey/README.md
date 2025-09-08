@@ -1,6 +1,6 @@
 # Introduction
 
-Bookmarklets are awesome for assisting with tedious OSINT task. 
+Bookmarklets are awesome for assisting with tedious OSINT task.
 
 Therefore **myosint.training** [maintain](https://tools.myosint.training/) a nice collection suited to automate those boring tasks that would otherwise pile up minutes here and there in your day to day OSINT work. Instead of having to go through source code to find those pesky IDs on various social media sites bookmarklets - small snippets of Javascript - can find and output them for you with a simple click.
 
@@ -20,13 +20,13 @@ Before you go all *hell year! gimme the codez!*, please read the [warning](#a-wa
 [Tampermonkey](https://www.tampermonkey.net/) is a browser extension available for both all major browser versions. It's an amazing tool.
 Tampermonkey is a cross browser compatible extension that allows you to do all sorts of cool stuff with the browser.
 
-Think of it as a way to write your own extensions - without actually knowing how to put an actual extension together. Tampermonkey handles all the boilerplate for you. 
+Think of it as a way to write your own extensions - without actually knowing how to put an actual extension together. Tampermonkey handles all the boilerplate for you.
 
 Just write the lines of Javascript you want the extension to run, paste it into Tampermonkeys IDE and tell it which sites you want to *tamper* with (i.e. inject the Javascript into) - *BOOM* you now have your own custom extension for that particular site.
 
 Pretty awesome.
 
-Install the extention from whatever store is avaialble for your browser, but make sure to take a look at the guide on the official website too. 
+Install the extention from whatever store is avaialble for your browser, but make sure to take a look at the guide on the official website too.
 
 The chromium based browsers now needs to allow *Developer Mode* to run Tampermonkey, as the Manifest v3 broke a lot of cool stuff in the name of improved security. This, however, also broke some extensions like uBlock, Tampermonkey and others.
 
@@ -46,6 +46,9 @@ When you right click on e.g. TikTok now, the bookmarklets - plus the global ones
 
 <img alt="image" src="assets/tiktok.png" />
 
+You can also click on the Tampermonkey extension icon to get faster access to the scripts as shown below.
+
+<img alt="image" src="assets/tiktok2.png" />
 
 ## Special atrributes used to generate userscript.js
 
@@ -59,7 +62,7 @@ The purpose of each of these are explained below:
 
 - `data-name` (required): The build script will compile a list of Javascript functions. The value of this attribute is used to declare the bookmarklet as a function.
 - `data-domain`(required): The scope for the bookmarklet, e.g. "instagram.com". If set to "*" the bookmarklet will be available on every domain.
-- `data-replace-open`(optional): If set (and set to "true") the build script will replace all occurences of `window.open` with `GM_openInTab` for the particular bookmarklet. Browsers typically block attempts to open a bunch of new tabs in one go using `window.open` - extensions, however, do not have this limitation and Tampermonkey enables you to open as many new tabs as you'd like using the method `GM_openInTab`. 
+- `data-replace-open`(optional): If set (and set to "true") the build script will replace all occurences of `window.open` with `GM_openInTab` for the particular bookmarklet. Browsers typically block attempts to open a bunch of new tabs in one go using `window.open` - extensions, however, do not have this limitation and Tampermonkey enables you to open as many new tabs as you'd like using the method `GM_openInTab`.
 
 All bookmarklets on the page are and must be written as [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) (Immediately Invoked Function Expression) to confine the content and not polute the global scope. Not adhering to this will cause the userscript to break.
 
@@ -112,7 +115,7 @@ Matching and extracting the value of the userID (`4`) with a regex might look so
 document.body.innerHTML.match(/"userID":"(\d+)"/)
 ```
 
-The issue here is that we can't use double quotes within the `href="...."`. How do we match it then? 
+The issue here is that we can't use double quotes within the `href="...."`. How do we match it then?
 
 One solution is to do a switcharoo in the HTML. Use single quotes on the outside of the `href` and double quotes inside. Instead of `<a href="...">` you can use `<a href='....'>` this, however, is not the best way to go about it, since the convention is to use double quotes for attributes in HTML.
 
@@ -148,12 +151,12 @@ That's bad.
 
 Typically extensions auto update. An extension you install today after vetting it thorougly might not have the same owner or content tomorrow. All it takes is one malicious update and your p0wned.
 
-The same goes for userscripts. 
+The same goes for userscripts.
 
 In this guide we showcase two different methods to add the userscript to Tampermonkey. The first one does not automatically update the userscript. If a bookmarklet is updated on [the tools page](https://tools.myosint.training/) and in the Github repository you will need to grab (and in the best of all worlds vet) it manually before allowing it to run in your browser.
 
 If you chose to install it by importing it directly as a URL from Github you will get auto updates whenever the repository updates. This requires you to trust the authors of the userscript.
 
-A third way would be for you to fork the repository on Github (create your own copy that you and you alone control) and add that URL to Tampermonkey instead. 
+A third way would be for you to fork the repository on Github (create your own copy that you and you alone control) and add that URL to Tampermonkey instead.
 
 If the userscript changes the original Github page you'll be alerted by Github. You can then review the changes and pull them into your own fork if you agree there are just harmless snippets of Javascript that will be helpfull to your day to day OSINT task.
