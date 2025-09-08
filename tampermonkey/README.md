@@ -66,81 +66,6 @@ The purpose of each of these are explained below:
 
 All bookmarklets on the page are and must be written as [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) (Immediately Invoked Function Expression) to confine the content and not polute the global scope. Not adhering to this will cause the userscript to break.
 
-## Typical challenges when writing bookmarklets in drag and drop-format
-
-At the **osint.training** website the bookmarklets are presented in a `<a href="javascript:(function(){BOOKMARKLET CODE_GOES HERE})()">`. This allows them to be drag and dropped into the bookmarks bar in the browser.
-
-This, however, means that you can't use a double quote inside the bookmarklet as this would terminate the `href`.
-
-This can give you quite some headaches when you try to write Javascript that will work inside the `href`.
-
-Below are two common issues and solutions.
-
-### multiple quotes required
-
-Image you need to fetch the element shown below using Javascript:
-
-```html
-<div role="list">Juicy stuff to extract</div>
-```
-
-Using Javascript this could normally be achived like so:
-
-```javascript
-let div = document.querySelector('div[role="list"]');
-let juicyStuff = div.textContent;
-```
-
-This, however, will not work inside an `href` as the `"` will terminate the `href`. One solution is to use single quotes consistently and escape the inner ones like so:
-
-```javascript
-let div = document.querySelector('div[role=\'list\']')
-```
-
-This will not break the `href` and will work inside a bookmarklet.
-
-## matching double quotes using regex
-
-Sometimes you find yourself in a situation where you need to match a double quote for instance using a regular expression.
-
-Say you have a string like this in a HTML body and you need to match it to extract an id:
-
-``'html
-"community","shouldUseFXIMProfilePicEditor":false,"userID":"4"}, "queryName":"ProfileCometHeaderQuery"}
-``'
-
-Matching and extracting the value of the userID (`4`) with a regex might look something like this:
-
-```javascript
-document.body.innerHTML.match(/"userID":"(\d+)"/)
-```
-
-The issue here is that we can't use double quotes within the `href="...."`. How do we match it then?
-
-One solution is to do a switcharoo in the HTML. Use single quotes on the outside of the `href` and double quotes inside. Instead of `<a href="...">` you can use `<a href='....'>` this, however, is not the best way to go about it, since the convention is to use double quotes for attributes in HTML.
-
-
-The better - and somewhat contra intutitve - solution to this headache is to replace the double quotes with HTML entities.
-
-The HTML entity for `"` is `&quot,`. So when ever you want to write a bookmarklet and place it within `href="...."` because you want to drag and drop it into the bookmarks bar like on the **myosint.training**, you need to replace `"` with `&quot;` like so:
-
-```javascript
-document.body.innerHTML.match(/&quot;userID&quot;:&quot;(\d+)&quot;/)
-```
-
-Note that this code will NOT work if you run it in the Javascript console of the browser (unless that sentence is actually present in the source of the page). But if you place it inside `href="..."` and drag and drop it to your bookmarks bar it will.
-
-The reason for this is that the browser will decode the HTML entities (`&quot;` becomes `"`) and all of a sudden you end up with exactly the right code in your bookmarklet, which is this one:
-
-```javascript
-document.body.innerHTML.match(/"userID":"(\d+)"/)
-```
-
-Pretty fantastic.
-
-Replacing `"` with an HTML entity will by the way not break the userscript since it extracts the bookmarklets from [index.html](../index.html) using the Python library [BeautifulSoup](https://pypi.org/project/beautifulsoup4/) which also decodes the HTML-entities from the `href`s.
-
-
 # A warning about the implications of userscripts
 
 Browser extensions can be awesome. But they sure can also be malicious. Extensions might be able to read (and alter) all requests your browser make, screenshot it etc. And they might also be able to transmit those data to someone else without you knowing about it.
@@ -153,7 +78,7 @@ Typically extensions auto update. An extension you install today after vetting i
 
 The same goes for userscripts.
 
-In this guide we showcase two different methods to add the userscript to Tampermonkey. The first one does not automatically update the userscript. If a bookmarklet is updated on [the tools page](https://tools.myosint.training/) and in the Github repository you will need to grab (and in the best of all worlds vet) it manually before allowing it to run in your browser.
+In this guide we showcase two different methods to add the userscript to Tampermonkey. The first one does not automatically update the userscript. If a bookmarklet is updated on [the tools page](https://tools.myosint.training/) and in the Github repository you will need to grab (and in the best of all worlds) vet it manually before allowing it to run in your browser.
 
 If you chose to install it by importing it directly as a URL from Github you will get auto updates whenever the repository updates. This requires you to trust the authors of the userscript.
 
