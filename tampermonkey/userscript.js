@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         My OSINT Training
 // @namespace    http://tampermonkey.net/
-// @version      1.0.4
+// @version      1.0.5
 // @description  Tamper before bookmarklets
 // @match        *://*/*
 // @grant        GM_registerMenuCommand
 // @grant        GM_openInTab
+// @noframes
 // ==/UserScript==
 
 const TM_JSONreveal = (function(){var scripts=document.querySelectorAll('script');var jsonStrings=[];for(var i=0;i<scripts.length;i++){var script=scripts[i];if(script.type==='application/json'||script.innerText.trim().startsWith('{')||script.innerText.trim().startsWith('[')){try{jsonStrings.push(JSON.stringify(JSON.parse(script.innerText),null,2))}catch(e){console.error('Failed to parse JSON:',script.innerText)}}}if(jsonStrings.length){var jsonWindow=window.open('','JsonPopup','width=800,height=800,scrollbars=1,resizable=1');var pre=jsonWindow.document.createElement('pre');pre.style.width='800';pre.style.margin='auto';pre.style.whiteSpace='pre-wrap';pre.textContent=jsonStrings.join('\n\n');jsonWindow.document.body.innerHTML='';jsonWindow.document.body.appendChild(pre)}else{alert('No JSON found.')}});
@@ -43,6 +44,8 @@ const TM_snapchatUserID = (function(){function findProfileInfo(){if('18'==docume
 const TM_smuleUserID = (function(){function getUsernameFromURL(){const path=window.location.pathname;return path.split('/').pop()}function showProfileModal(data){const modal=document.createElement('div');modal.style.position='fixed';modal.style.top='50%';modal.style.left='50%';modal.style.transform='translate(-50%, -50%)';modal.style.backgroundColor='rgba(0,0,0,0.8)';modal.style.color='white';modal.style.padding='20px';modal.style.borderRadius='10px';modal.style.zIndex='9999';modal.style.maxWidth='400px';modal.style.width='90%';const closeBtn=document.createElement('button');closeBtn.innerText='Close';closeBtn.style.position='absolute';closeBtn.style.top='10px';closeBtn.style.right='10px';closeBtn.onclick=()=>document.body.removeChild(modal);const content=document.createElement('div');content.innerHTML=`<h2>Profile Details</h2><p><strong>Current URL:</strong> ${window.location.href}</p><p><strong>Account ID:</strong> ${data.account_id}</p><p><strong>Username:</strong> ${data.handle}</p><p><strong>Display Name:</strong> ${data.first_name} ${data.last_name}</p><p><strong>Location:</strong> ${data.location||'Not specified'}</p><p><strong>Verified:</strong> ${data.is_verified?`%E2%9C%85 ${data.verified_type}`:'%E2%9D%8C'}</p><p><strong>Installed Apps:</strong> ${data.installed_apps||'None'}</p>`;modal.appendChild(closeBtn);modal.appendChild(content);document.body.appendChild(modal)}function fetchSmuleProfile(){const username=getUsernameFromURL();fetch(`https://www.smule.com/api/profile/?handle=${username}`).then(response=>response.json()).then(data=>{showProfileModal(data)}).catch(error=>{alert('Error fetching profile: '+error)})}fetchSmuleProfile()});
 
 const TM_telegramReveal = (function(){var a=document.getElementsByClassName('tgme_page_description')[0];alert(a.innerText)});
+
+const TM_thatsthemDeblur = (function() {document.body.innerHTML = document.body.innerHTML.replace(/class="blur"/g, '');});
 
 const TM_threadsFromInstagram = (function(){var url=window.location.href;if(url.includes('instagram.com/')){var username=url.split('instagram.com/')[1].split('/')[0];var newUrl='https://threads.net/@'+username;window.open(newUrl,'_blank')}else{alert('This is not an Instagram page.')}});
 
@@ -154,6 +157,11 @@ const bookmarkletsJSON = [
     title: "Telegram Revealer Bookmarklet",
     js: TM_telegramReveal,
     domain: "t.me",
+  },
+  {
+    title: "ThatsThem Deblurring Bookmarklet",
+    js: TM_thatsthemDeblur,
+    domain: "thatsthem.com",
   },
   {
     title: "Threads from Instagram Profile",
