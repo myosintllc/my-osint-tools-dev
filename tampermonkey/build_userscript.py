@@ -94,6 +94,7 @@ HEADER = f"""
 // @match        *://*/*
 // @grant        GM_registerMenuCommand
 // @grant        GM_openInTab
+// @noframes
 // ==/UserScript==
 """
 
