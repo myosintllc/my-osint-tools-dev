@@ -300,6 +300,15 @@
                   <td>2024-07-31</td>
                 </tr>
                 <tr>
+                  <td><div ondrop="drop(event)" ondragover="allowDrop(event)"><a class="btn btn-primary" role="button" draggable="true" ondragstart="drag(event)" data-name="TM_thatsthemDeblur" data-domain="thatsthem.com" href="javascript:(function() {document.body.innerHTML = document.body.innerHTML.replace(/class=&quot;blur&quot;/g, '');})();">ThatsThem Deblurring Bookmarklet</a></div></td>
+
+                  <td>This bookmarklet is used to de-blur content on sites that use the <code>class="blur"</code> technique such as thatsthem.com. When you click this bookmarklet, it will remove all those blurring classes and may reveal real data.</td>
+
+                  <td><p class="text-center">ThatsThem</p></td>
+
+                  <td>2025-09-16</td>
+                </tr>
+                <tr>
                   <td><div ondrop="drop(event)" ondragover="allowDrop(event)"><a class="btn btn-success" role="button" draggable="true" ondragstart="drag(event)" data-name="TM_threadsFromInstagram" data-domain="instagram.com" href="javascript:(function(){var url=window.location.href;if(url.includes('instagram.com/')){var username=url.split('instagram.com/')[1].split('/')[0];var newUrl='https://threads.net/@'+username;window.open(newUrl,'_blank')}else{alert('This is not an Instagram page.')}})();">Threads from Instagram Profile</a></div></td>
 
                   <td>Griffin found and reported (<a target="_blank" href="https://hatless1der.com/threads-net-is-hiding-some-osint-secrets-you-definitely-need-to-know/">here</a>) that people with Instagram profiles can have Threads accounts using that same username but not linked to their Instagram account (so you won't have a Threads link on the Instagram profile page to click). In these cases, just navigate to the Instagram profile of your target and click this bookmarklet and it will try to visit a Threads profile for the same username. An example (even though there IS a Threads link on the Instagram page) URL to try it on is <code>https://www.instagram.com/vancityreynolds/</code>.</td>
