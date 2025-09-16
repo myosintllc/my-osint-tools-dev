@@ -89,40 +89,32 @@
                     We do our best to ensure that bookmarklets hosted on My OSINT Training do nothing malicious. We review all code and have several AIs also review code submitted by third parties to ensure that you can trust our tools. But please do not just take our word for it, do your own analyses of our bookmarklets to make sure you are comfortable with them.</div>
 
                     <h2>Installation of Tampermonkey</h2>
-                    <h3>1. Install Tampermonkey Extension</h3>
-                    <ul>
-                        <li>Download from your browser's extension store</li>
-                        <li><b>For Chromium browsers:</b> You must do an additional step of enabling Developer Mode in the browser (the extension will tell you how)</li>
-                        <li><b>For Brave:</b> You must do an additional step: Go to Extensions → Tampermonkey Details → Enable "Allow User Scripts"</li>
-                    </ul>
-
+                        <h3>1. Install Tampermonkey Extension</h3>
+                        <ul>
+                            <li>Download from your browser's extension store</li>
+                            <li><b>For Chromium browsers:</b> You must do an additional step of enabling Developer Mode in the browser (the extension will tell you how)</li>
+                            <li><b>For Brave:</b> You must do an additional step: Go to Extensions → Tampermonkey Details → Enable "Allow User Scripts"</li>
+                        </ul>
                     <h3>2. Add the Userscript</h3>
+                        <p>Choose one of these methods:</p>
+                        <h4>Method 1: Manual Installation</h4>
+                            <div class="callout callout-warning">By using this method, you will periodically need to check for updates in the bookmarklets manually and then update the content in your browser. No auto-updating happens with this method.</div>
+                            <ol>
+                                <li>Open Tampermonkey and click the '+' symbol</li>
+                                <li>Delete the boilerplate code</li>
+                                <li>Copy/paste content from <a href="/tampermonkey/userscript.js" target="_blank">userscript.js</a></li>
+                                <li>Save the script</li>
+                            </ol>
+                        <h4>Method 2: Auto-Update Installation</h4>
+                            <div class="callout callout-warning">This method automatically will update your tools as we update our tools; keeping your browser in sync. It also could be a security risk if you do not trust our tools and review process.</div>
+                            <ol>
+                                <li>Click "Raw" button on <a href="/tampermonkey/userscript.js" target="_blank">userscript.js</a> in GitHub</li>
+                                <li>Copy the URL</li>
+                                <li>In Tampermonkey → Utilities → paste URL in "Import from URL"</li>
+                                <li>Click "Install"</li>
+                            </ol>
 
-                    <p>Choose one of these methods:</p>
-
-                    <h4>Method 1: Manual Installation</h4>
-
-                    <div class="callout callout-warning">By using this method, you will periodically need to check for updates in the bookmarklets manually and then update the content in your browser. No auto-updating happens with this method.</div>
-
-                    <ol>
-                        <li>Open Tampermonkey and click the '+' symbol</li>
-                        <li>Delete the boilerplate code</li>
-                        <li>Copy/paste content from <a href="/tampermonkey/userscript.js" target="_blank">userscript.js</a></li>
-                        <li>Save the script</li>
-                    </ol>
-
-
-**Method 2: Auto-Update Installation**
-
-> [!WARNING]
-> This method automatically will update your tools as we update our tools; keeping your browser in sync. It also could be a security risk if you do not trust our tools and review process.
-
-1. Click "Raw" button on [userscript.js](/tampermonkey/userscript.js) in GitHub
-2. Copy the URL
-3. In Tampermonkey → Utilities → paste URL in "Import from URL"
-4. Click "Install"
-
-## Usage
+                <h2>Usage
 
 Once installed, access bookmarklets by:
 - **Right-clicking** on any webpage to see context menu options like in the image below.
