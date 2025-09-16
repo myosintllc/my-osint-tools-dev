@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CF5BDSXRMG"></script>
     <script>
@@ -21,8 +20,8 @@
     <meta property="og:description" content="Great place for free OSINT tools made by My OSINT Training people!">
     <link rel="canonical" href="https://tools.myosint.training/">
     <meta property="og:url" content="https://tools.myosint.training/">
-    <meta property="og:site_name" content="My OSINT Training's Tools: TamperMonkey">
-    <title>My OSINT Training's Tools: Tampermonkey</title>
+    <meta property="og:site_name" content="MOT Bookmarklets: Tampermonkey">
+    <title>MOT Bookmarklets: Tampermonkey</title>
   </head>
   <body>
     <div class="header__container">
@@ -71,31 +70,29 @@
         <div class="col-lg-4">
           <img src="https://tools.myosint.training/images/osinttools.png" height="250" class="mx-auto d-block shadow p-3 mb-5 rounded" alt="My OSINT Tools Logo">
         </div>
-        </div>
 
         <!-- Main Body -->
         <div class="container-lg">
             <div class="row">
                 <div class="col-lg-auto">
                     <h1>Tampermonkey OSINT Bookmarklets Guide</h1>
-                    <div class="callout callout-success">Using the Tampermonkey extension/add-on is a more advanced method of using the bookmarklets and is 100% OPTIONAL. It takes a little setup and some trust but does make it easy to use and update the bookmarklets. Choose your own adventure here....use or do not. You decide.</div>
-
+                        <div class="callout callout-success">Using the Tampermonkey extension/add-on is a more advanced method of using the bookmarklets and is 100% OPTIONAL. It takes a little setup and some trust but does make it easy to use and update the bookmarklets. Choose your own adventure here....use or do not. You decide.</div>
+                    <br><br>
                     <h2>What is Tampermonkey?</h2>
+                        <p><a href="https://www.tampermonkey.net/" target="_blank">Tampermonkey</a> is a cross-browser extension that lets you create custom browser modifications using JavaScript. Think of it as building browser extensions without the complexity. Tampermonkey handles the technical setup while you focus on the functionality.</p>
 
-                    <p><a href="https://www.tampermonkey.net/" target="_blank">Tampermonkey</a> is a cross-browser extension that lets you create custom browser modifications using JavaScript. Think of it as building browser extensions without the complexity. Tampermonkey handles the technical setup while you focus on the functionality.</p>
+                        <div class="callout callout-warning"><b>Browser extensions can be awesome, but they can also be malicious.</b> Some extensions can read (and alter) all requests your browser makes, take screenshots, and transmit that data to someone else without you knowing about it. As an example, recently, an extension that provided a "Free VPN" service was discovered to secretly screenshot all pages users visited and send those images to the creator. That's seriously bad.
 
-                    <div class="callout callout-warning"><b>Browser extensions can be awesome, but they can also be malicious.</b> Some extensions can read (and alter) all requests your browser makes, take screenshots, and transmit that data to someone else without you knowing about it. As an example, recently, an extension that provided a "Free VPN" service was discovered to secretly screenshot all pages users visited and send those images to the creator. That's seriously bad.
-
-                    We do our best to ensure that bookmarklets hosted on My OSINT Training do nothing malicious. We review all code and have several AIs also review code submitted by third parties to ensure that you can trust our tools. But please do not just take our word for it, do your own analyses of our bookmarklets to make sure you are comfortable with them.</div>
-
+                        We do our best to ensure that bookmarklets hosted on My OSINT Training do nothing malicious. We review all code and have several AIs also review code submitted by third parties to ensure that you can trust our tools. But please do not just take our word for it, do your own analyses of our bookmarklets to make sure you are comfortable with them.</div>
+                        <br><br>
                     <h2>Installation of Tampermonkey</h2>
                         <h3>1. Install Tampermonkey Extension</h3>
-                        <ul>
-                            <li>Download from your browser's extension store</li>
-                            <li><b>For Chromium browsers:</b> You must do an additional step of enabling Developer Mode in the browser (the extension will tell you how)</li>
-                            <li><b>For Brave:</b> You must do an additional step: Go to Extensions → Tampermonkey Details → Enable "Allow User Scripts"</li>
-                        </ul>
-
+                            <ul>
+                                <li>Download from your browser's extension store</li>
+                                <li><b>For Chromium browsers:</b> You must do an additional step of enabling Developer Mode in the browser (the extension will tell you how)</li>
+                                <li><b>For Brave:</b> You must do an additional step: Go to Extensions → Tampermonkey Details → Enable "Allow User Scripts"</li>
+                            </ul>
+                            <br><br>
                         <h3>2. Add the Userscript</h3>
                             <p>Choose one of these methods:</p>
                             <h4>Method 1: Manual Installation</h4>
@@ -114,32 +111,34 @@
                                     <li>In Tampermonkey → Utilities → paste URL in "Import from URL"</li>
                                     <li>Click "Install"</li>
                                 </ol>
+                                <br><br>
                     <h2>Usage</h2>
                       <p>Once installed, access bookmarklets by <b>Right-clicking</b> on any webpage to see context menu options like in the image below.</p>
                       <img src="assets/tiktok2.png" alt="Context Menu method of using Tampermonkey">
                       <p>Or you can <b>click the Tampermonkey extension icon</b> for "less-quick" access. The scripts will automatically show relevant bookmarklets based on the current website domain like in the image below.
-                      <img src="assets/tiktok.png" alt="Tampermonkey icon click method of using Tampermonkey">
-
+                      <img src="assets/tiktok.png" alt="Tampermonkey icon click method of using Tampermonkey"></p>
+                      <br><br>
                     <h2>Conclusion</h2>
                     <p>This Tampermonkey integration streamlines OSINT workflows by centralizing bookmarklet management. However, always balance convenience with security—understand the risks and choose the installation method that matches your security requirements.</p>
                   </div>
                 </div>
               </div>
+      </div>
 
       <!-- Thanks -->
       <div class="container-lg">
         <div class="row">
           <div class="col-lg align-middle">
             <div class="card text-bg-success mb-5 shadow rounded">
-              <h2 id="what-is-a-bookmarklet" class="card-header">Our Heartfelt Thanks
-              <div class="card-body">
-                <i>Micah and Griffin would like to extend their sincerest thanks to the OSINT community member that created the Tampermonkey integration and integrated it into our tools. This person is very well known to Micah and Griffin and wishes to remain anonymous. We appreciate their ideas and contribution to this project.</i>
+              <h2 id="what-is-a-bookmarklet" class="card-header">Our Heartfelt Thanks</h2>
+              <div class="card-body align-middle">
+                <p><i>Micah and Griffin would like to extend their sincerest thanks to the OSINT community member that created the Tampermonkey integration and integrated it into our tools. This person is very well known to Micah and Griffin and wishes to remain anonymous. We appreciate their ideas and contribution to this project.</i></p>
               </div>
             </div>
           </div>
         </div>
       </div>
-
+    </div>
     <!-- Footer -->
     <div class="header__container">
         <div class="header__wrapper">
