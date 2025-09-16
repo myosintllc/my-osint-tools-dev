@@ -1,16 +1,16 @@
 # coding: utf-8
 import json
 
-import requests
 from bs4 import BeautifulSoup
 
-def get_bookmarklets_from_github():
-    print("Retrieving HTML with definitions for bookmarklets from Github")
-    url = "https://raw.githubusercontent.com/janhalendk/my-osint-tools-dev/refs/heads/main/index.html"
-    r = requests.get(url)
-    html = r.text
+def get_bookmarklets_from_website():
+    print("Retrieving HTML with definitions for bookmarklets from ../index.html")
+    with open("../index.html", "r", encoding="utf-8") as f:
+        html = f.read()
+    
     soup = BeautifulSoup(html, "html.parser")
     bookmarklets = soup.select("tr a[data-name]")
+    print(f"{len(bookmarklets} possible bookmarklets retrieved")
     expected_keys = {
         "domain": "data-domain",
         "name": "data-name",
@@ -36,7 +36,7 @@ def get_bookmarklets_from_github():
             continue
         
         bookmarklet_definitions.append(bml)
-    print(f"Definitions for {len(bookmarklet_definitions)} bookmarklets retrieved from Github")
+    print(f"{len(bookmarklet_definitions)} valid definitions for bookmarklets extracted from index.html")
     return bookmarklet_definitions
 
 def generate_js_bookmarklets(bookmarklets):
@@ -75,7 +75,7 @@ def build_js_definitions(bookmarklet_definitions):
 
 def build_userscript(VERSION):
     print(f"Updating userscript.js to version {VERSION}")
-    bookmarklet_definitions = get_bookmarklets_from_github()
+    bookmarklet_definitions = get_bookmarklets_from_website()
     bookmark_list_str = generate_js_bookmarklets(bookmarklet_definitions)
     javascript_definitions_str = build_js_definitions(bookmarklet_definitions)
     user_script_elements = [HEADER.strip(), javascript_definitions_str.strip(), bookmark_list_str.strip(), FOOTER.strip()]
