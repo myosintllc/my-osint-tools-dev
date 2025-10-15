@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         My OSINT Training
 // @namespace    http://tampermonkey.net/
-// @version      1.0.25
+// @version      1.0.26
 // @description  Tamper before bookmarklets
 // @match        *://*/*
 // @grant        GM_registerMenuCommand
