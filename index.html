@@ -23,6 +23,9 @@
     <link rel="canonical" href="https://tools.myosint.training/">
     <meta property="og:url" content="https://tools.myosint.training/">
     <meta property="og:site_name" content="My OSINT Training's Tools">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="My OSINT Training">
+    <meta name="keywords" content="OSINT, bookmarklets, social media tools, Facebook, Instagram, TikTok, Twitter">
     <title>My OSINT Training's Tools</title>
     <script>
       function allowDrop(ev) {
@@ -100,7 +103,7 @@
                       <th class="text-center align-bottom text-danger">Drag button to your bookmarks bar</th>
                       <th class="text-center align-bottom">Description</th>
                       <th class="text-center align-bottom">Tags</th>
-                      <th class="text-center align-bottom" style="width: 12ch;" title="NEW tag will show is the bookmarklet was updated in the past 14 days.">Last updated</th>
+                      <th class="text-center align-bottom" style="width: 12ch;" title="NEW tag will show if the bookmarklet was updated in the past 14 days.">Last updated</th>
                   </tr>
               </thead>
               <tbody>
@@ -208,7 +211,7 @@
 
                   <td>
                     <p class="text-center">
-                      <i class="fa-brands fa-facebook fa-2x"></i>Facebook, social, user</p></td>
+                      <i class="fa-brands fa-facebook fa-2x"></i><br>Facebook, social, user</p></td>
 
                   <td>2024-07-31</td>
                 </tr>
@@ -313,9 +316,10 @@
                     </script></div></td>
 
                   <td>
-                    <span class="badge bg-warning text-dark"><i class="fas fa-triangle-exclamation"></i>NOTE:</span>
-                    This bookmarklet is used on LinkedIn user profile pages (for example: <code>https://linkedin.com/in/not.a.real.username/</code>) and will extract a variety of rendered and hidden profile data. <br><br><strong>This is a different bookmarklet and you need to press the button to copy it and then make a new bookmark in your bookmark bar and then paste this into the URL field. This is due to double quotes (") in the bookmarklet. Sorry.</strong>
-                    <br><br>
+                    This bookmarklet is used on LinkedIn user profile pages (for example: <code>https://linkedin.com/in/not.a.real.username/</code>) and will extract a variety of rendered and hidden profile data. <br><br>
+
+                    <span class="badge bg-warning text-dark"><i class="fas fa-triangle-exclamation"></i>NOTE:</span>This is a different bookmarklet and you need to press the button to copy it and then make a new bookmark in your bookmark bar and then paste this into the URL field. This is due to double quotes (") in the bookmarklet. Sorry.<br><br>
+
                     <span class="badge bg-danger text-light"><i class="fas fa-circle-exclamation"></i>Offensive Script:</span> This script makes 1 additional request to the web site to check various files.
                   </td>
 
@@ -474,10 +478,14 @@
                   <td>
                     Checks if a site is running WordPress and shows you the indicators in a pop up box - then gives you an option to view the site's authors if available. Works on sites like <code>https://hatless1der.com</code>.
                     <br><br>
-                    <span class="badge bg-warning"><i class="fas fa-triangle-exclamation"></i>Important Note:</span>
+
+                    <span class="badge bg-warning text-dark badge-with-icon">
+                      <i class="fas fa-triangle-exclamation"></i>Important Note:</span>
                     Some WordPress administrators can see visitor activity by IP address, so it is best to run this bookmarklet while your computer is using a VPN or other masking technology.
                     <br><br>
-                    <span class="badge bg-danger text-light"><i class="fas fa-circle-exclamation"></i>Offensive Script:</span> This script makes up to 6 additional requests to the web site to check various files.
+
+                    <span class="badge bg-danger text-light badge-with-icon">
+                      <i class="fas fa-circle-exclamation"></i>Offensive Script:</span> This script makes up to 6 additional requests to the web site to check various files.
                   </td>
 
                   <td>
