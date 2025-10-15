@@ -100,7 +100,7 @@
                       <th class="text-center align-bottom text-danger">Drag button to your bookmarks bar</th>
                       <th class="text-center align-bottom">Description</th>
                       <th class="text-center align-bottom">Tags</th>
-                      <th class="text-center align-bottom">Last updated</th>
+                      <th class="text-center align-bottom" style="width: 10ch;">Last updated</th>
                   </tr>
               </thead>
               <tbody>
@@ -630,5 +630,58 @@
         </div>
       </div>
     </div>
+
+    <script>
+      function highlightRecentUpdates() {
+        // Get today's date
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // Reset time to midnight for accurate comparison
+
+        // Calculate the date 30 days ago
+        const thirtyDaysAgo = new Date(today);
+        thirtyDaysAgo.setDate(today.getDate() - 30);
+
+        // Find the table
+        const table = document.getElementById('collectiontable');
+        if (!table) return;
+
+        // Find the index of the "Last updated" column
+        const headers = table.querySelectorAll('thead th');
+        let dateColumnIndex = -1;
+        headers.forEach((header, index) => {
+          if (header.textContent.trim().includes('Last updated')) {
+            dateColumnIndex = index;
+          }
+        });
+
+        if (dateColumnIndex === -1) return;
+
+        // Get all rows in the tbody
+        const rows = table.querySelectorAll('tbody tr');
+
+        rows.forEach(row => {
+          const cells = row.querySelectorAll('td');
+          if (cells.length > dateColumnIndex) {
+            const dateCell = cells[dateColumnIndex];
+            const dateText = dateCell.textContent.trim();
+
+            // Parse the date (format: YYYY-MM-DD)
+            const cellDate = new Date(dateText);
+
+            // Check if the date is valid and within the last 30 days
+            if (!isNaN(cellDate) && cellDate >= thirtyDaysAgo && cellDate <= today) {
+              // Highlight the cell
+              dateCell.style.backgroundColor = '#90EE90'; // Light green
+              dateCell.style.fontWeight = 'bold';
+              // Optional: add a badge or icon
+              dateCell.innerHTML = dateText + ' <span class="badge bg-success ms-1">NEW</span>';
+            }
+          }
+        });
+      }
+
+      // Run the function when the page loads
+      document.addEventListener('DOMContentLoaded', highlightRecentUpdates);
+    </script>
   </body>
 </html>
