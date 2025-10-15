@@ -100,7 +100,7 @@
                       <th class="text-center align-bottom text-danger">Drag button to your bookmarks bar</th>
                       <th class="text-center align-bottom">Description</th>
                       <th class="text-center align-bottom">Tags</th>
-                      <th class="text-center align-bottom" style="width: 10ch;">Last updated</th>
+                      <th class="text-center align-bottom" style="width: 12ch;">Last updated</th>
                   </tr>
               </thead>
               <tbody>
@@ -109,7 +109,10 @@
 
                   <td>This bookmarklet is used on any page to extract JSON data. You can try it social media and other pages like https://wikipedia.org/wiki/Bookmarklet. It will display the JSON (if there is any) in an 800x800 pixel window.</td>
 
-                  <td><img class="mx-auto d-block" alt="JSON icon" src="https://tools.myosint.training/images/json.png"><p class="text-center">JSON, website</p></td>
+                  <td>
+                    <p class="text-center">
+                      <i class="fa-solid fa-brackets-curly fa-3x"></i>
+                      JSON, website</p></td>
 
                   <td>2024-07-31</td>
                 </tr>
@@ -121,7 +124,9 @@
                     Have a domain that you need to find other data on? This bookmakrlet pops up 1 window asking you to input the domain (do not include the www or https; just a domain like <code>example.com</code>). Then it takes that domain and opens multiple browser tabs and runs searches on different sites.
                   </td>
                   <td>
-                    <img class="mx-auto d-block" alt="Domain icon" src="https://tools.myosint.training/images/domain.png"><p class="text-center">domain, website</p>
+                    <p class="text-center">
+                      <i class="fa-solid fa-link fa-3x"></i>
+                      domain, website</p>
                   </td>
                   <td>
                     2024-07-31
@@ -131,7 +136,10 @@
                   <td><div ondrop="drop(event)" ondragover="allowDrop(event)"><a class="btn btn-primary" role="button" draggable="true" ondragstart="drag(event)" data-name="TM_emailSearch" data-domain="*" data-replace-open="true" href="javascript:(function(){var EMAIL=prompt('Enter EMAIL: ');let sites=[`https://thatsthem.com/email/${EMAIL}`,`https://www.google.com/search?q='${EMAIL}'`,`https://emailrep.io/query/${EMAIL}`];if(EMAIL&&EMAIL.trim()!==''){for(let site of sites){window.open(site,'_blank')}}})();">Email Search Bookmarklet</a></div></td>
                   <td>This bookmarklet is for searching for the owner of an email. It pops up 1 window asking you to input the email (include the <code>@domain.com</code> portion in your search). It queries different email search sites in one click.</td>
 
-                  <td><img class="mx-auto d-block" alt="Email icon" src="https://tools.myosint.training/images/email.png"><p class="text-center">email, person, user</p></td>
+                  <td>
+                    <p class="text-center">
+                      <i class="fa-solid fa-envelope fa-3x"></i>
+                      email, person, user</p></td>
 
                   <td>2024-07-31</td>
                 </tr>
@@ -149,7 +157,10 @@
 
                   <td>This bookmarklet is used to find the profile page based upon a Bluesky user's ID (for example: <code>https://bsky.app/profile/did:plc:inserttheuseridhere</code>).</td>
 
-                  <td><img class="mx-auto d-block" alt="Bluesky icon" src="https://tools.myosint.training/images/bs.png"><p class="text-center">Bluesky, social, user, profile, id</p></td>
+                  <td>
+                    <p class="text-center">
+                      <i class="fa-brands fa-bluesky fa-3x"></i>
+                      Bluesky, social, user, profile, id</p></td>
 
                   <td>2024-11-18</td>
                 </tr>
@@ -158,7 +169,10 @@
 
                   <td>This bookmarklet is used on Bluesky user profile pages (for example: <code>https://bsky.app/profile/inserttheusernamehere</code>) to extract user ID, display name, and handle, then display in an overlay.</td>
 
-                  <td><img class="mx-auto d-block" alt="Bluesky icon" src="https://tools.myosint.training/images/bs.png"><p class="text-center">Bluesky, social, user, profile, id</p></td>
+                  <td>
+                    <p class="text-center">
+                      <i class="fa-brands fa-bluesky fa-3x"></i>
+                      Bluesky, social, user, profile, id</p></td>
 
                   <td>2024-11-18</td>
                 </tr>
@@ -167,7 +181,10 @@
 
                   <td>This bookmarklet is used on Cash.app user profile pages (for example: <code>https://cash.app/$jane</code>) to extract profile data and profile image and display in an overlay.</td>
 
-                  <td><img class="mx-auto d-block" alt="CashApp icon" src="https://tools.myosint.training/images/ca.png"><p class="text-center">CashApp, social, user, profile, image</p></td>
+                  <td>
+                    <p class="text-center">
+                      <i class="fa-brands fa-cash-app fa-3x"></i>
+                      CashApp, social, user, profile, image</p></td>
 
                   <td>2025-08-27</td>
                 </tr>
@@ -175,7 +192,10 @@
                   <td><div ondrop="drop(event)" ondragover="allowDrop(event)"><a class="btn btn-success" role="button" draggable="true" ondragstart="drag(event)" data-name="TM_facebookID" data-domain="facebook.com" href="javascript:(function()%7Bconst%20findProfileInfo%20%3D%20()%20%3D%3E%20%7Bconst%20profileIdRegex%20%3D%20%2F%22userID%22%3A%22(%5Cd%2B)%22%2F%3Bconst%20profileIdMatch%20%3D%20document.documentElement.outerHTML.match(profileIdRegex)%3Bconst%20profileId%20%3D%20profileIdMatch%20%3F%20profileIdMatch%5B1%5D%20%3A%20%22Not%20present%20in%20page%22%3Bconst%20displayRegex%20%3D%20%2F__isProfile%22%3A%22User%22%2C%22name%22%3A%22(%5B%5E%22%5D%2B)%22%2F%3Bconst%20displayMatch%20%3D%20document.documentElement.innerHTML.match(displayRegex)%3Bconst%20displayName%20%3D%20displayMatch%20%3F%20displayMatch%5B1%5D%20%3A%20%22Not%20present%20in%20page%22%3Breturn%20%7BprofileId%3A%20profileId%2CdisplayName%3A%20displayName%7D%7D%3Bconst%20profileInfo%20%3D%20findProfileInfo()%3Bif%20(profileInfo)%20%7Bconst%20infoHtml%20%3D%20%22Display%20Name%3A%20%22%20%2B%20profileInfo.displayName%20%2B%20%22%3Cbr%3E%22%20%2B%20%22Facebook%20ID%3A%20%22%20%2B%20profileInfo.profileId%20%2B%22%3Cbr%3E%22%20%2B%20%22Current%20URL%3A%20%22%20%2B%20document.URL%3Bconst%20modal%20%3D%20document.createElement(%22div%22)%3Bmodal.style.position%20%3D%20%22fixed%22%3Bmodal.style.top%20%3D%20%2250%25%22%3Bmodal.style.left%20%3D%20%2250%25%22%3Bmodal.style.transform%20%3D%20%22translate(-50%25%2C%20-50%25)%22%3Bmodal.style.backgroundColor%20%3D%20%22%23333%22%3Bmodal.style.color%20%3D%20%22%23fff%22%3Bmodal.style.padding%20%3D%20%2220px%22%3Bmodal.style.border%20%3D%20%222px%20solid%20%23fff%22%3Bmodal.style.borderRadius%20%3D%20%2210px%22%3Bmodal.style.zIndex%20%3D%20%2210000%22%3Bmodal.style.maxWidth%20%3D%20%2280%25%22%3Bmodal.style.textAlign%20%3D%20%22left%22%3Bconst%20closeBtn%20%3D%20document.createElement(%22button%22)%3BcloseBtn.innerText%20%3D%20%22Close%22%3BcloseBtn.style.marginTop%20%3D%20%2210px%22%3BcloseBtn.style.padding%20%3D%20%225px%2010px%22%3BcloseBtn.style.backgroundColor%20%3D%20%22%23fff%22%3BcloseBtn.style.color%20%3D%20%22%23333%22%3BcloseBtn.style.border%20%3D%20%22none%22%3BcloseBtn.style.cursor%20%3D%20%22pointer%22%3BcloseBtn.style.borderRadius%20%3D%20%225px%22%3BcloseBtn.onclick%20%3D%20()%20%3D%3E%20document.body.removeChild(modal)%3Bmodal.innerHTML%20%3D%20%60%3Cdiv%20style%3D%22font-family%3A%20Arial%2C%20sans-serif%3B%20white-space%3A%20pre-wrap%3B%22%3E%24%7BinfoHtml%7D%3C%2Fdiv%3E%60%3Bmodal.appendChild(closeBtn)%3Bdocument.body.appendChild(modal)%7D%20else%20%7Balert(%22Profile%20ID%2C%20display%20name%2C%20or%20username%20not%20found!%22)%3B%7D%7D)()">Facebook User ID Bookmarklet</a></div></td>
                   <td>This bookmarklet is used on Facebook user profile pages (for example: <code>https://facebook.com/not.a.real.username</code>) to extract a Facebook ID and display name and then display in a modal box.</td>
 
-                  <td><i class="fa-brands fa-facebook"></i><p class="text-center">Facebook, social, user, id</p></td>
+                  <td>
+                    <p class="text-center">
+                      <i class="fa-brands fa-facebook" style="font-size: 32px;"></i>
+                      Facebook, social, user, id</p></td>
 
                   <td>2025-10-15</td>
                 </tr>
