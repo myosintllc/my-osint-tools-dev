@@ -175,7 +175,7 @@
                   <td><div ondrop="drop(event)" ondragover="allowDrop(event)"><a class="btn btn-success" role="button" draggable="true" ondragstart="drag(event)" data-name="TM_facebookID" data-domain="facebook.com" href="javascript:(function()%7Bconst%20findProfileInfo%20%3D%20()%20%3D%3E%20%7Bconst%20profileIdRegex%20%3D%20%2F%22userID%22%3A%22(%5Cd%2B)%22%2F%3Bconst%20profileIdMatch%20%3D%20document.documentElement.outerHTML.match(profileIdRegex)%3Bconst%20profileId%20%3D%20profileIdMatch%20%3F%20profileIdMatch%5B1%5D%20%3A%20%22Not%20present%20in%20page%22%3Bconst%20displayRegex%20%3D%20%2F__isProfile%22%3A%22User%22%2C%22name%22%3A%22(%5B%5E%22%5D%2B)%22%2F%3Bconst%20displayMatch%20%3D%20document.documentElement.innerHTML.match(displayRegex)%3Bconst%20displayName%20%3D%20displayMatch%20%3F%20displayMatch%5B1%5D%20%3A%20%22Not%20present%20in%20page%22%3Breturn%20%7BprofileId%3A%20profileId%2CdisplayName%3A%20displayName%7D%7D%3Bconst%20profileInfo%20%3D%20findProfileInfo()%3Bif%20(profileInfo)%20%7Bconst%20infoHtml%20%3D%20%22Display%20Name%3A%20%22%20%2B%20profileInfo.displayName%20%2B%20%22%3Cbr%3E%22%20%2B%20%22Facebook%20ID%3A%20%22%20%2B%20profileInfo.profileId%20%2B%22%3Cbr%3E%22%20%2B%20%22Current%20URL%3A%20%22%20%2B%20document.URL%3Bconst%20modal%20%3D%20document.createElement(%22div%22)%3Bmodal.style.position%20%3D%20%22fixed%22%3Bmodal.style.top%20%3D%20%2250%25%22%3Bmodal.style.left%20%3D%20%2250%25%22%3Bmodal.style.transform%20%3D%20%22translate(-50%25%2C%20-50%25)%22%3Bmodal.style.backgroundColor%20%3D%20%22%23333%22%3Bmodal.style.color%20%3D%20%22%23fff%22%3Bmodal.style.padding%20%3D%20%2220px%22%3Bmodal.style.border%20%3D%20%222px%20solid%20%23fff%22%3Bmodal.style.borderRadius%20%3D%20%2210px%22%3Bmodal.style.zIndex%20%3D%20%2210000%22%3Bmodal.style.maxWidth%20%3D%20%2280%25%22%3Bmodal.style.textAlign%20%3D%20%22left%22%3Bconst%20closeBtn%20%3D%20document.createElement(%22button%22)%3BcloseBtn.innerText%20%3D%20%22Close%22%3BcloseBtn.style.marginTop%20%3D%20%2210px%22%3BcloseBtn.style.padding%20%3D%20%225px%2010px%22%3BcloseBtn.style.backgroundColor%20%3D%20%22%23fff%22%3BcloseBtn.style.color%20%3D%20%22%23333%22%3BcloseBtn.style.border%20%3D%20%22none%22%3BcloseBtn.style.cursor%20%3D%20%22pointer%22%3BcloseBtn.style.borderRadius%20%3D%20%225px%22%3BcloseBtn.onclick%20%3D%20()%20%3D%3E%20document.body.removeChild(modal)%3Bmodal.innerHTML%20%3D%20%60%3Cdiv%20style%3D%22font-family%3A%20Arial%2C%20sans-serif%3B%20white-space%3A%20pre-wrap%3B%22%3E%24%7BinfoHtml%7D%3C%2Fdiv%3E%60%3Bmodal.appendChild(closeBtn)%3Bdocument.body.appendChild(modal)%7D%20else%20%7Balert(%22Profile%20ID%2C%20display%20name%2C%20or%20username%20not%20found!%22)%3B%7D%7D)()">Facebook User ID Bookmarklet</a></div></td>
                   <td>This bookmarklet is used on Facebook user profile pages (for example: <code>https://facebook.com/not.a.real.username</code>) to extract a Facebook ID and display name and then display in a modal box.</td>
 
-                  <td><img class="mx-auto d-block" alt="Facebook icon" src="https://tools.myosint.training/images/fb.png"><p class="text-center">Facebook, social, user, id</p></td>
+                  <td><i class="fa-brands fa-facebook"></i><p class="text-center">Facebook, social, user, id</p></td>
 
                   <td>2025-10-15</td>
                 </tr>
@@ -336,7 +336,7 @@
 
                   <td>This bookmarklet is used on TikTok user profile pages like <code>https://www.tiktok.com/@therock</code> to extract user profile data and display in a pop-up window. It will reveal the creation date, nickname modification date, and other important data.</td>
 
-                  <td><img class="mx-auto d-block" alt="TikTok icon" src="https://tools.myosint.training/images/tt.png"><p class="text-center">TikTok, social, user, profile, id, image</p></td>
+                  <td><i class="fa-brands fa-tiktok"></i><p class="text-center">TikTok, social, user, profile, id, image</p></td>
 
                   <td>2025-10-15</td>
                 </tr>
@@ -637,9 +637,9 @@
         const today = new Date();
         today.setHours(0, 0, 0, 0); // Reset time to midnight for accurate comparison
 
-        // Calculate the date 30 days ago
-        const thirtyDaysAgo = new Date(today);
-        thirtyDaysAgo.setDate(today.getDate() - 30);
+        // Calculate the date 14 days ago
+        const fourteenDaysAgo = new Date(today);
+        fourteenDaysAgo.setDate(today.getDate() - 14);
 
         // Find the table
         const table = document.getElementById('collectiontable');
@@ -669,12 +669,12 @@
             const cellDate = new Date(dateText);
 
             // Check if the date is valid and within the last 30 days
-            if (!isNaN(cellDate) && cellDate >= thirtyDaysAgo && cellDate <= today) {
+            if (!isNaN(cellDate) && cellDate >= fourteenDaysAgo && cellDate <= today) {
               // Highlight the cell
               dateCell.style.backgroundColor = '#90EE90'; // Light green
               dateCell.style.fontWeight = 'bold';
               // Optional: add a badge or icon
-              dateCell.innerHTML = dateText + ' <span class="badge bg-success ms-1">NEW</span>';
+              dateCell.innerHTML = dateText + '<br><span class="badge bg-success ms-1">NEW</span>';
             }
           }
         });
