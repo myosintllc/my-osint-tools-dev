@@ -550,6 +550,7 @@
             </div>
         </div> <!-- Other TAB -->
       </div>  <!-- Tabs -->
+    </div>
 
       <br>
       <hr>
@@ -703,7 +704,6 @@
           </div>
         </div>
       </div>
-    </div>
 
     <!-- Footer -->
     <div class="header__container">
@@ -744,19 +744,16 @@
     </div>
 
     <script>
-      function highlightRecentUpdates() {
+      function highlightRecentUpdates(tableId) {
         // Get today's date
         const today = new Date();
         today.setHours(0, 0, 0, 0); // Reset time to midnight for accurate comparison
-
         // Calculate the date 14 days ago
         const fourteenDaysAgo = new Date(today);
         fourteenDaysAgo.setDate(today.getDate() - 14);
-
         // Find the table
-        const table = document.getElementById('collectiontable');
+        const table = document.getElementById(tableId);
         if (!table) return;
-
         // Find the index of the "Last updated" column
         const headers = table.querySelectorAll('thead th');
         let dateColumnIndex = -1;
@@ -765,35 +762,33 @@
             dateColumnIndex = index;
           }
         });
-
         if (dateColumnIndex === -1) return;
-
         // Get all rows in the tbody
         const rows = table.querySelectorAll('tbody tr');
-
         rows.forEach(row => {
           const cells = row.querySelectorAll('td');
           if (cells.length > dateColumnIndex) {
             const dateCell = cells[dateColumnIndex];
             const dateText = dateCell.textContent.trim();
-
             // Parse the date (format: YYYY-MM-DD)
             const cellDate = new Date(dateText);
-
-            // Check if the date is valid and within the last 30 days
+            // Check if the date is valid and within the last 14 days
             if (!isNaN(cellDate) && cellDate >= fourteenDaysAgo && cellDate <= today) {
               // Highlight the cell
               dateCell.style.backgroundColor = '#90EE90'; // Light green
               dateCell.style.fontWeight = 'bold';
               // Optional: add a badge or icon
-              dateCell.innerHTML = dateText + '<br><span class="badge bg-success ms-1">NEW</span>';
+              dateCell.innerHTML = dateText + '<br><span class="badge bg-success ms-1">Updated/New!</span>';
             }
           }
         });
       }
 
-      // Run the function when the page loads
-      document.addEventListener('DOMContentLoaded', highlightRecentUpdates);
+      // Run the function for both tables when the page loads
+      document.addEventListener('DOMContentLoaded', function() {
+        highlightRecentUpdates('collectiontablesocmint');
+        highlightRecentUpdates('collectiontableother');
+      });
     </script>
   </body>
 </html>
