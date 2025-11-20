@@ -59,7 +59,8 @@ def build_js_definitions(bookmarklet_definitions):
     print("Building JS for Tampermonkey based on bookmarklets")
     js_definitions = []
     global_state_replacers = [
-        "__INITIAL_STATE__"
+        "__INITIAL_STATE__",
+        "__sc_hydration"
     ]
 
     for bml in bookmarklet_definitions:
