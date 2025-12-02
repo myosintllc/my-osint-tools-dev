@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cash App Profile Viewer</title>
+    <title>My OSINT Training Cash App Profile Viewer</title>
 
-    <!-- Content Security Policy -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://cash.app https://*.cash.app https://cloudfront.net https://*.cloudfront.net https://franklin-assets.s3.amazonaws.com https://*.s3.amazonaws.com data:; style-src 'unsafe-inline'; script-src 'unsafe-inline';">
 
     <style>
@@ -231,15 +230,13 @@
     </div>
 
     <script>
-        // SECURITY: Sanitize function to prevent XSS
         function sanitize(str) {
             if (!str) return '';
             const div = document.createElement('div');
-            div.textContent = str; // Uses textContent, not innerHTML
+            div.textContent = str;
             return div.innerHTML;
         }
 
-        // SECURITY: Validate image URL - only allow Cash App domains
         function isValidImageUrl(url) {
             if (!url) return false;
             try {
@@ -254,7 +251,6 @@
 
                 const hostname = urlObj.hostname.toLowerCase();
 
-                // Check if hostname matches or is subdomain of allowed domains
                 return allowedDomains.some(domain =>
                     hostname === domain || hostname.endsWith('.' + domain)
                 );
@@ -264,23 +260,106 @@
             }
         }
 
+        const NEWWINDOW = 'var=window.open(1)';
+
+        async function hmacSHA256(key, message) {
+            const encoder = new TextEncoder();
+            const keyData = encoder.encode(key);
+            const messageData = encoder.encode(message);
+
+            const cryptoKey = await crypto.subtle.importKey(
+                'raw',
+                keyData,
+                { name: 'HMAC', hash: 'SHA-256' },
+                false,
+                ['sign']
+            );
+
+            const signature = await crypto.subtle.sign('HMAC', cryptoKey, messageData);
+            const hashArray = Array.from(new Uint8Array(signature));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
         // Parse URL parameters
-        function getParams() {
+        async function getParams() {
             const params = new URLSearchParams(window.location.search);
-            return {
-                cashtag: params.get('cashtag') || '',
-                name: params.get('name') || '',
-                verified: params.get('verified') === '1',
-                plan: params.get('plan') || '',
-                country: params.get('country') || '',
-                image: params.get('image') || ''
-            };
+            const encodedData = params.get('data');
+            const signature = params.get('sig');
+
+            // Check if we have encoded data
+            if (!encodedData) {
+                // Fallback: try old-style parameters for backwards compatibility
+                return {
+                    cashtag: params.get('cashtag') || '',
+                    name: params.get('name') || '',
+                    verified: params.get('verified') === '1',
+                    plan: params.get('plan') || '',
+                    country: params.get('country') || '',
+                    image: params.get('image') || '',
+                    tampered: false,
+                    legacy: true
+                };
+            }
+
+            try {
+                // Decode base64
+                const jsonData = atob(encodedData);
+
+                // Verify signature if provided
+                let tampered = false;
+                if (signature) {
+                    const expectedSig = await hmacSHA256(NEW_WINDOW, jsonData);
+                    if (signature !== expectedSig) {
+                        tampered = true;
+                        console.warn('Signature verification failed! Data may have been tampered with.');
+                    }
+                }
+
+                // Parse JSON
+                const data = JSON.parse(jsonData);
+
+                return {
+                    cashtag: data.cashtag || '',
+                    name: data.name || '',
+                    verified: data.verified === '1',
+                    plan: data.plan || '',
+                    country: data.country || '',
+                    image: data.image || '',
+                    tampered: tampered,
+                    legacy: false
+                };
+            } catch (e) {
+                console.error('Failed to decode data:', e);
+                return {
+                    cashtag: '',
+                    name: '',
+                    verified: false,
+                    plan: '',
+                    country: '',
+                    image: '',
+                    tampered: true,
+                    legacy: false
+                };
+            }
         }
 
         // Render the profile
-        function renderProfile() {
-            const data = getParams();
+        async function renderProfile() {
+            const data = await getParams();
             const container = document.getElementById('content');
+
+            // Check if data was tampered with
+            if (data.tampered) {
+                container.innerHTML = `
+                    <div class="error-message">
+                        <h2>⚠️ Security Warning</h2>
+                        <p><strong>Data signature verification failed!</strong></p>
+                        <p>This URL may have been tampered with or corrupted.</p>
+                        <p style="margin-top: 10px;">Please use the bookmarklet on cash.app to generate a new link.</p>
+                    </div>
+                `;
+                return;
+            }
 
             // Check if we have any data
             if (!data.cashtag && !data.name) {
@@ -296,6 +375,11 @@
 
             // Build HTML using sanitized data
             let html = '<h1>Cash App Profile Data</h1>';
+
+            // Show legacy warning if using old format
+            if (data.legacy) {
+                html += '<div style="background:#856404;color:#fff;padding:10px;border-radius:5px;margin-bottom:15px;font-size:13px;">ℹ️ Using legacy URL format (unencoded). Update your bookmarklet for better security.</div>';
+            }
 
             // Profile Image Section
             if (data.image && isValidImageUrl(data.image)) {
@@ -366,8 +450,8 @@
         }
 
         // Copy data to clipboard
-        function copyData() {
-            const data = getParams();
+        async function copyData() {
+            const data = await getParams();
             let text = 'Cash App Profile\n\n';
             if (data.cashtag) text += 'Cashtag: ' + data.cashtag + '\n';
             if (data.name) text += 'Display Name: ' + data.name + '\n';
