@@ -99,9 +99,7 @@
         }
 
         .profile-image img {
-            max-width: 200px;
             width: 100%;
-            border-radius: 50%;
             border: 2px solid #008BC4;
             object-fit: cover;
         }
@@ -265,7 +263,7 @@
         }
 
         // Secret key for HMAC (must match bookmarklet - change this to your own secret)
-        const SECRET_KEY = 'myosint-cashapp-v6-2024-secure';
+        const SECRET_KEY = 'Your-home-for-OSINT-learning!';
 
         // HMAC-SHA256 implementation
         async function hmacSHA256(key, message) {
@@ -387,21 +385,6 @@
                 html += '<div style="background:#856404;color:#fff;padding:10px;border-radius:5px;margin-bottom:15px;font-size:13px;">ℹ️ Using legacy URL format (unencoded). Update your bookmarklet for better security.</div>';
             }
 
-            // Profile Image Section
-            if (data.image && isValidImageUrl(data.image)) {
-                html += '<div class="profile-image">';
-                html += '<img src="' + sanitize(data.image) + '" alt="Profile Image" id="profileImg">';
-                html += '</div>';
-            } else if (data.image) {
-                html += '<div class="profile-image">';
-                html += '<div class="no-image">⚠️ Image URL blocked for security (invalid domain)</div>';
-                html += '</div>';
-            } else {
-                html += '<div class="profile-image">';
-                html += '<div class="no-image">📷 No profile image available</div>';
-                html += '</div>';
-            }
-
             // Profile Data Section - using v6 style data rows
             if (data.cashtag) {
                 html += '<div class="data-row">';
@@ -443,6 +426,21 @@
             html += '<button class="btn" onclick="window.print()">🖨️ Print</button>';
             html += '<button class="btn" onclick="copyData()">📋 Copy Data</button>';
             html += '</div>';
+
+            // Profile Image Section
+            if (data.image && isValidImageUrl(data.image)) {
+                html += '<div class="profile-image">';
+                html += '<img src="' + sanitize(data.image) + '" alt="Profile Image" id="profileImg">';
+                html += '</div>';
+            } else if (data.image) {
+                html += '<div class="profile-image">';
+                html += '<div class="no-image">⚠️ Image URL blocked for security (invalid domain)</div>';
+                html += '</div>';
+            } else {
+                html += '<div class="profile-image">';
+                html += '<div class="no-image">📷 No profile image available</div>';
+                html += '</div>';
+            }
 
             container.innerHTML = html;
 
