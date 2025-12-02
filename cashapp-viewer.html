@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My OSINT Training Cash App Profile Viewer</title>
+    <title>Cash App Profile Viewer</title>
 
+    <!-- Content Security Policy -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://cash.app https://*.cash.app https://cloudfront.net https://*.cloudfront.net https://franklin-assets.s3.amazonaws.com https://*.s3.amazonaws.com data:; style-src 'unsafe-inline'; script-src 'unsafe-inline';">
 
     <style>
@@ -230,13 +231,15 @@
     </div>
 
     <script>
+        // SECURITY: Sanitize function to prevent XSS
         function sanitize(str) {
             if (!str) return '';
             const div = document.createElement('div');
-            div.textContent = str;
+            div.textContent = str; // Uses textContent, not innerHTML
             return div.innerHTML;
         }
 
+        // SECURITY: Validate image URL - only allow Cash App domains
         function isValidImageUrl(url) {
             if (!url) return false;
             try {
@@ -251,6 +254,7 @@
 
                 const hostname = urlObj.hostname.toLowerCase();
 
+                // Check if hostname matches or is subdomain of allowed domains
                 return allowedDomains.some(domain =>
                     hostname === domain || hostname.endsWith('.' + domain)
                 );
@@ -260,8 +264,10 @@
             }
         }
 
-        const NEWWINDOW = 'var=window.open(1)';
+        // Secret key for HMAC (must match bookmarklet - change this to your own secret)
+        const SECRET_KEY = 'myosint-cashapp-v6-2024-secure';
 
+        // HMAC-SHA256 implementation
         async function hmacSHA256(key, message) {
             const encoder = new TextEncoder();
             const keyData = encoder.encode(key);
@@ -308,7 +314,7 @@
                 // Verify signature if provided
                 let tampered = false;
                 if (signature) {
-                    const expectedSig = await hmacSHA256(NEW_WINDOW, jsonData);
+                    const expectedSig = await hmacSHA256(SECRET_KEY, jsonData);
                     if (signature !== expectedSig) {
                         tampered = true;
                         console.warn('Signature verification failed! Data may have been tampered with.');
@@ -367,7 +373,7 @@
                     <div class="error-message">
                         <h2>❌ No Profile Data</h2>
                         <p>No profile information was provided in the URL.</p>
-                        <p style="margin-top: 10px;">Use the Cash App bookmarklet to extract and view profile data.</p>
+                        <p style="margin-top: 10px;">Use the Cash App bookmarklet on the <a href="https://tools.myosint.training">Tools page</a> to extract and view profile data.</p>
                     </div>
                 `;
                 return;
