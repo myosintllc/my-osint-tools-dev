@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My OSINT Training Cash App Profile Viewer</title>
 
+    <!-- Content Security Policy -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://cash.app https://*.cash.app https://cloudfront.net https://*.cloudfront.net https://franklin-assets.s3.amazonaws.com https://*.s3.amazonaws.com data:; style-src 'unsafe-inline'; script-src 'unsafe-inline';">
 
     <style>
@@ -86,7 +87,7 @@
         }
 
         .data-section {
-            flex: 1;
+            flex: 0 1 auto;
             min-width: 0;
         }
 
@@ -227,6 +228,7 @@
     </style>
 </head>
 <body>
+    <!-- Security Warning -->
     <div class="warning">
         <h3>⚠️ Security Notice</h3>
         <p><strong>This page displays data from external sources.</strong> Always verify profile information directly on cash.app before taking any action.</p>
