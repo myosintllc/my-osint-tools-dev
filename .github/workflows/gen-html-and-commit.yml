@@ -25,7 +25,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests zipfile pathlib typing urllib
+          pip install requests
 
       - name: Run Python script
         run: python exporter.py
