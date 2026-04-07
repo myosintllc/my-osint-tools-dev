@@ -817,6 +817,15 @@
 
                       <td>2025-11-25</td>
                     </tr>
+                    <tr id="bm-deblurring-bookmarklet">
+                      <td><div ondrop="drop(event)" ondragover="allowDrop(event)"><a class="btn btn-primary" role="button" data-folder="Misc" draggable="true" ondragstart="drag(event)" href="javascript:(function() {document.body.innerHTML = document.body.innerHTML.replace(/class=&quot;blur&quot;/g, '');})();">Deblurring Bookmarklet</a></div></td>
+
+                      <td>This bookmarklet is used to de-blur content on sites that use the <code>class="blur"</code> technique to obfuscate data in your browser. When you click this bookmarklet, it will remove all those blurring classes and may reveal real data.</td>
+
+                      <td><p class="text-center">Deblurring</p></td>
+
+                      <td>2026-04-07</td>
+                    </tr>
                     <tr id="bm-domain-search-bookmarklet">
                       <td>
                         <div ondrop="drop(event)" ondragover="allowDrop(event)"><a class="btn btn-primary" role="button" data-folder="Misc" draggable="true" ondragstart="drag(event)" data-replace-open="true" href="javascript:(function(){var DOMAIN=prompt('Enter DOMAIN- no www: ');var sites=[`https://whoisology.com/${DOMAIN}`,`https://builtwith.com/${DOMAIN}`,`https://dnslytics.com/domain/${DOMAIN}`,`https://host.io/${DOMAIN}`,`https://whois.domaintools.com/${DOMAIN}`,`https://viewdns.info/whois/?domain=${DOMAIN}`,`https://viewdns.info/reverseip/?host=${DOMAIN}&t=1`,`https://viewdns.info/iphistory/?domain=${DOMAIN}`];if(DOMAIN&&DOMAIN.trim()!==``){for(let site of sites){window.open(site,`_blank`)}}})();">Domain Search Bookmarklet</a></div>
@@ -843,15 +852,6 @@
                           email, person, user</p></td>
 
                       <td>2024-07-31</td>
-                    </tr>
-                    <tr id="bm-thatsthem-and-others-deblurring-bookmarklet">
-                      <td><div ondrop="drop(event)" ondragover="allowDrop(event)"><a class="btn btn-primary" role="button" data-folder="Misc" draggable="true" ondragstart="drag(event)" href="javascript:(function() {document.body.innerHTML = document.body.innerHTML.replace(/class=&quot;blur&quot;/g, '');})();">ThatsThem (and Others) Deblurring Bookmarklet</a></div></td>
-
-                      <td>This bookmarklet is used to de-blur content on sites that use the <code>class="blur"</code> technique to obfuscate data in your browser. Sites such as thatsthem.com do this as do others. When you click this bookmarklet, it will remove all those blurring classes and may reveal real data.</td>
-
-                      <td><p class="text-center">ThatsThem</p></td>
-
-                      <td>2025-09-16</td>
                     </tr>
                     <tr id="bm-united-states-name-bookmarklet">
                       <td><div ondrop="drop(event)" ondragover="allowDrop(event)"><a class="btn btn-warning" role="button" data-folder="Multi-site" draggable="true" ondragstart="drag(event)" data-replace-open="true" href="javascript:(function(){var FIRSTNAME=prompt('Enter FIRSTNAME: ');var LASTNAME=prompt('Enter LASTNAME: ');var STATE=prompt('Enter STATE: ');let sites=[`https://www.truepeoplesearch.com/results?name=${FIRSTNAME} ${LASTNAME}&citystatezip=${STATE}`,`https://www.fastpeoplesearch.com/name/${FIRSTNAME}-${LASTNAME}_${STATE}`,`https://www.familytreenow.com/search/genealogy/results?first=${FIRSTNAME}&last=${LASTNAME}&citystatezip=${STATE}`,`https://www.searchpeoplefree.com/find/${FIRSTNAME}-${LASTNAME}/${STATE}`,`https://www.spokeo.com/${FIRSTNAME}-${LASTNAME}/${STATE}`,`https://www.whitepages.com/name/${FIRSTNAME}-${LASTNAME}/${STATE}`,`https://thatsthem.com/name/${FIRSTNAME}-${LASTNAME}/${STATE}`,`https://www.cyberbackgroundchecks.com/people/${FIRSTNAME}-${LASTNAME}/${STATE}`];if(FIRSTNAME&&FIRSTNAME.trim()!==''){for(let site of sites){window.open(site,`_blank`)}}})();">United States Name Bookmarklet</a></div></td>
