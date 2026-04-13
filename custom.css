@@ -717,8 +717,11 @@
   list-style: none;
   margin: 0;
   padding: 0.4rem 0;
-  background: #000a19;
+  background: #0d2035;
   border-top: 2px solid #00b4fa;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 0 0 5px 5px;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
   z-index: 9000;
