@@ -35,20 +35,41 @@
       gtag('config', 'G-CF5BDSXRMG');
     </script>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha384-rWj9FmWWt3OMqd9vBkWRhFavvVUYalYqGPoMdL1brs/qvvqz88gvLShYa4hKNyqb" crossorigin="anonymous">
     <link rel="stylesheet" href="/custom.css">
-    <meta property="og:title" content="MOT Bookmarklets">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' https: 'unsafe-inline'; style-src 'self' https: 'unsafe-inline'; img-src 'self' https: data:; font-src 'self' https: data:; connect-src 'self' https:; frame-ancestors 'self';">
+    <meta property="og:title" content="My OSINT Training's Tools">
     <meta property="og:locale" content="en_US">
-    <meta name="description" content="Great place for free OSINT tools made by My OSINT Training people!">
-    <meta property="og:description" content="Great place for free OSINT tools made by My OSINT Training people!">
+    <meta property="og:type" content="website">
+    <meta name="description" content="OSINT bookmarklets to extract user IDs, dates, photos, and hidden data from TikTok, Instagram, Facebook, Snapchat, Pinterest, and 40+ more platforms.">
+    <meta property="og:description" content="OSINT bookmarklets to extract user IDs, dates, photos, and hidden data from TikTok, Instagram, Facebook, Snapchat, Pinterest, and 40+ more platforms.">
+    <meta property="og:image" content="https://tools.myosint.training/images/osinttools.png">
     <link rel="canonical" href="https://tools.myosint.training/">
     <meta property="og:url" content="https://tools.myosint.training/">
     <meta property="og:site_name" content="My OSINT Training's Tools">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@myosinttraining">
+    <meta name="twitter:title" content="My OSINT Training's Tools">
+    <meta name="twitter:description" content="OSINT bookmarklets to extract user IDs, dates, photos, and hidden data from TikTok, Instagram, Facebook, Snapchat, Pinterest, and 40+ more platforms.">
+    <meta name="twitter:image" content="https://tools.myosint.training/images/osinttools.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="My OSINT Training">
-    <meta name="keywords" content="OSINT, bookmarklets, social media tools, Facebook, Instagram, TikTok, Twitter">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="OSINT, bookmarklets, social media tools, Facebook, Instagram, TikTok, Twitter, X, Snapchat, Pinterest, LinkedIn, YouTube, Reddit, Twitch, Discord, Telegram, VK, WhatsApp, OnlyFans, Fansly, Venmo, Airbnb, Tinder, Bluesky, Threads, Flickr, SoundCloud, BandLab, Smule, IMVU, Trello, open source intelligence, user ID, investigation tools">
     <title>My OSINT Training's Tools</title>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "My OSINT Training's Tools",
+      "url": "https://tools.myosint.training/",
+      "description": "OSINT bookmarklets to extract user IDs, dates, photos, and hidden data from TikTok, Instagram, Facebook, Snapchat, Pinterest, and 40+ more platforms.",
+      "author": { "@type": "Organization", "name": "My OSINT Training" }
+    }
+    </script>
 
     <!-- Basic Favicon -->
     <link rel="icon" type="image/x-icon" href="https://files.myosint.training/favicons/favicon.ico" sizes="any">
@@ -77,6 +98,7 @@
       function drop(ev) {
         ev.preventDefault();
         var data = ev.dataTransfer.getData("text");
+        if (!/^[a-zA-Z0-9_-]+$/.test(data)) return;
         ev.target.appendChild(document.getElementById(data));
       }
     </script>
@@ -166,7 +188,7 @@
       <div class="row">
         <div class="col-lg-8 align-middle">
           <div class="card text-bg-primary mb-5 shadow rounded">
-            <h2 class="card-header">Welcome to My OSINT Tools</h2>
+            <h1 class="card-header">Welcome to My OSINT Tools</h1>
             <div class="card-body">
               <p class="card-text">Tools are essential for efficient open source intelligence work, and they don't always have to come at a cost! At My OSINT Training, we make and share custom tools to help you perform OSINT tasks faster and more effectively, empowering you to excel! These are some of our favorites and hope they are useful in your work!<br><br>
                 We have more detailed descriptions and images of many of these bookmarklets on <a href="https://blog.myosint.training" style="color:rgb(169, 253, 253);" target="_blank" rel="noopener noreferrer">our blog page</a>.<br>
@@ -940,7 +962,7 @@
 
                       <td>
                         <p class="text-center">
-                          <i class="fa-solid fa-envelope fa-2x"></i><br>
+                          <i class="fa-solid fa-table fa-2x"></i><br>
                           table, export, instant data scraper</p></td>
 
                       <td>2026-04-22</td>
@@ -1121,7 +1143,7 @@
         <div class="row">
           <div class="col-lg-auto">
             <h2 id="faq">Common Issues and Problems (FAQ)
-            <a class="anchor-link" href="#support" aria-label="Link to this section: FAQ"></a></h2>
+            <a class="anchor-link" href="#faq" aria-label="Link to this section: FAQ"></a></h2>
             <p>Bookmarklet not working correctly for you? Here are some helpful steps you can take. Just click the button below that is closest to your issue.</p>
 
             <div id="accordion-faq">
@@ -1374,7 +1396,7 @@
         }
       });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
     <!-- MOT Dropdown Nav — add this block just before </body> -->
     <script>
