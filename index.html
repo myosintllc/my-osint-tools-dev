@@ -59,7 +59,22 @@
     <meta name="author" content="My OSINT Training">
     <meta name="robots" content="index, follow">
     <meta name="keywords" content="OSINT, bookmarklets, social media tools, Facebook, Instagram, TikTok, Twitter, X, Snapchat, Pinterest, LinkedIn, YouTube, Reddit, Twitch, Discord, Telegram, VK, WhatsApp, OnlyFans, Fansly, Venmo, Airbnb, Tinder, Bluesky, Threads, Flickr, SoundCloud, BandLab, Smule, IMVU, Trello, open source intelligence, user ID, investigation tools">
-    <title>My OSINT Training's Tools</title>
+    <title>Free OSINT Bookmarklets | My OSINT Training Tools</title>
+    <style>
+      /* Sticky table column headers */
+      #collectiontablespecific thead th,
+      #collectiontablegeneral thead th {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        background-color: #fff;
+        box-shadow: 0 1px 2px rgba(0,0,0,.15);
+      }
+      /* Make Active/Passive badge links look like badges, not links */
+      a.badge-link { text-decoration: none; display: inline-block; }
+      a.badge-link:hover .badge-active,
+      a.badge-link:hover .badge-passive { filter: brightness(1.15); cursor: pointer; }
+    </style>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -107,8 +122,8 @@
     <div class="header__container">
       <div class="header__wrapper">
         <section class="header__logo header__logo___2909e">
-            <a href="/">
-              <img src="https://import.cdn.thinkific.com/568124%2Fcustom_site_themes%2Fid%2FfAru0CvDRm2i9beQGYHA_myosint-training-light.png" srcset="https://import.cdn.thinkific.com/568124%2Fcustom_site_themes%2Fid%2FfAru0CvDRm2i9beQGYHA_myosint-training-light.png?width=384&amp;dpr=1 1x, https://import.cdn.thinkific.com/568124%2Fcustom_site_themes%2Fid%2FfAru0CvDRm2i9beQGYHA_myosint-training-light.png?width=384&amp;dpr=2 2x, https://import.cdn.thinkific.com/568124%2Fcustom_site_themes%2Fid%2FfAru0CvDRm2i9beQGYHA_myosint-training-light.png?width=384&amp;dpr=3 3x" alt="My OSINT Training Image" class="logo img-responsive">
+            <a href="https://www.myosint.training" target="_blank" rel="noopener noreferrer">
+              <img src="https://import.cdn.thinkific.com/568124%2Fcustom_site_themes%2Fid%2FfAru0CvDRm2i9beQGYHA_myosint-training-light.png" srcset="https://import.cdn.thinkific.com/568124%2Fcustom_site_themes%2Fid%2FfAru0CvDRm2i9beQGYHA_myosint-training-light.png?width=384&amp;dpr=1 1x, https://import.cdn.thinkific.com/568124%2Fcustom_site_themes%2Fid%2FfAru0CvDRm2i9beQGYHA_myosint-training-light.png?width=384&amp;dpr=2 2x, https://import.cdn.thinkific.com/568124%2Fcustom_site_themes%2Fid%2FfAru0CvDRm2i9beQGYHA_myosint-training-light.png?width=384&amp;dpr=3 3x" alt="My OSINT Training logo" class="logo img-responsive">
             </a>
         </section>
         <!-- Replace the entire <nav class="header__nav hidden-print"> ... </nav> block with this -->
@@ -200,13 +215,13 @@
           </div>
         </div>
         <div class="col-lg-4">
-          <img src="https://tools.myosint.training/images/osinttools.png" height="250" class="mx-auto d-block shadow p-3 mb-2 rounded" alt="My OSINT Tools Logo">
+          <img src="https://tools.myosint.training/images/osinttools.png" height="250" class="mx-auto d-block shadow p-3 mb-2 rounded" alt="My OSINT Training Tools logo">
         </div>
       </div>
 
       <div class="callout callout-info">
         <h3>Get all the Bookmarklets</h3>
-          <p>Want all our bookmarklets in your browser? Get an importable HTML file <a href="/myosint_bookmarklets.html" download>here</a>.</p>
+          <p>Want all our bookmarklets in your browser at once? <a href="/myosint_bookmarklets.html" download data-bs-toggle="tooltip" data-bs-placement="top" title="Download this HTML file, then open your browser's Bookmarks Manager and import it — all bookmarklets will be added in one step!">Download the importable HTML file</a>, then import it into your browser's Bookmarks Manager.</p>
       </div>
 
       <div class="row">
@@ -1212,6 +1227,39 @@
       </div>
     </div>
 
+    <!-- Script Type Explanation -->
+    <div class="container-lg pb-3 mb-5 shadow rounded">
+      <div class="row">
+        <div class="col-lg-auto">
+          <h2 id="script-type-explanation">Script Types: Active vs Passive
+          <a class="anchor-link" href="#script-type-explanation" aria-label="Link to this section: Script Type Explanation"></a></h2>
+          <p>Each bookmarklet in the table above is labeled with a script type that tells you how it interacts with data.</p>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="card border-primary h-100" id="active-script-type">
+                <div class="card-header bg-primary text-white">
+                  <span class="badge-active"><i class="fas fa-cloud-upload-alt"></i> Active</span>
+                </div>
+                <div class="card-body">
+                  <p class="card-text">An <strong>Active</strong> bookmarklet makes additional web requests — it contacts the website's servers or a third-party API to fetch data beyond what is already loaded in your browser. Because it sends network traffic, the target site may log or detect its use.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card border-success h-100" id="passive-script-type">
+                <div class="card-header bg-success text-white">
+                  <span class="badge-passive"><i class="fas fa-desktop"></i> Passive</span>
+                </div>
+                <div class="card-body">
+                  <p class="card-text">A <strong>Passive</strong> bookmarklet only reads and processes data already present in your browser — it never sends additional requests to external servers. It extracts information from the page source or existing browser memory without leaving any additional network trace.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Disclaimers -->
     <div class="container-lg pb-3 mb-5 shadow rounded">
       <div class="row">
@@ -1256,8 +1304,8 @@
     <div class="header__container">
       <div class="header__wrapper">
         <section class="header__logo header__logo___2909e">
-            <a href="/">
-              <img src="https://import.cdn.thinkific.com/568124%2Fcustom_site_themes%2Fid%2FfAru0CvDRm2i9beQGYHA_myosint-training-light.png" srcset="https://import.cdn.thinkific.com/568124%2Fcustom_site_themes%2Fid%2FfAru0CvDRm2i9beQGYHA_myosint-training-light.png?width=384&amp;dpr=1 1x, https://import.cdn.thinkific.com/568124%2Fcustom_site_themes%2Fid%2FfAru0CvDRm2i9beQGYHA_myosint-training-light.png?width=384&amp;dpr=2 2x, https://import.cdn.thinkific.com/568124%2Fcustom_site_themes%2Fid%2FfAru0CvDRm2i9beQGYHA_myosint-training-light.png?width=384&amp;dpr=3 3x" alt="My OSINT Training Image" class="logo img-responsive">
+            <a href="https://www.myosint.training" target="_blank" rel="noopener noreferrer">
+              <img src="https://import.cdn.thinkific.com/568124%2Fcustom_site_themes%2Fid%2FfAru0CvDRm2i9beQGYHA_myosint-training-light.png" srcset="https://import.cdn.thinkific.com/568124%2Fcustom_site_themes%2Fid%2FfAru0CvDRm2i9beQGYHA_myosint-training-light.png?width=384&amp;dpr=1 1x, https://import.cdn.thinkific.com/568124%2Fcustom_site_themes%2Fid%2FfAru0CvDRm2i9beQGYHA_myosint-training-light.png?width=384&amp;dpr=2 2x, https://import.cdn.thinkific.com/568124%2Fcustom_site_themes%2Fid%2FfAru0CvDRm2i9beQGYHA_myosint-training-light.png?width=384&amp;dpr=3 3x" alt="My OSINT Training logo" class="logo img-responsive">
             </a>
         </section>
         <nav class="header__nav hidden-print">
@@ -1368,6 +1416,29 @@
             setTimeout(function() { link.innerHTML = '<i class="fas fa-link fa-xs"></i>'; }, 1500);
           });
           descCell.insertBefore(link, descCell.firstChild);
+        });
+
+        // Initialize Bootstrap tooltip on the bookmarklet download link
+        document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(function(el) {
+          new bootstrap.Tooltip(el);
+        });
+
+        // Make Active/Passive badges clickable — link to explanation section
+        document.querySelectorAll('td .badge-active').forEach(function(badge) {
+          var a = document.createElement('a');
+          a.href = '#active-script-type';
+          a.className = 'badge-link';
+          a.title = 'What does Active mean?';
+          badge.parentNode.insertBefore(a, badge);
+          a.appendChild(badge);
+        });
+        document.querySelectorAll('td .badge-passive').forEach(function(badge) {
+          var a = document.createElement('a');
+          a.href = '#passive-script-type';
+          a.className = 'badge-link';
+          a.title = 'What does Passive mean?';
+          badge.parentNode.insertBefore(a, badge);
+          a.appendChild(badge);
         });
 
         // Handle hash-based deep linking to bookmarklet rows (e.g. #bm-tiktok-user-id-bookmarklet)
