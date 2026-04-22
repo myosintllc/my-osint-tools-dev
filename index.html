@@ -187,7 +187,7 @@
             <h1 class="card-header">Welcome to My OSINT Tools</h1>
             <div class="card-body">
               <p class="card-text">Tools are essential for efficient open source intelligence work, and they don't always have to come at a cost! At My OSINT Training, we make and share custom tools to help you perform OSINT tasks faster and more effectively, empowering you to excel! These are some of our favorites and hope they are useful in your work!<br><br>
-                We have more detailed descriptions and images of many of these bookmarklets on <a href="https://blog.myosint.training" style="color:rgb(169, 253, 253);" target="_blank" rel="noopener noreferrer">our blog page</a>.<br>
+                We have more detailed descriptions and images of many of these bookmarklets on <a href="https://blog.myosint.training" target="_blank" rel="noopener noreferrer">our blog page</a>.<br>
 
                 <div ondrop="drop(event)" ondragover="allowDrop(event)"><a class="btn btn-secondary" role="button" draggable="true" ondragstart="drag(event)" href="javascript:(function(){if(window.location.href.includes('myosint.training'))return;const base='https://files.myosint.training/db/';document.querySelectorAll('img').forEach(i=>{const num=Math.floor(Math.random()*7)+1;i.src=base+num+'.png';i.removeAttribute('srcset');i.removeAttribute('sizes');});document.querySelectorAll('[style*=&quot;background-image&quot;]').forEach(e=>{const num=Math.floor(Math.random()*7)+1;e.style.backgroundImage=`url(${base}${num}.png)`;});})();"><i>Micah & Griffin</i></a>
                 </div>
@@ -202,17 +202,17 @@
 
       <div class="row justify-content-center my-4">
         <div class="col-xl-6 col-lg-7 col-md-9">
-          <div class="card shadow-sm" style="border: 1px solid #008BC4;">
-            <div class="card-header d-flex align-items-center gap-2" style="background-color: #022447; border-bottom: 2px solid #008BC4;">
-              <i class="fa-solid fa-bookmark" style="color: #00E6F0;"></i>
-              <span style="color: #fff; font-weight: 600; font-size: 1rem;">Get All Bookmarklets at Once</span>
+          <div class="card shadow-sm mot-download-card">
+            <div class="card-header d-flex align-items-center gap-2">
+              <i class="fa-solid fa-bookmark"></i>
+              <span>Get All Bookmarklets at Once</span>
             </div>
             <div class="card-body py-3">
-              <p class="card-text mb-3 text-muted" style="font-size: 0.9rem;">Install every bookmarklet in your browser in one step — no dragging required.</p>
-              <a href="/myosint_bookmarklets.html" download class="btn btn-sm me-2" style="background-color: #008BC4; color: #fff;" data-bs-toggle="tooltip" data-bs-placement="top" title="Download this HTML file, then open your browser's Bookmarks Manager and import it — all bookmarklets will be added in one step!">
+              <p class="card-text mb-3 text-muted">Install every bookmarklet in your browser in one step — no dragging required.</p>
+              <a href="/myosint_bookmarklets.html" download class="btn btn-sm me-2 btn-download" data-bs-toggle="tooltip" data-bs-placement="top" title="Download this HTML file, then open your browser's Bookmarks Manager and import it — all bookmarklets will be added in one step!">
                 <i class="fa-solid fa-download me-1"></i>Download HTML file
               </a>
-              <span class="text-muted" style="font-size: 0.82rem;">then import into your Bookmarks Manager</span>
+              <span class="text-muted hint-text">then import into your Bookmarks Manager</span>
             </div>
           </div>
         </div>
@@ -250,7 +250,7 @@
                           <th class="text-center align-bottom">Description</th>
                           <th class="text-center align-bottom" title="Passive means that the script only uses data already in your browser. Active means that the bookmarklet makes additional call(s) to the website.">Script Type</th>
                           <th class="text-center align-bottom">Platform</th>
-                          <th class="text-center align-bottom" style="width: 12ch;" title="NEW tag will show if the bookmarklet was updated in the past 14 days.">Last updated</th>
+                          <th class="text-center align-bottom col-last-updated" title="NEW tag will show if the bookmarklet was updated in the past 14 days.">Last updated</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -897,7 +897,7 @@
                           <th class="text-center align-bottom text-danger">Drag button to your bookmarks bar</th>
                           <th class="text-center align-bottom">Description</th>
                           <th class="text-center align-bottom">Tags</th>
-                          <th class="text-center align-bottom" style="width: 12ch;" title="NEW tag will show if the bookmarklet was updated in the past 14 days.">Last updated</th>
+                          <th class="text-center align-bottom col-last-updated" title="NEW tag will show if the bookmarklet was updated in the past 14 days.">Last updated</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -1057,7 +1057,7 @@
                 <a class="anchor-link" href="#what-is-a-bookmarklet" aria-label="Link to this section: What is a Bookmarklet"></a></h2>
               <div class="card-body">
                 <i>"A bookmarklet is a bookmark stored in a web browser that contains JavaScript commands that add new features to the browser. They are stored as the URL of a bookmark in a web browser or as a hyperlink on a web page. Bookmarklets are usually small snippets of JavaScript executed when user clicks on them. When clicked, bookmarklets can perform a wide variety of operations, such as running a search query from selected text or extracting data from a table."</i>
-                - <a style="color:#fff;" href="https://en.wikipedia.org/wiki/Bookmarklet" target="_blank" rel="noopener noreferrer">Wikipedia</a>
+                - <a href="https://en.wikipedia.org/wiki/Bookmarklet" target="_blank" rel="noopener noreferrer">Wikipedia</a>
               </div>
             </div>
           </div>
@@ -1139,7 +1139,7 @@
               <div class="card-body">
                 <p class="card-text">Of course! Check out this video which has demos, how to use the bookmarklets and much more!</p>
                 <div class="ratio ratio-16x9">
-                  <iframe src="https://www.youtube.com/embed/yCW5whpeTq0" title="YouTube video player" style="border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                  <iframe src="https://www.youtube.com/embed/yCW5whpeTq0" title="YouTube video player" class="embed-iframe" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
               </div>
             </div>
@@ -1327,7 +1327,7 @@
           <div class="col">
             <span class="section__divide"></span>
             <div class="text-center">
-              <p style="color: #fff">© Copyright My OSINT Training - All Rights Reserved</p>
+              <p>© Copyright My OSINT Training - All Rights Reserved</p>
             </div>
           </div>
         </div>
