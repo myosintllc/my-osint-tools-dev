@@ -50,25 +50,34 @@
     <link rel="canonical" href="https://tools.myosint.training/">
     <meta property="og:url" content="https://tools.myosint.training/">
     <meta property="og:site_name" content="My OSINT Training's Tools">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@myosinttraining">
-    <meta name="twitter:title" content="My OSINT Training's Tools">
-    <meta name="twitter:description" content="OSINT bookmarklets to extract user IDs, dates, photos, and hidden data from TikTok, Instagram, Facebook, Snapchat, Pinterest, and 40+ more platforms.">
-    <meta name="twitter:image" content="https://tools.myosint.training/images/osinttools.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="My OSINT Training">
     <meta name="robots" content="index, follow">
     <meta name="keywords" content="OSINT, bookmarklets, social media tools, Facebook, Instagram, TikTok, Twitter, X, Snapchat, Pinterest, LinkedIn, YouTube, Reddit, Twitch, Discord, Telegram, VK, WhatsApp, OnlyFans, Fansly, Venmo, Airbnb, Tinder, Bluesky, Threads, Flickr, SoundCloud, BandLab, Smule, IMVU, Trello, open source intelligence, user ID, investigation tools">
     <title>Free OSINT Bookmarklets | My OSINT Training Tools</title>
     <style>
-      /* Sticky table column headers */
+      /* Sticky table column headers — MOT navy + cyan accent */
       #collectiontablespecific thead th,
       #collectiontablegeneral thead th {
         position: sticky;
         top: 0;
         z-index: 2;
-        background-color: #fff;
-        box-shadow: 0 1px 2px rgba(0,0,0,.15);
+        background-color: #022447;
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        padding: 14px 10px;
+        border-top: none !important;
+        border-left: none !important;
+        border-right: none !important;
+        border-bottom: 3px solid #00E6F0 !important;
+        box-shadow: 0 3px 6px rgba(0,0,0,.3);
+      }
+      #collectiontablespecific thead th.text-danger,
+      #collectiontablegeneral thead th.text-danger {
+        color: #00E6F0 !important;
       }
       /* Make Active/Passive badge links look like badges, not links */
       a.badge-link { text-decoration: none; display: inline-block; }
@@ -219,9 +228,18 @@
         </div>
       </div>
 
-      <div class="callout callout-info">
-        <h3>Get all the Bookmarklets</h3>
-          <p>Want all our bookmarklets in your browser at once? <a href="/myosint_bookmarklets.html" download data-bs-toggle="tooltip" data-bs-placement="top" title="Download this HTML file, then open your browser's Bookmarks Manager and import it — all bookmarklets will be added in one step!">Download the importable HTML file</a>, then import it into your browser's Bookmarks Manager.</p>
+      <div class="row justify-content-center my-4">
+        <div class="col-lg-7 col-md-9">
+          <div style="border: 4px solid #00E6F0; border-radius: 14px; background: #022447; color: #fff; padding: 1.4rem 1.8rem; box-shadow: 0 0 28px rgba(0,230,240,0.35);">
+            <div style="display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap;">
+              <div style="font-size: 2.8rem; line-height: 1; flex-shrink: 0;">📥</div>
+              <div>
+                <h3 style="color: #00E6F0; margin: 0 0 0.4rem 0; font-size: 1.3rem; font-weight: 700; letter-spacing: 0.02em;">Get ALL the Bookmarklets at Once!</h3>
+                <p style="margin: 0; font-size: 0.95rem; line-height: 1.5;">Skip dragging one by one — <a href="/myosint_bookmarklets.html" download style="color: #00E6F0; font-weight: 700; text-decoration: underline;" data-bs-toggle="tooltip" data-bs-placement="top" title="Download this HTML file, then open your browser's Bookmarks Manager and import it — all bookmarklets will be added in one step!">download the importable HTML file</a> and import it into your browser's Bookmarks Manager to install everything in one step.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="row">
