@@ -1,0 +1,13 @@
+{
+  "slug": "facebook-public-content-search-bookmarklet",
+  "target_url": "https://www.facebook.com/zuck",
+  "skip": false,
+  "requires_auth": false,
+  "wait_ms": 2000,
+  "notes": "Passive - extracts user ID then shows a prompt() for a search term. In headless CI the prompt is auto-dismissed, which triggers the 'No search term provided' alert path. We verify no JS errors - a failure here likely means Facebook changed the userID or name embedding.",
+  "checks": [
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "slug": "facebook-marketplace-profile-bookmarklet",
+  "target_url": "https://www.facebook.com/zuck",
+  "skip": false,
+  "requires_auth": false,
+  "wait_ms": 3000,
+  "notes": "Passive, two-step tool. When run on a regular FB profile it shows a navigation modal (not the data modal). We assert that intermediate modal appears. Full data extraction requires auth on the marketplace page - that step is skipped in CI.",
+  "checks": [
+    {
+      "type": "modal_appears",
+      "text_contains": "Navigation Required",
+      "comment": "First-step navigation instruction modal should appear on a regular profile page"
+    },
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

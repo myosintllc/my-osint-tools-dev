@@ -1,0 +1,24 @@
+{
+  "slug": "bluesky-id-revealer-bookmarklet",
+  "target_url": "https://bsky.app/profile/hatless1der.bsky.social",
+  "skip": false,
+  "requires_auth": false,
+  "wait_ms": 3000,
+  "notes": "Passive - fetches the profile page HTML and extracts the DID from it.",
+  "checks": [
+    {
+      "type": "modal_appears",
+      "text_contains": "Bluesky Profile",
+      "comment": "Modal title should appear"
+    },
+    {
+      "type": "text_present",
+      "selector": "strong",
+      "text_pattern": "[a-z0-9]{10,}",
+      "comment": "User ID field should contain a non-trivial alphanumeric string"
+    },
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

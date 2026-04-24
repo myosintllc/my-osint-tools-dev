@@ -1,0 +1,23 @@
+{
+  "slug": "airbnb-user-bookmarklet",
+  "target_url": "https://www.airbnb.com/users/show/1",
+  "skip": false,
+  "requires_auth": false,
+  "wait_ms": 5000,
+  "notes": "Active - calls Airbnb's GraphQL API. Uses user ID 1 (Brian Chesky) as a stable known profile.",
+  "checks": [
+    {
+      "type": "modal_appears",
+      "text_contains": "Airbnb User Profile",
+      "comment": "Modal title must appear"
+    },
+    {
+      "type": "network_request",
+      "url_pattern": "airbnb\\.com/api/v3/",
+      "comment": "Confirm Airbnb API was called"
+    },
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

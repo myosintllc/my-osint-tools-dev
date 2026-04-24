@@ -1,0 +1,29 @@
+{
+  "slug": "bandlab-user-id-bookmarklet",
+  "target_url": "https://www.bandlab.com/hatless1der",
+  "skip": false,
+  "requires_auth": false,
+  "wait_ms": 4000,
+  "notes": "Active - calls the BandLab API v1.3 to fetch user data. Test uses a known stable profile. If the API changes or the profile is deleted this will fail.",
+  "checks": [
+    {
+      "type": "modal_appears",
+      "text_contains": "BandLab User Information",
+      "comment": "Modal title must appear"
+    },
+    {
+      "type": "text_present",
+      "selector": "strong",
+      "text_pattern": ".+",
+      "comment": "At least one strong element with content should exist (username, ID, etc.)"
+    },
+    {
+      "type": "network_request",
+      "url_pattern": "bandlab\\.com/api/v1\\.3/users/",
+      "comment": "Confirm the API call was made"
+    },
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

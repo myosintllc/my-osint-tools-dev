@@ -1,0 +1,34 @@
+{
+  "_TEMPLATE": "Copy this file, rename it to {slug}.json, and fill in the fields below.",
+  "slug": "REPLACE-WITH-TR-ID-MINUS-BM-PREFIX",
+  "target_url": "https://example.com/profile/known-test-account",
+  "skip": false,
+  "requires_auth": false,
+  "wait_ms": 3000,
+  "notes": "Describe what this bookmarklet does and any CI-specific caveats.",
+  "checks": [
+    {
+      "type": "modal_appears",
+      "text_contains": "REPLACE with a string from the modal title",
+      "comment": "Modal title should appear"
+    },
+    {
+      "type": "text_present",
+      "selector": "strong",
+      "text_pattern": ".+",
+      "comment": "At least one strong element with content"
+    },
+    {
+      "type": "no_js_errors"
+    }
+  ],
+
+  "_check_type_reference": {
+    "modal_appears":  "Waits for an element or text to be visible. Use 'text_contains' OR 'selector'.",
+    "text_present":   "Finds elements by 'selector', checks combined text against 'text_pattern' (regex).",
+    "element_count":  "Checks that at least 'min_count' elements match 'selector'.",
+    "no_js_errors":   "Fails if any uncaught JS exceptions were thrown. No extra fields needed.",
+    "network_request":"Fails if no captured request URL matches 'url_pattern' (regex).",
+    "page_redirected":"Fails if current page URL does not match 'url_pattern' (regex) after execution."
+  }
+}

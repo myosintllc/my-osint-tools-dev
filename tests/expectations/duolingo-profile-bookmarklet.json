@@ -1,0 +1,23 @@
+{
+  "slug": "duolingo-profile-bookmarklet",
+  "target_url": "https://www.duolingo.com/profile/hatless1der",
+  "skip": false,
+  "requires_auth": false,
+  "wait_ms": 5000,
+  "notes": "Active - calls the Duolingo API to fetch profile data. Makes two sequential API calls (username lookup then full profile).",
+  "checks": [
+    {
+      "type": "modal_appears",
+      "text_contains": "Duolingo Profile",
+      "comment": "Modal title must appear"
+    },
+    {
+      "type": "network_request",
+      "url_pattern": "duolingo\\.com/2023-05-23/users",
+      "comment": "Confirm Duolingo API was called"
+    },
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

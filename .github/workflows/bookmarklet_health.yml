@@ -1,0 +1,67 @@
+name: Bookmarklet Health Check
+
+on:
+  schedule:
+    - cron: '0 8 * * *'   # 08:00 UTC daily
+  push:
+    branches: [main]
+    paths:
+      - 'tests/**'
+      - 'index.html'
+      - '.github/workflows/bookmarklet_health.yml'
+  workflow_dispatch:       # allow manual runs from the Actions tab
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install playwright pytest pytest-json-report
+          playwright install chromium --with-deps
+
+      - name: Run bookmarklet health checks
+        id: run_tests
+        run: |
+          pytest tests/test_bookmarklets.py \
+            -v \
+            --tb=short \
+            --json-report \
+            --json-report-file=tests/reports/latest.json \
+            --json-report-indent=2 \
+            -p no:warnings \
+            || true   # don't fail the step - we report results below
+
+      - name: Generate summary
+        run: python tests/summarize_report.py
+
+      - name: Commit report back to repo
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: bookmarklet health check ${{ github.run_id }}"
+          file_pattern: "tests/reports/latest.json tests/reports/summary.md"
+          commit_user_name: "bookmarklet-bot"
+          commit_user_email: "bot@myosint.training"
+
+      - name: Fail workflow if any tests failed
+        run: |
+          python -c "
+          import json, sys
+          with open('tests/reports/latest.json') as f:
+              r = json.load(f)
+          failed = r.get('summary', {}).get('failed', 0)
+          if failed > 0:
+              print(f'{failed} test(s) failed - see summary above')
+              sys.exit(1)
+          print('All tests passed.')
+          "

@@ -1,0 +1,13 @@
+{
+  "slug": "facebook-locked-profile-image-bookmarklet",
+  "target_url": "https://www.facebook.com/zuck",
+  "skip": false,
+  "requires_auth": false,
+  "wait_ms": 2000,
+  "notes": "Passive - searches page scripts for profilePicLarge URI and opens it in a new tab. We cannot assert the new tab in headless mode, so we just verify no JS errors. A failure here likely means Facebook changed how they embed the profile image URL.",
+  "checks": [
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

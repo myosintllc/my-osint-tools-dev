@@ -1,0 +1,24 @@
+{
+  "slug": "facebook-user-id-bookmarklet",
+  "target_url": "https://www.facebook.com/zuck",
+  "skip": false,
+  "requires_auth": false,
+  "wait_ms": 3000,
+  "notes": "Passive - extracts userID from page source. Facebook's public pages embed the userID in page JS even without auth. If Facebook changes this structure the bookmarklet will break.",
+  "checks": [
+    {
+      "type": "modal_appears",
+      "text_contains": "Facebook Profile Information",
+      "comment": "Modal title must appear"
+    },
+    {
+      "type": "text_present",
+      "selector": "strong",
+      "text_pattern": "\\d{5,}",
+      "comment": "Facebook numeric user ID should be present in a <strong> element"
+    },
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

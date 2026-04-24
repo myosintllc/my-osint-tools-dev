@@ -1,0 +1,13 @@
+{
+  "slug": "bluesky-id-to-profile-bookmarklet",
+  "target_url": "https://bsky.app",
+  "skip": false,
+  "requires_auth": false,
+  "wait_ms": 2000,
+  "notes": "Passive - prompts for a user ID and opens a new tab. We can't easily assert the new tab, so we check that the bookmarklet runs without JS errors. The prompt() call will be auto-dismissed in headless mode, which triggers the 'No User ID provided!' alert path - that is acceptable and expected behavior in CI.",
+  "checks": [
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

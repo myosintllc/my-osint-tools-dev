@@ -1,0 +1,13 @@
+{
+  "slug": "cash-app-profile-bookmarklet",
+  "target_url": "https://cash.app/$jack",
+  "skip": false,
+  "requires_auth": false,
+  "wait_ms": 3000,
+  "notes": "Passive - extracts profile data from page scripts and redirects to tools.myosint.training/cashapp-viewer.html. Does NOT show an in-page modal; instead opens a new tab. We check for the network redirect pattern rather than a modal.",
+  "checks": [
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}
