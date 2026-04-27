@@ -2,7 +2,13 @@
   "permissions": {
     "allow": [
       "Bash(grep -n \"<img\" \"c:\\\\\\\\Users\\\\\\\\micah\\\\\\\\Documents\\\\\\\\GitHub\\\\\\\\my-osint-tools-dev\\\\\\\\index.html\")",
-      "Bash(grep -oP '<a\\\\s[^>]*href=\"https?[^\"]*\"[^>]*\\(?:rel=\"[^\"]*\"\\)?' \"c:\\\\\\\\Users\\\\\\\\micah\\\\\\\\Documents\\\\\\\\GitHub\\\\\\\\my-osint-tools-dev\\\\\\\\index.html\")"
+      "Bash(grep -oP '<a\\\\s[^>]*href=\"https?[^\"]*\"[^>]*\\(?:rel=\"[^\"]*\"\\)?' \"c:\\\\\\\\Users\\\\\\\\micah\\\\\\\\Documents\\\\\\\\GitHub\\\\\\\\my-osint-tools-dev\\\\\\\\index.html\")",
+      "Bash(cat)",
+      "Bash(chmod +x /tmp/parse_rows.sh)",
+      "Bash(bash /tmp/parse_rows.sh)",
+      "Bash(python3)",
+      "Bash(chmod +x /tmp/extract_rows.sh)",
+      "Bash(bash /tmp/extract_rows.sh)"
     ]
   }
 }
