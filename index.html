@@ -1061,7 +1061,6 @@
           </table>
         </div>
       </div>
-    </div>
 
       <hr>
 
@@ -1083,56 +1082,61 @@
 
       <!-- How to use this Page -->
       <div class="container-lg mb-5 shadow rounded">
-        <div class="row align-items-center justify-content-center">
-          <div class="col-lg-6">
-            <h2 id="how-do-i-use-this">How do I use these tools?
-            <a class="anchor-link" href="#how-do-i-use-this" aria-label="Link to this section: How do I use these tools"></a></h2>
-              <p>These bookmarks live in your browser. You use them in certain situations. If you want them in your browser's bookmarks bar, you have 2 main ways of adding them:</p>
-            <div id="accordion">
-              <div class="card">
-                <div class="card-header">
-                  <a class="collapsed btn btn-success" data-bs-toggle="collapse" href="#collapseOne">
-                    <i class="fa-solid fa-star"></i> Easy 1-by-1 Method <i class="fa-solid fa-star"></i>
-                  </a>
-                </div>
-                <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
+        <div class="p-4 pb-2">
+          <h2 id="how-do-i-use-this">How do I use these tools?
+          <a class="anchor-link" href="#how-do-i-use-this" aria-label="Link to this section: How do I use these tools"></a></h2>
+          <p class="text-muted mb-0">Bookmarklets live in your browser's bookmarks bar. Pick the method that works best for you:</p>
+        </div>
+
+        <div class="row g-4 p-4">
+          <!-- Left: the two method cards -->
+          <div class="col-lg-7">
+            <div class="row g-3">
+              <div class="col-12">
+                <div class="card h-100 border-success">
+                  <div class="card-header bg-success text-white d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-hand-pointer fa-lg"></i>
+                    <span class="fw-semibold">One at a Time</span>
+                  </div>
                   <div class="card-body">
-                    <ol class="list-group list-group-numbered">
-                      <li class="list-group-item">Find the bookmarklet you want</li>
-                      <li class="list-group-item">Click and drag the bookmarklet's name (left column in table above) it into your bookmarks bar.</li>
-                      <li class="list-group-item">Visit the web page the bookmarklet is used on.</li>
-                      <li class="list-group-item">Click that bookmark to use the tool.</li>
-                      <li class="list-group-item">Done!</li>
+                    <ol class="list-group list-group-numbered list-group-flush">
+                      <li class="list-group-item border-0 ps-0">Find the bookmarklet you want in the table above.</li>
+                      <li class="list-group-item border-0 ps-0">Drag its button into your browser's bookmarks bar.</li>
+                      <li class="list-group-item border-0 ps-0">Navigate to the site the bookmarklet works on.</li>
+                      <li class="list-group-item border-0 ps-0">Click the bookmark — done!</li>
                     </ol>
                   </div>
                 </div>
               </div>
-              <div class="card">
-                <div class="card-header">
-                  <a class="collapsed btn btn-secondary" data-bs-toggle="collapse" href="#collapseTwo">
-                    <i class="fa-solid fa-folder"></i> The "Get Them All" Method <i class="fa-solid fa-bookmark"></i></a>
-                    <p class="small mt-1">Click to expand</p>
-                </div>
-                <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
+              <div class="col-12">
+                <div class="card h-100 border-primary">
+                  <div class="card-header bg-primary text-white d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-file-import fa-lg"></i>
+                    <span class="fw-semibold">All at Once (Bulk Import)</span>
+                  </div>
                   <div class="card-body">
-                    <p>This method allows you to import all the bookmarklets we have in a single process. It is faster than downloading each and the bookmarklets are already organized for you in folders.</p>
-                    <ol class="list-group list-group-numbered">
-                      <li class="list-group-item">Download the <a href="/myosint_bookmarklets.html" download>HTML</a> file of all our bookmarklets to your system.</li>
-                      <li class="list-group-item">Go into your browser and import the <code>myosint_bookmarklets.html</code> file bookmarks into your bookmarks bar. This process varies per browser but should be in the Bookmarks Manager or something similar.</li>
-                      <li class="list-group-item">In some browsers, you may have an "Imported" folder and in others, you will have our "My OSINT Bookmarklets" folder. The bookmarklets are organized in there.</li>
+                    <ol class="list-group list-group-numbered list-group-flush">
+                      <li class="list-group-item border-0 ps-0"><a href="/myosint_bookmarklets.html" download>Download the HTML file</a> using the card at the top of this page.</li>
+                      <li class="list-group-item border-0 ps-0">Open your browser's Bookmarks Manager and import the file.</li>
+                      <li class="list-group-item border-0 ps-0">All bookmarklets are added in organised folders — ready to use.</li>
                     </ol>
-                    <br>
-                    <p>These bookmarklets do <strong>not</strong> self-update. Each HTML bookmarklet export file has an HTML comment that tells you what date/version of bookmarklets you have. When you want to upgrade/update your My OSINT Bookmarklets, delete the entire folder from your Bookmarks Bar and then download and import the most recent version.</p>
+                    <p class="text-muted small mt-2 mb-0">
+                      <i class="fa-solid fa-rotate me-1"></i>Bookmarklets don't self-update. Re-download and re-import when you want the latest version.
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-lg-6 align-middle">
-            <div class="card text-bg-primary mb-5 shadow rounded align-middle">
-              <h2 class="card-header">Can I watch you use them?</h2>
-              <div class="card-body">
-                <p class="card-text">Of course! Check out this video which has demos, how to use the bookmarklets and much more!</p>
+
+          <!-- Right: YouTube video -->
+          <div class="col-lg-5">
+            <div class="card h-100">
+              <div class="card-header d-flex align-items-center gap-2">
+                <i class="fa-brands fa-youtube text-danger fa-lg"></i>
+                <span class="fw-semibold">Watch a Demo</span>
+              </div>
+              <div class="card-body p-0">
                 <div class="ratio ratio-16x9">
                   <iframe src="https://www.youtube.com/embed/yCW5whpeTq0" title="YouTube video player" class="embed-iframe" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
@@ -1143,74 +1147,79 @@
       </div>
 
       <!-- FAQ -->
-      <div class="container-lg pb-3 mb-5 shadow rounded">
-        <div class="row">
-          <div class="col-lg-auto">
-            <h2 id="faq">Common Issues and Problems (FAQ)
-            <a class="anchor-link" href="#faq" aria-label="Link to this section: FAQ"></a></h2>
-            <p>Bookmarklet not working correctly for you? Here are some helpful steps you can take. Just click the button below that is closest to your issue.</p>
+      <div class="container-lg pb-4 mb-5 shadow rounded">
+        <div class="p-4 pb-2">
+          <h2 id="faq">FAQ &amp; Troubleshooting
+          <a class="anchor-link" href="#faq" aria-label="Link to this section: FAQ"></a></h2>
+          <p class="text-muted mb-0">Click a question to expand the answer.</p>
+        </div>
 
-            <div id="accordion-faq">
-              <div class="card">
-                <div class="card-header">
-                  <a class="collapsed btn bg-warning text-dark" data-bs-toggle="collapse" href="#collFaqOne">
-                    <i class="fa-solid fa-circle-question fa-2x"></i>Nothing happened when I used bookmarklet
-                  </a>
-                </div>
-                <div id="collFaqOne" class="collapse" data-bs-parent="#accordion-faq">
-                  <div class="card-body">
-                    <ul class="list-group">
-                      <li class="list-group-item">Try reloading the page and then using the bookmarklet.</li>
-                      <li class="list-group-item">Ensure that popup windows are allowed in the current browser tab.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-header">
-                  <a class="collapsed btn bg-warning text-dark" data-bs-toggle="collapse" href="#collFaqTwo">
-                    <i class="fa-solid fa-triangle-exclamation fa-2x"></i>I got an error when running the bookmarklet
-                  </a>
-                </div>
-                <div id="collFaqTwo" class="collapse" data-bs-parent="#accordion-faq">
-                  <div class="card-body">
-                    <ul class="list-group">
-                      <li class="list-group-item">Write down the error and research it on Google.</li>
-                      <li class="list-group-item">Try reloading the page and then using the bookmarklet.</li>
-                      <li class="list-group-item">Still not working? <a href="mailto:support@myosint.training?subject=Bookmarklet%20Issues&body=Hi%2C%20I%20am%20having%20issues%20with%20a%20bookmarklet%20of%20yours.%20Below%20are%20details%3A%0A%0A-%20Bookmarklet%20Name%3A%20XXXXXXX%0A-%20Your%20System%20(Operating%20System%2C%20Browser%2C%20VPN%20status)%3A%20XXXXXXX%0A-%20What%20is%20the%20Problem%3F%20XXXXXXX%0A-%20Give%20us%20the%20Web%20Page%20URL%20You%20Are%20Having%20Issues%20With%3A%20https%3A%2F%2FXXXXXXX%0A-%20Any%20Other%20Comments%3F%20XXXXXXX%0A">Click here to send us an email.</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-header">
-                  <a class="collapsed btn bg-secondary text-light" data-bs-toggle="collapse" href="#collFaqThree">
-                    <i class="fa-regular fa-envelope fa-2x"></i>I need to let you know something about one of your bookmarklets
-                  </a>
-                </div>
-                <div id="collFaqThree" class="collapse" data-bs-parent="#accordion-faq">
-                  <div class="card-body">
-                    <ul class="list-group">
-                      <li class="list-group-item"><a href="mailto:support@myosint.training?subject=Bookmarklet%20Issues&body=Hi%2C%20I%20am%20having%20issues%20with%20a%20bookmarklet%20of%20yours.%20Below%20are%20details%3A%0A%0A-%20Bookmarklet%20Name%3A%20XXXXXXX%0A-%20Your%20System%20(Operating%20System%2C%20Browser%2C%20VPN%20status)%3A%20XXXXXXX%0A-%20What%20is%20the%20Problem%3F%20XXXXXXX%0A-%20Give%20us%20the%20Web%20Page%20URL%20You%20Are%20Having%20Issues%20With%3A%20https%3A%2F%2FXXXXXXX%0A-%20Any%20Other%20Comments%3F%20XXXXXXX%0A">Click here to send us an email</a> and we will review and comment as soon as we can.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-header">
-                  <a class="collapsed btn bg-success text-light" data-bs-toggle="collapse" href="#collFaqFour">
-                    <i class="fa-solid fa-handshake fa-2x"></i>I'd like you to post one of my bookmarklets.
-                  </a>
-                </div>
-                <div id="collFaqFour" class="collapse" data-bs-parent="#accordion-faq">
-                  <div class="card-body">
-                    <ul class="list-group">
-                      <li class="list-group-item">Well aren't you generous! Please submit an <a href="https://github.com/myosintllc/mot-osint-tools/issues" target="_blank" rel="noopener noreferrer">issue</a> in our GitHub repository. When you create a new issue, you will be prompted for what we need to review your bookmarklet. We will then send you an email response. And <i>THANK YOU!</i></li>
-                    </ul>
-                  </div>
+        <div class="px-4 pb-2">
+          <div class="accordion" id="accordion-faq">
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collFaqOne" aria-expanded="false" aria-controls="collFaqOne">
+                  <i class="fa-solid fa-circle-question me-2 text-warning"></i>
+                  Nothing happened when I used a bookmarklet
+                </button>
+              </h2>
+              <div id="collFaqOne" class="accordion-collapse collapse" data-bs-parent="#accordion-faq">
+                <div class="accordion-body">
+                  <ul class="list-unstyled mb-0">
+                    <li class="mb-1"><i class="fa-solid fa-circle-arrow-right me-2 text-muted"></i>Try reloading the page and then clicking the bookmarklet again.</li>
+                    <li><i class="fa-solid fa-circle-arrow-right me-2 text-muted"></i>Make sure pop-up windows are allowed in your browser for this tab.</li>
+                  </ul>
                 </div>
               </div>
             </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collFaqTwo" aria-expanded="false" aria-controls="collFaqTwo">
+                  <i class="fa-solid fa-triangle-exclamation me-2 text-danger"></i>
+                  I got an error when running a bookmarklet
+                </button>
+              </h2>
+              <div id="collFaqTwo" class="accordion-collapse collapse" data-bs-parent="#accordion-faq">
+                <div class="accordion-body">
+                  <ul class="list-unstyled mb-0">
+                    <li class="mb-1"><i class="fa-solid fa-circle-arrow-right me-2 text-muted"></i>Note the error message and search for it online.</li>
+                    <li class="mb-1"><i class="fa-solid fa-circle-arrow-right me-2 text-muted"></i>Reload the page and try the bookmarklet again.</li>
+                    <li><i class="fa-solid fa-circle-arrow-right me-2 text-muted"></i>Still stuck? <a href="mailto:support@myosint.training?subject=Bookmarklet%20Issues&body=Hi%2C%20I%20am%20having%20issues%20with%20a%20bookmarklet%20of%20yours.%20Below%20are%20details%3A%0A%0A-%20Bookmarklet%20Name%3A%20XXXXXXX%0A-%20Your%20System%20(Operating%20System%2C%20Browser%2C%20VPN%20status)%3A%20XXXXXXX%0A-%20What%20is%20the%20Problem%3F%20XXXXXXX%0A-%20Give%20us%20the%20Web%20Page%20URL%20You%20Are%20Having%20Issues%20With%3A%20https%3A%2F%2FXXXXXXX%0A-%20Any%20Other%20Comments%3F%20XXXXXXX%0A">Email us with details</a> and we'll take a look.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collFaqThree" aria-expanded="false" aria-controls="collFaqThree">
+                  <i class="fa-regular fa-envelope me-2 text-primary"></i>
+                  I need to report something about a bookmarklet
+                </button>
+              </h2>
+              <div id="collFaqThree" class="accordion-collapse collapse" data-bs-parent="#accordion-faq">
+                <div class="accordion-body">
+                  <p class="mb-0"><a href="mailto:support@myosint.training?subject=Bookmarklet%20Issues&body=Hi%2C%20I%20am%20having%20issues%20with%20a%20bookmarklet%20of%20yours.%20Below%20are%20details%3A%0A%0A-%20Bookmarklet%20Name%3A%20XXXXXXX%0A-%20Your%20System%20(Operating%20System%2C%20Browser%2C%20VPN%20status)%3A%20XXXXXXX%0A-%20What%20is%20the%20Problem%3F%20XXXXXXX%0A-%20Give%20us%20the%20Web%20Page%20URL%20You%20Are%20Having%20Issues%20With%3A%20https%3A%2F%2FXXXXXXX%0A-%20Any%20Other%20Comments%3F%20XXXXXXX%0A">Send us an email</a> and we'll review it as soon as we can.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collFaqFour" aria-expanded="false" aria-controls="collFaqFour">
+                  <i class="fa-solid fa-handshake me-2 text-success"></i>
+                  I'd like to submit one of my bookmarklets
+                </button>
+              </h2>
+              <div id="collFaqFour" class="accordion-collapse collapse" data-bs-parent="#accordion-faq">
+                <div class="accordion-body">
+                  <p class="mb-0">Submit an <a href="https://github.com/myosintllc/mot-osint-tools/issues" target="_blank" rel="noopener noreferrer">issue on GitHub</a> — you'll be prompted for everything we need to review it. We'll reply by email. <em>Thank you!</em></p>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
