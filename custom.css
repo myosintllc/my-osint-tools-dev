@@ -210,6 +210,74 @@ h3 {
 
 
 /* ----------------------------------------------------------
+   3b. Layout — Hero
+   ---------------------------------------------------------- */
+.mot-hero {
+  background-color: #022447;
+  border-bottom: 3px solid #008BC4;
+}
+
+.mot-hero-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #00E6F0;
+  margin-bottom: 0.35rem;
+}
+
+.mot-hero-title {
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.mot-hero-tagline {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #80feff;
+  margin-bottom: 1rem;
+}
+
+.mot-hero-body {
+  color: #c8d6e0;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  max-width: 580px;
+  margin-bottom: 0;
+}
+
+.mot-hero-body a {
+  color: #00E6F0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.mot-hero-body a:hover { color: #80feff; }
+
+.mot-hero-logo {
+  max-width: 280px;
+  width: 100%;
+  filter: drop-shadow(0 6px 20px rgba(0, 230, 240, 0.2));
+}
+
+/* Strip overrides when sitting on the dark hero */
+.mot-hero #recently-updated-strip .strip-inner {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(0, 139, 196, 0.45);
+}
+
+.mot-hero .recent-strip-label { color: #90a4b0; }
+
+@media (max-width: 767.98px) {
+  .mot-hero-title { font-size: 1.9rem; }
+  .mot-hero-tagline { font-size: 0.95rem; }
+}
+
+
+/* ----------------------------------------------------------
    4. Layout — Footer
    ---------------------------------------------------------- */
 .footer {

@@ -110,7 +110,7 @@
               <img src="https://import.cdn.thinkific.com/568124%2Fcustom_site_themes%2Fid%2FfAru0CvDRm2i9beQGYHA_myosint-training-light.png" srcset="https://import.cdn.thinkific.com/568124%2Fcustom_site_themes%2Fid%2FfAru0CvDRm2i9beQGYHA_myosint-training-light.png?width=384&amp;dpr=1 1x, https://import.cdn.thinkific.com/568124%2Fcustom_site_themes%2Fid%2FfAru0CvDRm2i9beQGYHA_myosint-training-light.png?width=384&amp;dpr=2 2x, https://import.cdn.thinkific.com/568124%2Fcustom_site_themes%2Fid%2FfAru0CvDRm2i9beQGYHA_myosint-training-light.png?width=384&amp;dpr=3 3x" alt="My OSINT Training logo" class="logo img-responsive">
             </a>
         </section>
-        <!-- Replace the entire <nav class="header__nav hidden-print"> ... </nav> block with this -->
+
         <nav class="header__nav hidden-print">
           <ul>
             <!-- 1. LEARN (dropdown) -->
@@ -172,7 +172,7 @@
               </ul>
             </li>
 
-            <!-- Sign In (unchanged) -->
+            <!-- Sign In -->
             <li class="header__nav-item header__nav-sign-in">
               <a href="https://www.myosint.training/users/sign_in">Sign In</a>
             </li>
@@ -182,10 +182,30 @@
       </div>
     </div>
 
-    <!-- Recently Updated strip — below header, above welcome card -->
-    <div class="container-lg px-2 pt-3">
-      <div id="recently-updated-strip" class="row mb-0">
-        <div class="col-12">
+    <!-- ── Hero ──────────────────────────────────────────────────────────── -->
+    <div class="mot-hero">
+      <div class="container-lg px-4">
+        <div class="row align-items-center py-5">
+          <div class="col-lg-8 col-md-7">
+            <p class="mot-hero-eyebrow">My OSINT Training</p>
+            <h1 class="mot-hero-title">My OSINT Tools</h1>
+            <p class="mot-hero-tagline">Free bookmarklets for open source intelligence investigators</p>
+            <p class="mot-hero-body">
+              Tools are essential for efficient OSINT work, and they don't always have to come at a cost!
+              We make and share custom tools to help you perform tasks faster and more effectively.
+              More detailed descriptions and walkthroughs are on
+              <a href="https://blog.myosint.training" target="_blank" rel="noopener noreferrer">our blog</a>.
+            </p>
+            <div ondrop="drop(event)" ondragover="allowDrop(event)" class="mt-3">
+              <a class="btn btn-outline-secondary btn-sm" role="button" draggable="true" ondragstart="drag(event)" href="javascript:(function(){if(window.location.href.includes('myosint.training'))return;const base='https://files.myosint.training/db/';document.querySelectorAll('img').forEach(i=>{const num=Math.floor(Math.random()*7)+1;i.src=base+num+'.png';i.removeAttribute('srcset');i.removeAttribute('sizes');});document.querySelectorAll('[style*=&quot;background-image&quot;]').forEach(e=>{const num=Math.floor(Math.random()*7)+1;e.style.backgroundImage=`url(${base}${num}.png)`;});})();"><i>Micah & Griffin</i></a>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-5 text-center d-none d-md-block">
+            <img src="https://tools.myosint.training/images/osinttools.png" class="mot-hero-logo" alt="My OSINT Training Tools logo">
+          </div>
+        </div>
+        <!-- Recently Updated — bottom of hero -->
+        <div id="recently-updated-strip" class="pb-4">
           <div class="strip-inner">
             <span class="recent-strip-label"><i class="fa-solid fa-clock-rotate-left me-1"></i>Recently Updated:</span>
             <!-- pills injected by JS -->
@@ -195,29 +215,11 @@
     </div>
 
     <!-- Main Body -->
-    <div class="container-lg px-2 my-5 markdown-body">
-      <div class="row">
-        <div class="col-lg-8 align-middle">
-          <div class="card text-bg-primary mb-3 shadow rounded">
-            <h1 class="card-header">Welcome to My OSINT Tools</h1>
-            <div class="card-body">
-              <p class="card-text">Tools are essential for efficient open source intelligence work, and they don't always have to come at a cost! At My OSINT Training, we make and share custom tools to help you perform OSINT tasks faster and more effectively, empowering you to excel! These are some of our favorites and hope they are useful in your work!<br><br>
-                We have more detailed descriptions and images of many of these bookmarklets on <a href="https://blog.myosint.training" target="_blank" rel="noopener noreferrer">our blog page</a>.<br>
-
-                <div ondrop="drop(event)" ondragover="allowDrop(event)"><a class="btn btn-secondary" role="button" draggable="true" ondragstart="drag(event)" href="javascript:(function(){if(window.location.href.includes('myosint.training'))return;const base='https://files.myosint.training/db/';document.querySelectorAll('img').forEach(i=>{const num=Math.floor(Math.random()*7)+1;i.src=base+num+'.png';i.removeAttribute('srcset');i.removeAttribute('sizes');});document.querySelectorAll('[style*=&quot;background-image&quot;]').forEach(e=>{const num=Math.floor(Math.random()*7)+1;e.style.backgroundImage=`url(${base}${num}.png)`;});})();"><i>Micah & Griffin</i></a>
-                </div>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <img src="https://tools.myosint.training/images/osinttools.png" height="250" class="mx-auto d-block shadow p-3 mb-2 rounded" alt="My OSINT Training Tools logo">
-        </div>
-      </div>
+    <div class="container-lg px-2 my-4 markdown-body">
 
 
 
-      <div class="row justify-content-center my-2 g-3">
+      <div class="row justify-content-center mt-1 mb-5 g-3">
         <div class="col-xl-5 col-lg-6 col-md-6">
           <div class="card shadow-sm mot-download-card h-100">
             <div class="card-header d-flex align-items-center gap-2">
