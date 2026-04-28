@@ -228,62 +228,36 @@
 
       <div class="row">
         <div class="col-12">
-          <!-- ── Filter card ────────────────────────────────────────────────── -->
-          <div id="bm-filter-bar" class="card mb-3 shadow-sm">
-            <div class="card-header d-flex align-items-center gap-2" style="background-color:#022447; border-bottom:2px solid #008BC4;">
-              <i class="fa-solid fa-filter" style="color:#00E6F0;"></i>
-              <span style="color:#fff; font-weight:600; font-size:1rem;">Filters</span>
-              <span class="ms-2" style="color:#99d4e8; font-size:0.8rem; font-weight:400;">— click any button to narrow the table</span>
+          <!-- ── Filter bar ─────────────────────────────────────────────────── -->
+          <div id="bm-filter-bar" class="d-flex flex-wrap align-items-center gap-2 mb-3 px-3 py-2 rounded border bg-light"
+               title="Click any button to filter the table">
+            <span class="bm-filter-label"><i class="fa-solid fa-filter me-1"></i>Category:</span>
+            <div class="d-flex flex-wrap gap-1" id="bm-cat-filters">
+              <button class="btn btn-sm btn-primary" data-cat="all">All</button>
+              <button class="btn btn-sm btn-outline-secondary" data-cat="social">Social Media</button>
+              <button class="btn btn-sm btn-outline-secondary" data-cat="finance">Finance</button>
+              <button class="btn btn-sm btn-outline-secondary" data-cat="research">Research</button>
+              <button class="btn btn-sm btn-outline-secondary" data-cat="people">People Search</button>
+              <button class="btn btn-sm btn-outline-secondary" data-cat="misc">Misc</button>
+              <button class="btn btn-sm btn-outline-secondary" data-cat="adult">Adult</button>
+              <button class="btn btn-sm btn-outline-secondary" data-cat="fun">Fun</button>
             </div>
-            <div class="card-body py-3">
-
-              <!-- Category row -->
-              <div class="row g-2 align-items-start mb-3">
-                <div class="col-auto pt-1">
-                  <span class="bm-filter-label">Category</span>
-                </div>
-                <div class="col">
-                  <div class="d-flex flex-wrap gap-1" id="bm-cat-filters">
-                    <button class="btn btn-sm btn-primary" data-cat="all">All</button>
-                    <button class="btn btn-sm btn-outline-secondary" data-cat="social">Social Media</button>
-                    <button class="btn btn-sm btn-outline-secondary" data-cat="finance">Finance</button>
-                    <button class="btn btn-sm btn-outline-secondary" data-cat="research">Research</button>
-                    <button class="btn btn-sm btn-outline-secondary" data-cat="people">People Search</button>
-                    <button class="btn btn-sm btn-outline-secondary" data-cat="misc">Misc</button>
-                    <button class="btn btn-sm btn-outline-secondary" data-cat="adult">Adult</button>
-                    <button class="btn btn-sm btn-outline-secondary" data-cat="fun">Fun</button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Script Type row -->
-              <div class="row g-2 align-items-center">
-                <div class="col-auto">
-                  <span class="bm-filter-label">Script Type</span>
-                </div>
-                <div class="col-auto">
-                  <div class="btn-group" role="group" id="bm-type-filters">
-                    <button class="btn btn-sm btn-primary" data-type="all">All</button>
-                    <button class="btn btn-sm btn-outline-secondary" data-type="active">
-                      <i class="fas fa-cloud-upload-alt"></i> Active
-                    </button>
-                    <button class="btn btn-sm btn-outline-secondary" data-type="passive">
-                      <i class="fas fa-desktop"></i> Passive
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Recently Updated — separated toggle -->
-              <hr class="my-3">
-              <div class="text-center">
-                <button class="btn btn-sm btn-outline-success" id="btn-recent">
-                  <i class="fas fa-certificate me-1"></i>Recently Updated
-                </button>
-                <div class="text-muted mt-1" style="font-size:0.78rem;">show only bookmarklets updated in the last 14 days</div>
-              </div>
-
+            <div class="vr mx-1"></div>
+            <span class="bm-filter-label">Type:</span>
+            <div class="btn-group" role="group" id="bm-type-filters">
+              <button class="btn btn-sm btn-primary" data-type="all">All</button>
+              <button class="btn btn-sm btn-outline-secondary" data-type="active">
+                <i class="fas fa-cloud-upload-alt"></i> Active
+              </button>
+              <button class="btn btn-sm btn-outline-secondary" data-type="passive">
+                <i class="fas fa-desktop"></i> Passive
+              </button>
             </div>
+            <div class="vr mx-1"></div>
+            <button class="btn btn-sm btn-outline-success" id="btn-recent"
+                    title="Show only bookmarklets updated in the last 14 days">
+              <i class="fas fa-certificate me-1"></i>Recently Updated
+            </button>
           </div>
 
           <table id="bookmarklets-table" class="table table-striped table-hover table-bordered mb-5 shadow rounded w-100">
