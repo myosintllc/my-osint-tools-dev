@@ -658,6 +658,82 @@ a.badge-link:hover .badge-passive {
 
 .mot-download-card .hint-text { font-size: 0.82rem; }
 
+/* Blog companion card — mirrors download card styling */
+.mot-blog-card { border: 1px solid #008BC4; }
+
+.mot-blog-card .card-header {
+  background-color: #022447;
+  border-bottom: 2px solid #008BC4;
+}
+
+.mot-blog-card .card-header i { color: #00E6F0; }
+
+.mot-blog-card .card-header span {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.mot-blog-card .card-text { font-size: 0.9rem; }
+
+.mot-blog-card .btn-blog {
+  background-color: #008BC4;
+  color: #fff;
+}
+
+.mot-blog-card .btn-blog:hover { background-color: #006fa0; }
+
+
+/* ----------------------------------------------------------
+   10b. Components — Recently Updated Strip
+   ---------------------------------------------------------- */
+
+#recently-updated-strip .strip-inner {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.recent-strip-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #6c757d;
+  white-space: nowrap;
+}
+
+.recent-strip-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #022447;
+  border: 1px solid #008BC4;
+  border-radius: 20px;
+  padding: 3px 12px;
+  text-decoration: none;
+  font-size: 0.78rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.recent-strip-pill:hover {
+  background: #008BC4;
+  border-color: #00E6F0;
+}
+
+.recent-pill-name {
+  color: #00E6F0;
+  font-weight: 600;
+}
+
+.recent-pill-date {
+  color: #adb5bd;
+  font-size: 0.72rem;
+}
+
 
 /* ----------------------------------------------------------
    10. Content — Links & Embeds in Specific Contexts

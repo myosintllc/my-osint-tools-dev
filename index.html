@@ -203,9 +203,19 @@
         </div>
       </div>
 
-      <div class="row justify-content-center my-2">
-        <div class="col-xl-6 col-lg-7 col-md-9">
-          <div class="card shadow-sm mot-download-card">
+      <!-- ── Recently Updated strip ──────────────────────────────────────── -->
+      <div id="recently-updated-strip" class="row mb-2">
+        <div class="col-12">
+          <div class="strip-inner">
+            <span class="recent-strip-label"><i class="fa-solid fa-clock-rotate-left me-1"></i>Recently Updated:</span>
+            <!-- pills injected by JS -->
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center my-2 g-3">
+        <div class="col-xl-5 col-lg-6 col-md-6">
+          <div class="card shadow-sm mot-download-card h-100">
             <div class="card-header d-flex align-items-center gap-2">
               <i class="fa-solid fa-bookmark"></i>
               <span>Get All Bookmarklets at Once</span>
@@ -221,6 +231,20 @@
                   <i class="fa-solid fa-circle-question me-1"></i>Need help? See how to install bookmarklets below.
                 </a>
               </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-5 col-lg-6 col-md-6">
+          <div class="card shadow-sm mot-blog-card h-100">
+            <div class="card-header d-flex align-items-center gap-2">
+              <i class="fa-solid fa-book-open"></i>
+              <span>See These Bookmarklets in Action</span>
+            </div>
+            <div class="card-body py-3">
+              <p class="card-text mb-3 text-muted">Visit our blog for detailed walkthroughs, screenshots, and real-world examples of these tools.</p>
+              <a href="https://blog.myosint.training" target="_blank" rel="noopener noreferrer" class="btn btn-sm me-2 btn-blog">
+                <i class="fa-solid fa-arrow-up-right-from-square me-1"></i>Visit blog.myosint.training
+              </a>
             </div>
           </div>
         </div>
@@ -1431,7 +1455,39 @@
         window._bmRecentToday  = today;
       })();
 
+      // ── Recently Updated strip ────────────────────────────────────────────────
+      function buildRecentStrip() {
+        const inner = document.querySelector('#recently-updated-strip .strip-inner');
+        if (!inner) return;
+        const rows = document.querySelectorAll('#bookmarklets-table tbody tr[id]');
+        const entries = [];
+        rows.forEach(function(row) {
+          const cells = row.querySelectorAll('td');
+          const dateCell = cells[cells.length - 1];
+          if (!dateCell) return;
+          const dateText = dateCell.textContent.trim();
+          const d = new Date(dateText);
+          if (isNaN(d)) return;
+          const btnLink = row.querySelector('a.btn');
+          const rawName = btnLink ? btnLink.textContent.trim() : row.id;
+          const name = rawName.replace(/\s*bookmarklet\s*$/i, '').trim();
+          entries.push({ name: name, dateText: dateText, d: d, id: row.id });
+        });
+        entries.sort(function(a, b) { return b.d - a.d; });
+        entries.slice(0, 5).forEach(function(e) {
+          const pill = document.createElement('a');
+          pill.href = '#' + e.id;
+          pill.className = 'recent-strip-pill';
+          pill.innerHTML =
+            '<span class="recent-pill-name">' + e.name + '</span>' +
+            '<span class="recent-pill-date">' + e.dateText + '</span>';
+          inner.appendChild(pill);
+        });
+      }
+
       document.addEventListener('DOMContentLoaded', function() {
+        buildRecentStrip();
+
         // ── DataTables custom search plugin (must register before init) ──────────
         $.fn.dataTable.ext.search.push(function(settings, searchData, dataIndex) {
           if (settings.nTable.id !== 'bookmarklets-table') return true;
