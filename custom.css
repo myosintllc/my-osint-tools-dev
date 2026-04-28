@@ -265,11 +265,11 @@ h3 {
 
 /* Strip overrides when sitting on the dark hero */
 .mot-hero #recently-updated-strip .strip-inner {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(0, 139, 196, 0.45);
+  background: rgba(0, 139, 196, 0.25);
+  border-color: #008BC4;
 }
 
-.mot-hero .recent-strip-label { color: #90a4b0; }
+.mot-hero .recent-strip-label { color: #ffffff; }
 
 @media (max-width: 767.98px) {
   .mot-hero-title { font-size: 1.9rem; }
