@@ -1436,46 +1436,46 @@
         window._bmRecentToday  = today;
       })();
 
-      // ── DataTables custom search plugin ──────────────────────────────────────
-      $.fn.dataTable.ext.search.push(function(settings, searchData, dataIndex) {
-        if (settings.nTable.id !== 'bookmarklets-table') return true;
-        var row = settings.aoData[dataIndex].nTr;
-
-        // Category — read data-folder from the bookmarklet <a> button
-        if (filterCat !== 'all') {
-          var folder = ($(row).find('a[data-folder]').data('folder') || '').toLowerCase();
-          var catMatch = false;
-          if      (filterCat === 'social')   catMatch = folder.startsWith('social media');
-          else if (filterCat === 'finance')  catMatch = folder === 'finance';
-          else if (filterCat === 'research') catMatch = folder === 'research';
-          else if (filterCat === 'people')   catMatch = folder === 'multi-site';
-          else if (filterCat === 'misc')     catMatch = folder === 'misc';
-          else if (filterCat === 'adult')    catMatch = folder === 'sex/nudity sites';
-          else if (filterCat === 'fun')      catMatch = folder === 'fun';
-          if (!catMatch) return false;
-        }
-
-        // Script Type — searchData[2] is the text content of the Script Type cell
-        if (filterType !== 'all') {
-          var typeText = (searchData[2] || '').toLowerCase();
-          if (filterType === 'active'  && typeText.indexOf('active')  === -1) return false;
-          if (filterType === 'passive' && typeText.indexOf('passive') === -1) return false;
-        }
-
-        // Recently Updated — extract YYYY-MM-DD from the last cell and check range
-        if (filterRecent) {
-          var cells = row.querySelectorAll('td');
-          var lastCell = cells[cells.length - 1];
-          var dateMatch = (lastCell ? lastCell.textContent : '').match(/(\d{4}-\d{2}-\d{2})/);
-          if (!dateMatch) return false;
-          var d = new Date(dateMatch[1]);
-          if (isNaN(d) || d < window._bmRecentCutoff || d > window._bmRecentToday) return false;
-        }
-
-        return true;
-      });
-
       document.addEventListener('DOMContentLoaded', function() {
+        // ── DataTables custom search plugin (must register before init) ──────────
+        $.fn.dataTable.ext.search.push(function(settings, searchData, dataIndex) {
+          if (settings.nTable.id !== 'bookmarklets-table') return true;
+          var row = settings.aoData[dataIndex].nTr;
+
+          // Category — read data-folder from the bookmarklet <a> button
+          if (filterCat !== 'all') {
+            var folder = ($(row).find('a[data-folder]').data('folder') || '').toLowerCase();
+            var catMatch = false;
+            if      (filterCat === 'social')   catMatch = folder.startsWith('social media');
+            else if (filterCat === 'finance')  catMatch = folder === 'finance';
+            else if (filterCat === 'research') catMatch = folder === 'research';
+            else if (filterCat === 'people')   catMatch = folder === 'multi-site';
+            else if (filterCat === 'misc')     catMatch = folder === 'misc';
+            else if (filterCat === 'adult')    catMatch = folder === 'sex/nudity sites';
+            else if (filterCat === 'fun')      catMatch = folder === 'fun';
+            if (!catMatch) return false;
+          }
+
+          // Script Type — searchData[2] is the text content of the Script Type cell
+          if (filterType !== 'all') {
+            var typeText = (searchData[2] || '').toLowerCase();
+            if (filterType === 'active'  && typeText.indexOf('active')  === -1) return false;
+            if (filterType === 'passive' && typeText.indexOf('passive') === -1) return false;
+          }
+
+          // Recently Updated — extract YYYY-MM-DD from the last cell and check range
+          if (filterRecent) {
+            var cells = row.querySelectorAll('td');
+            var lastCell = cells[cells.length - 1];
+            var dateMatch = (lastCell ? lastCell.textContent : '').match(/(\d{4}-\d{2}-\d{2})/);
+            if (!dateMatch) return false;
+            var d = new Date(dateMatch[1]);
+            if (isNaN(d) || d < window._bmRecentCutoff || d > window._bmRecentToday) return false;
+          }
+
+          return true;
+        });
+
         // ── DataTables ──────────────────────────────────────────────────────────
         var dt = new DataTable('#bookmarklets-table', {
           pageLength: 50,
