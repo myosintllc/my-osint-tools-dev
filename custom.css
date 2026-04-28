@@ -662,7 +662,7 @@ a.badge-link:hover .badge-passive {
 .mot-blog-card { border: 1px solid #008BC4; }
 
 .mot-blog-card .card-header {
-  background-color: #022447;
+  background-color: #004466;
   border-bottom: 2px solid #008BC4;
 }
 
@@ -725,12 +725,12 @@ a.badge-link:hover .badge-passive {
 }
 
 .recent-pill-name {
-  color: #00E6F0;
+  color: #80feff;
   font-weight: 600;
 }
 
 .recent-pill-date {
-  color: #adb5bd;
+  color: #ffffff;
   font-size: 0.72rem;
 }
 
