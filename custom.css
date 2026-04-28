@@ -509,7 +509,31 @@ h3 {
 
 
 /* ----------------------------------------------------------
-   7. Tables — Unified Bookmarklet Table
+   7. Tables — Filter Bar
+   ---------------------------------------------------------- */
+#bm-filter-bar {
+  background-color: #f8f9fa;
+  border-color: #dee2e6 !important;
+}
+
+.bm-filter-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #495057;
+  white-space: nowrap;
+}
+
+/* Active filter button keeps its shadow suppressed */
+#bm-filter-bar .btn { box-shadow: none !important; }
+
+/* Recently Updated button glows green when active */
+#bm-filter-bar #btn-recent.btn-success {
+  box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.25) !important;
+}
+
+
+/* ----------------------------------------------------------
+   7b. Tables — Unified Bookmarklet Table
    ---------------------------------------------------------- */
 
 /* Sticky column headers (Bootstrap primary — matches Welcome card) */

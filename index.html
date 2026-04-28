@@ -223,7 +223,49 @@
 
       <div class="row">
         <div class="col-12">
-          <table id="bookmarklets-table" class="table table-striped table-hover table-bordered shadow rounded w-100">
+          <!-- ── Filter bar ─────────────────────────────────────────────────── -->
+          <div id="bm-filter-bar" class="p-3 mb-3 rounded border">
+            <div class="row g-2 align-items-center mb-2">
+              <div class="col-auto">
+                <span class="bm-filter-label">Category:</span>
+              </div>
+              <div class="col">
+                <div class="d-flex flex-wrap gap-1" id="bm-cat-filters">
+                  <button class="btn btn-sm btn-primary" data-cat="all">All</button>
+                  <button class="btn btn-sm btn-outline-secondary" data-cat="social">Social Media</button>
+                  <button class="btn btn-sm btn-outline-secondary" data-cat="finance">Finance</button>
+                  <button class="btn btn-sm btn-outline-secondary" data-cat="research">Research</button>
+                  <button class="btn btn-sm btn-outline-secondary" data-cat="people">People Search</button>
+                  <button class="btn btn-sm btn-outline-secondary" data-cat="misc">Misc</button>
+                  <button class="btn btn-sm btn-outline-secondary" data-cat="adult">Adult</button>
+                  <button class="btn btn-sm btn-outline-secondary" data-cat="fun">Fun</button>
+                </div>
+              </div>
+            </div>
+            <div class="row g-2 align-items-center">
+              <div class="col-auto">
+                <span class="bm-filter-label">Script Type:</span>
+              </div>
+              <div class="col-auto">
+                <div class="btn-group" role="group" id="bm-type-filters">
+                  <button class="btn btn-sm btn-primary" data-type="all">All</button>
+                  <button class="btn btn-sm btn-outline-secondary" data-type="active">
+                    <i class="fas fa-cloud-upload-alt"></i> Active
+                  </button>
+                  <button class="btn btn-sm btn-outline-secondary" data-type="passive">
+                    <i class="fas fa-desktop"></i> Passive
+                  </button>
+                </div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-sm btn-outline-success" id="btn-recent">
+                  <i class="fas fa-certificate"></i> Recently Updated
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <table id="bookmarklets-table" class="table table-striped table-hover table-bordered mb-5 shadow rounded w-100">
             <thead>
               <tr>
                 <th class="text-center align-bottom text-danger">Drag to bookmarks bar</th>
@@ -1045,12 +1087,12 @@
           <div class="col-lg-6">
             <h2 id="how-do-i-use-this">How do I use these tools?
             <a class="anchor-link" href="#how-do-i-use-this" aria-label="Link to this section: How do I use these tools"></a></h2>
-              <p>These bookmarks live in your browser (or you can use some of them right on this page!). You use them in certain situations. If you want them in your browser's bookmarks bar, you have 3 ways of adding them:</p>
+              <p>These bookmarks live in your browser. You use them in certain situations. If you want them in your browser's bookmarks bar, you have 2 main ways of adding them:</p>
             <div id="accordion">
               <div class="card">
                 <div class="card-header">
                   <a class="collapsed btn btn-success" data-bs-toggle="collapse" href="#collapseOne">
-                    <i class="fa-solid fa-star"></i> Easy Method <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i> Easy 1-by-1 Method <i class="fa-solid fa-star"></i>
                   </a>
                 </div>
                 <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
@@ -1058,7 +1100,8 @@
                     <ol class="list-group list-group-numbered">
                       <li class="list-group-item">Find the bookmarklet you want</li>
                       <li class="list-group-item">Click and drag the bookmarklet's name (left column in table above) it into your bookmarks bar.</li>
-                      <li class="list-group-item">Click that bookmark to use the tool. ⚠You will need to allow popups in your browser!⚠</li>
+                      <li class="list-group-item">Visit the web page the bookmarklet is used on.</li>
+                      <li class="list-group-item">Click that bookmark to use the tool.</li>
                       <li class="list-group-item">Done!</li>
                     </ol>
                   </div>
@@ -1067,42 +1110,19 @@
               <div class="card">
                 <div class="card-header">
                   <a class="collapsed btn btn-secondary" data-bs-toggle="collapse" href="#collapseTwo">
-                    <i class="fa-solid fa-hammer"></i> The "More Manual Method" <i class="fa-solid fa-wrench"></i></a>
+                    <i class="fa-solid fa-folder"></i> The "Get Them All" Method <i class="fa-solid fa-bookmark"></i></a>
                     <p class="small mt-1">Click to expand</p>
                 </div>
                 <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
                   <div class="card-body">
+                    <p>This method allows you to import all the bookmarklets we have in a single process. It is faster than downloading each and the bookmarklets are already organized for you in folders.</p>
                     <ol class="list-group list-group-numbered">
-                      <li class="list-group-item">Visit <a href="https://github.com/myosintllc/my-osint-tools/tree/main/" target="_blank" rel="noopener noreferrer">https://github.com/myosintllc/my-osint-tools/tree/main/</a></li>
-                      <li class="list-group-item">Open the bookmarklet you wish to use.</li>
-                      <li class="list-group-item">Scroll down to the <code>// Copy and paste the data below</code> section.</li>
-                      <li class="list-group-item">Copy the text starting with <code>javascript:</code> and ending with <code>()</code></li>
-                      <li class="list-group-item">Go to your favorite browser and make a new bookmark. We like doing this in our Bookmarks Bar but you can do it wherever.</li>
-                      <li class="list-group-item">Name it whatever you wish.</li>
-                      <li class="list-group-item">In the <code>URL</code> section, paste the code your copied. You need to paste everything from the <code>javascript:</code> all the way to the ending <code>()</code>.</li>
-                      <li class="list-group-item">Save the bookmark/bookmarklet.</li>
-                      <li class="list-group-item">Now you are set to run or use the bookmarklet. Some you need to be on a certain web page to use (like the Facebook ID one needs to be on a Facebook page like <code>https://www.facebook.com/zuck</code>). Navigate to the correct page or, for those that do not need a certain page, just click the bookmark.</li>
-                    </ol>
-                  </div>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-header">
-                  <a class="collapsed btn btn-primary" data-bs-toggle="collapse" href="#collapseThree">
-                    <i class="fa-solid fa-folder"></i> The "Get Them All" Method <i class="fa-solid fa-bookmark"></i></a>
-                    <p class="small mt-1">Click to expand</p>
-                </div>
-                <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
-                  <div class="card-body">
-                    <p>This method allows you to import all the bookmarklets we have in a single process. It also has the benefit of giving you all the bookmarklets in your browser to use when you like.</p>
-                    <ol class="list-group list-group-numbered">
-                      <li class="list-group-item">Download the <a href="/myosint_bookmarklets.html" download>HTML</a> or <a href="/myosint_bookmarklets.zip" download>ZIP</a> version of all our bookmarklets to your system.</li>
-                      <li class="list-group-item">Unzip the Zipped version if you chose that one.</li>
-                      <li class="list-group-item">Go into your browser and import the <code>myosint_bookmarklets.html</code> into your bookmarks bar. This varies per browser but should be in the Bookmarks Manager or something similar.</li>
+                      <li class="list-group-item">Download the <a href="/myosint_bookmarklets.html" download>HTML</a> file of all our bookmarklets to your system.</li>
+                      <li class="list-group-item">Go into your browser and import the <code>myosint_bookmarklets.html</code> file bookmarks into your bookmarks bar. This process varies per browser but should be in the Bookmarks Manager or something similar.</li>
                       <li class="list-group-item">In some browsers, you may have an "Imported" folder and in others, you will have our "My OSINT Bookmarklets" folder. The bookmarklets are organized in there.</li>
                     </ol>
                     <br>
-                    <p>These bookmarklets do <strong>NOT</strong> self-update. Each HTML bookmarklet export file has an HTML comment that tells you what date/version of bookmarklets you have. When you want to upgrade/update your My OSINT Bookmarklets, delete the entire folder from your Bookmarks Bar and then download and import the most recent version.</p>
+                    <p>These bookmarklets do <strong>not</strong> self-update. Each HTML bookmarklet export file has an HTML comment that tells you what date/version of bookmarklets you have. When you want to upgrade/update your My OSINT Bookmarklets, delete the entire folder from your Bookmarks Bar and then download and import the most recent version.</p>
                   </div>
                 </div>
               </div>
@@ -1140,8 +1160,8 @@
                 <div id="collFaqOne" class="collapse" data-bs-parent="#accordion-faq">
                   <div class="card-body">
                     <ul class="list-group">
-                      <li class="list-group-item">Ensure that popup windows are allowed in the current browser tab.</li>
                       <li class="list-group-item">Try reloading the page and then using the bookmarklet.</li>
+                      <li class="list-group-item">Ensure that popup windows are allowed in the current browser tab.</li>
                     </ul>
                   </div>
                 </div>
@@ -1185,7 +1205,7 @@
                 <div id="collFaqFour" class="collapse" data-bs-parent="#accordion-faq">
                   <div class="card-body">
                     <ul class="list-group">
-                      <li class="list-group-item">Well aren't you nice! Please submit an <a href="https://github.com/myosintllc/mot-osint-tools/issues" target="_blank" rel="noopener noreferrer">issue</a> in our GitHub repository. When you create a new issue, you will be prompted for what we need to review your bookmarklet. We will then send you an email response. And <i>THANK YOU!</i></li>
+                      <li class="list-group-item">Well aren't you generous! Please submit an <a href="https://github.com/myosintllc/mot-osint-tools/issues" target="_blank" rel="noopener noreferrer">issue</a> in our GitHub repository. When you create a new issue, you will be prompted for what we need to review your bookmarklet. We will then send you an email response. And <i>THANK YOU!</i></li>
                     </ul>
                   </div>
                 </div>
@@ -1396,6 +1416,56 @@
         });
       }
 
+      // ── Filter state (shared between custom search fn and click handlers) ──────
+      var filterCat    = 'all';
+      var filterType   = 'all';
+      var filterRecent = false;
+      (function() {
+        var today = new Date(); today.setHours(0, 0, 0, 0);
+        var cutoff = new Date(today); cutoff.setDate(today.getDate() - 14);
+        window._bmRecentCutoff = cutoff;
+        window._bmRecentToday  = today;
+      })();
+
+      // ── DataTables custom search plugin ──────────────────────────────────────
+      $.fn.dataTable.ext.search.push(function(settings, searchData, dataIndex) {
+        if (settings.nTable.id !== 'bookmarklets-table') return true;
+        var row = settings.aoData[dataIndex].nTr;
+
+        // Category — read data-folder from the bookmarklet <a> button
+        if (filterCat !== 'all') {
+          var folder = ($(row).find('a[data-folder]').data('folder') || '').toLowerCase();
+          var catMatch = false;
+          if      (filterCat === 'social')   catMatch = folder.startsWith('social media');
+          else if (filterCat === 'finance')  catMatch = folder === 'finance';
+          else if (filterCat === 'research') catMatch = folder === 'research';
+          else if (filterCat === 'people')   catMatch = folder === 'multi-site';
+          else if (filterCat === 'misc')     catMatch = folder === 'misc';
+          else if (filterCat === 'adult')    catMatch = folder === 'sex/nudity sites';
+          else if (filterCat === 'fun')      catMatch = folder === 'fun';
+          if (!catMatch) return false;
+        }
+
+        // Script Type — searchData[2] is the text content of the Script Type cell
+        if (filterType !== 'all') {
+          var typeText = (searchData[2] || '').toLowerCase();
+          if (filterType === 'active'  && typeText.indexOf('active')  === -1) return false;
+          if (filterType === 'passive' && typeText.indexOf('passive') === -1) return false;
+        }
+
+        // Recently Updated — extract YYYY-MM-DD from the last cell and check range
+        if (filterRecent) {
+          var cells = row.querySelectorAll('td');
+          var lastCell = cells[cells.length - 1];
+          var dateMatch = (lastCell ? lastCell.textContent : '').match(/(\d{4}-\d{2}-\d{2})/);
+          if (!dateMatch) return false;
+          var d = new Date(dateMatch[1]);
+          if (isNaN(d) || d < window._bmRecentCutoff || d > window._bmRecentToday) return false;
+        }
+
+        return true;
+      });
+
       document.addEventListener('DOMContentLoaded', function() {
         // ── DataTables ──────────────────────────────────────────────────────────
         var dt = new DataTable('#bookmarklets-table', {
@@ -1415,6 +1485,27 @@
             addPermalinks();
             addBadgeLinks();
           }
+        });
+
+        // ── Filter button click handlers ────────────────────────────────────────
+        $('#bm-cat-filters .btn').on('click', function() {
+          $('#bm-cat-filters .btn').removeClass('btn-primary').addClass('btn-outline-secondary');
+          $(this).removeClass('btn-outline-secondary').addClass('btn-primary');
+          filterCat = $(this).data('cat');
+          dt.draw();
+        });
+
+        $('#bm-type-filters .btn').on('click', function() {
+          $('#bm-type-filters .btn').removeClass('btn-primary').addClass('btn-outline-secondary');
+          $(this).removeClass('btn-outline-secondary').addClass('btn-primary');
+          filterType = $(this).data('type');
+          dt.draw();
+        });
+
+        $('#btn-recent').on('click', function() {
+          filterRecent = !filterRecent;
+          $(this).toggleClass('btn-outline-success btn-success');
+          dt.draw();
         });
 
         // ── Non-DataTables tooltips (download link, etc.) ───────────────────────
