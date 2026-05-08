@@ -1245,21 +1245,30 @@
       </div>
     </div>
 
-    <!-- Script Type Explanation -->
+    <!-- Bookmarklet Reference -->
     <div class="container-lg pb-3 mb-5 shadow rounded">
       <div class="row">
         <div class="col-lg-auto">
-          <h2 id="script-type-explanation">Script Types: Active vs Passive
-          <a class="anchor-link" href="#script-type-explanation" aria-label="Link to this section: Script Type Explanation"></a></h2>
-          <p>Each bookmarklet in the table above is labeled with a script type that tells you how it interacts with data.</p>
+          <h2 id="script-type-explanation">Bookmarklet Reference
+          <a class="anchor-link" href="#script-type-explanation" aria-label="Link to this section: Bookmarklet Reference"></a></h2>
+          <p>Quick reference for the labels and indicators used throughout the bookmarklet table.</p>
           <div class="row g-3">
-            <div class="col-md-6">
-              <div class="card border-primary h-100" id="active-script-type">
+            <div class="col-md-6 d-flex flex-column gap-3">
+              <div class="card border-primary" id="active-script-type">
                 <div class="card-header bg-primary text-white">
                   <span class="badge-active"><i class="fas fa-cloud-upload-alt"></i> Active</span>
                 </div>
                 <div class="card-body">
                   <p class="card-text">An <strong>Active</strong> bookmarklet makes additional web requests — it contacts the website's servers or a third-party API to fetch data beyond what is already loaded in your browser. Because it sends network traffic, the target site may log or detect its use.</p>
+                </div>
+              </div>
+              <hr class="my-1">
+              <div class="card border-warning" id="recent-date-indicator">
+                <div class="card-header bg-warning text-dark">
+                  <strong>🚨 Recent Date Indicator</strong>
+                </div>
+                <div class="card-body">
+                  <p class="card-text">Several bookmarklets highlight dates that fall within the past 7 days with a <strong>🚨 red siren</strong> indicator. This is a visual alert to draw your attention to very recent account activity, post dates, or timestamps — which may be significant in an investigation. The indicator appears inside the bookmarklet's popup window next to the relevant date; it does not affect the underlying data in any way.</p>
                 </div>
               </div>
             </div>
@@ -1270,20 +1279,6 @@
                 </div>
                 <div class="card-body">
                   <p class="card-text">A <strong>Passive</strong> bookmarklet only reads and processes data already present in your browser — it never sends additional requests to external servers. It extracts information from the page source or existing browser memory without leaving any additional network trace.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Recent Date Indicator -->
-          <div class="row g-3 mt-1">
-            <div class="col-12">
-              <div class="card border-warning" id="recent-date-indicator">
-                <div class="card-header bg-warning text-dark">
-                  <strong>🚨 Recent Date Indicator</strong>
-                </div>
-                <div class="card-body">
-                  <p class="card-text">Several bookmarklets highlight dates that fall within the past 7 days with a <strong>🚨 red siren</strong> indicator. This is a visual alert to draw your attention to very recent account activity, post dates, or timestamps — which may be significant in an investigation. The indicator appears inside the bookmarklet's popup window next to the relevant date; it does not affect the underlying data in any way.</p>
                 </div>
               </div>
             </div>
