@@ -8,7 +8,8 @@
       "Bash(bash /tmp/parse_rows.sh)",
       "Bash(python3)",
       "Bash(chmod +x /tmp/extract_rows.sh)",
-      "Bash(bash /tmp/extract_rows.sh)"
+      "Bash(bash /tmp/extract_rows.sh)",
+      "Bash(grep -o \"Fetching posts for.\\\\{1,50\\\\}\" \"c:/Users/micah/Documents/GitHub/my-osint-tools-dev/index.html\")"
     ]
   }
 }
