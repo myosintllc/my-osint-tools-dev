@@ -1,0 +1,14 @@
+{
+  "slug": "instagram-user-profile-post-date-revealer",
+  "target_url": "https://www.instagram.com/instagram/",
+  "skip": true,
+  "skip_reason": "The bookmarklet requires a 'csrftoken' cookie (i.e. being logged in to Instagram) and immediately alerts 'Not logged in to Instagram' and returns if it's missing. It then calls Instagram's authenticated GraphQL endpoint (graphql/query with x-csrftoken/x-ig-app-id headers) to page through all of a user's posts. This cannot be exercised in unauthenticated headless CI.",
+  "requires_auth": true,
+  "wait_ms": 5000,
+  "notes": "Active - on an Instagram user profile page, paginates through the user's posts via Instagram's internal GraphQL API (doc_id-based query) using the csrftoken cookie, builds a map of post code -> taken_at timestamp, then overlays a timestamp box on each post thumbnail link (a[href*='/p/'] or a[href*='/reel/']) and shows a status badge with the total count loaded.",
+  "checks": [
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

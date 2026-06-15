@@ -1,0 +1,24 @@
+{
+  "slug": "flickr-user-profile-bookmarklet",
+  "target_url": "https://www.flickr.com/photos/flickr/",
+  "skip": false,
+  "requires_auth": false,
+  "wait_ms": 4000,
+  "notes": "Passive - reads the 'script.modelExport' tag on a Flickr profile page (looks for 'Y.ClientApp.init(...)') and builds a draggable info modal with profile fields, photo/banner previews, and export buttons. No network calls of its own. If Flickr changes the modelExport structure this will fail with an alert instead of the modal.",
+  "checks": [
+    {
+      "type": "modal_appears",
+      "text_contains": "Click here to move window",
+      "comment": "Draggable modal header should appear once Flickr profile data is parsed"
+    },
+    {
+      "type": "text_present",
+      "selector": "strong",
+      "text_pattern": ".+",
+      "comment": "At least one strong element with extracted profile data (e.g. Display Name, NSID)"
+    },
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "slug": "email-search-bookmarklet",
+  "target_url": "https://example.com",
+  "skip": false,
+  "requires_auth": false,
+  "wait_ms": 2000,
+  "notes": "Active - prompts for an email address, then opens new tabs to thatsthem, Google, and emailrep for that address. Does not scan the page itself, just uses the prompt() input. In headless CI the prompt is auto-dismissed (returns null), so no tabs open. We only verify no JS errors occur.",
+  "checks": [
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

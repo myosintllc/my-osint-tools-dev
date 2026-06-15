@@ -1,5 +1,5 @@
 {
-  "slug": "facebook-public-content-search-bookmarklet",
+  "slug": "facebook-public-content-search",
   "target_url": "https://www.facebook.com/zuck",
   "skip": false,
   "requires_auth": false,

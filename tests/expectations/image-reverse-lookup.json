@@ -1,0 +1,30 @@
+{
+  "slug": "image-reverse-lookup",
+  "target_url": "https://en.wikipedia.org/wiki/Cat",
+  "skip": false,
+  "requires_auth": false,
+  "wait_ms": 3000,
+  "notes": "Passive - scans the page for <img> elements, background images, srcset entries, video posters, and YouTube embeds, then injects a right-side panel (#osn-panel) titled 'Image Finder' listing each found image with a reverse-image-search dropdown (Google Lens, Yandex, TinEye, Bing, ImgOps, SauceNAO, IQDB, Trace.moe). The Wikipedia Cat article has multiple images, so the panel should appear with content.",
+  "checks": [
+    {
+      "type": "modal_appears",
+      "selector": "#osn-panel",
+      "comment": "Image Finder side panel should be injected"
+    },
+    {
+      "type": "text_present",
+      "selector": "#osn-panel",
+      "text_pattern": "Image Finder",
+      "comment": "Panel header text should be present"
+    },
+    {
+      "type": "element_count",
+      "selector": "#osn-panel img",
+      "min_count": 1,
+      "comment": "At least one image listed in the panel"
+    },
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

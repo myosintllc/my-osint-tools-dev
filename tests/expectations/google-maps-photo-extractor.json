@@ -1,0 +1,14 @@
+{
+  "slug": "google-maps-photo-extractor",
+  "target_url": "https://www.google.com/maps/place/Eiffel+Tower/@48.8583701,2.2944813,17z",
+  "skip": true,
+  "skip_reason": "The bookmarklet only works when a specific photo/video/360 lightbox is open and the page URL contains a '!6s(https://lh3.googleusercontent.com/...)' segment. This requires interactive navigation (clicking into the photo viewer) which isn't reproduced by simply loading target_url, and the bookmarklet opens the extracted image in a new tab rather than showing an in-page modal - neither behavior is reliably testable headless in CI.",
+  "requires_auth": false,
+  "wait_ms": 2000,
+  "notes": "Active - extracts a googleusercontent.com photo URL from the current location.href (matching '!6s(https://lh3.googleusercontent.com/...)'), upgrades it to full resolution ('=s0-k-no'), and opens it in a new tab. Without a lightbox open, location.href won't contain the !6s segment and the bookmarklet just shows an alert('No image URL found in current URL'). target_url is a best-guess public Maps place page.",
+  "checks": [
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

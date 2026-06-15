@@ -1,0 +1,24 @@
+{
+  "slug": "tiktok-user-id-bookmarklet",
+  "target_url": "https://www.tiktok.com/@tiktok",
+  "skip": false,
+  "requires_auth": false,
+  "wait_ms": 8000,
+  "notes": "Active - reads the __UNIVERSAL_DATA_FOR_REHYDRATION__ JSON blob on a TikTok user profile page for core profile fields (username, nickname, TikTok ID, language, bio), then scans the page for video URLs and makes additional fetch requests to /@{username}/video/{id} to determine the region of the oldest/newest videos. Uses TikTok's own official @tiktok account as a stable public profile. wait_ms is generous because the video-region analysis involves clicking sort buttons and waiting up to ~6s for the grid to reload plus follow-up fetches.",
+  "checks": [
+    {
+      "type": "modal_appears",
+      "text_contains": "TikTok User Data",
+      "comment": "Modal title should appear"
+    },
+    {
+      "type": "text_present",
+      "selector": "strong",
+      "text_pattern": ".+",
+      "comment": "At least one strong element with profile field content (username, TikTok ID, etc.)"
+    },
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

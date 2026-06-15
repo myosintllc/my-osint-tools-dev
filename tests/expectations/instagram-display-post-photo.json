@@ -1,0 +1,13 @@
+{
+  "slug": "instagram-display-post-photo",
+  "target_url": "https://www.instagram.com/p/C0000000000/",
+  "skip": false,
+  "requires_auth": false,
+  "wait_ms": 2000,
+  "notes": "Passive - checks if the current URL matches 'instagram.com.*/p/'; if so it opens a new tab at '{origin}/p/{shortcode}media?size=l' to show the full-size image, otherwise alerts 'This is not an Instagram post URL.'. Does not show an in-page modal (opens a new tab), so we only assert no JS errors. target_url is a placeholder post shortcode - the URL match is on the path pattern, not on the post actually existing, so the window.open() call should still fire without throwing.",
+  "checks": [
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

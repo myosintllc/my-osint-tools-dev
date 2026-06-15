@@ -1,0 +1,13 @@
+{
+  "slug": "united-states-phone-bookmarklet",
+  "target_url": "https://example.com",
+  "skip": false,
+  "requires_auth": false,
+  "wait_ms": 2000,
+  "notes": "Active - prompts in sequence for AREACODE, PREFIX, and LAST4 of a US phone number, then opens up to 12 new tabs to various phone lookup sites (TruePeopleSearch, FastPeopleSearch, Nuwber, WhoseNo, PeopleSearchNow, RevealName, SearchPeopleFree, Sync.me, ThatsThem, AdvancedBackgroundChecks, USPhoneBook, CyberBackgroundChecks). Generic utility, not tied to any specific page. In headless CI the prompts are auto-dismissed (return null), so the if-check fails and no tabs open. We only verify no JS errors occur.",
+  "checks": [
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

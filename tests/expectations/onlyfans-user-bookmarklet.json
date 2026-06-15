@@ -1,0 +1,14 @@
+{
+  "slug": "onlyfans-user-bookmarklet",
+  "target_url": "https://onlyfans.com/free",
+  "skip": true,
+  "skip_reason": "Reads user data from the OnlyFans Vue app's internal store (document.querySelector('#app').__vue__.$store.state.users), which is only populated for an authenticated session. OnlyFans pages also redirect/require login for unauthenticated visitors, so the '#app' Vue instance with profile data will not be present in CI.",
+  "requires_auth": true,
+  "wait_ms": 4000,
+  "notes": "Passive - pulls the current profile's data object from the Vue store ($store.state.users) and shows a draggable modal with username, name, ID, location, join date, first published post date, last seen, website, wishlist, avatar/header images, and status badges (Tips Enabled, Performer, etc). If '#app.__vue__' isn't found it alerts 'Could not find OnlyFans app state.' - expected in CI since the page requires login.",
+  "checks": [
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

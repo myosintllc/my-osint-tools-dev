@@ -1,0 +1,19 @@
+{
+  "slug": "linktree-url-revealer-bookmarklet",
+  "target_url": "https://linktr.ee/linktree",
+  "skip": false,
+  "requires_auth": false,
+  "wait_ms": 3000,
+  "notes": "Passive - finds the '#links-container' element and, for each link tile ('[data-testid=\"Link\"]'), appends a small div showing 'Target URL: <url>'. Does not open a modal. Linktree's own official 'linktree' profile is used as a stable public page with multiple links.",
+  "checks": [
+    {
+      "type": "text_present",
+      "selector": "#links-container",
+      "text_pattern": "Target URL:",
+      "comment": "Revealed URL text should be appended to at least one link tile"
+    },
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

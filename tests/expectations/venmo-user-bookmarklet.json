@@ -1,0 +1,24 @@
+{
+  "slug": "venmo-user-bookmarklet",
+  "target_url": "https://account.venmo.com/u/Venmo",
+  "skip": false,
+  "requires_auth": false,
+  "wait_ms": 3000,
+  "notes": "Passive - reads the #__NEXT_DATA__ script tag JSON (props.pageProps.user) on a Venmo profile page and displays username, display name, Venmo ID, profile URL, and avatar URL in a modal with id 'venmo-modal' and header text 'Venmo User Data'. Uses Venmo's own official 'Venmo' account as a stable public profile. If __NEXT_DATA__ is missing or has no user, it calls alert(...) instead.",
+  "checks": [
+    {
+      "type": "modal_appears",
+      "text_contains": "Venmo User Data",
+      "comment": "Modal header should appear"
+    },
+    {
+      "type": "text_present",
+      "selector": "strong",
+      "text_pattern": ".+",
+      "comment": "At least one strong element with profile field content (username, Venmo ID, etc.)"
+    },
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

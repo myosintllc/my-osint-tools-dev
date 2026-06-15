@@ -1,0 +1,14 @@
+{
+  "slug": "tiktok-url-date-decoder-bookmarklet",
+  "target_url": "https://www.tiktok.com/@tiktok",
+  "skip": true,
+  "skip_reason": "This bookmarklet works on the CURRENT page's URL, extracting a large numeric ID from the end of the path (e.g. a TikTok video/photo URL like https://www.tiktok.com/@user/video/1234567890123456789) and decoding the embedded timestamp from the first 31 bits of its binary representation. It requires a stable individual video/photo URL with a long numeric ID; we don't have a guaranteed-stable public video URL to pin in CI (TikTok videos can be deleted/removed at any time). On a plain profile page (no trailing large number) the bookmarklet just shows an alert ('Invalid URL...'), so testing against the profile URL would not exercise the real modal path.",
+  "requires_auth": false,
+  "wait_ms": 2000,
+  "notes": "Passive - matches window.location.href against /(\\d+)$ to extract a video/photo ID, decodes a Unix timestamp from the high 31 bits of the ID (BigInt), and shows a modal 'TikTok Video Timestamp' with Video ID, Extracted Unix Timestamp, and Human Readable Date. If no large number is found at the end of the URL it calls alert('Invalid URL...') instead. Marked skip because we cannot guarantee a stable public TikTok video URL for CI; if a stable video URL becomes available, target_url should be set to that and skip set to false with a modal_appears check for 'TikTok Video Timestamp'.",
+  "checks": [
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

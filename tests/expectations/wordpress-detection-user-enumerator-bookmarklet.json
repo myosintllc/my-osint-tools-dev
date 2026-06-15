@@ -1,0 +1,29 @@
+{
+  "slug": "wordpress-detection-user-enumerator-bookmarklet",
+  "target_url": "https://hatless1der.com",
+  "skip": false,
+  "requires_auth": false,
+  "wait_ms": 8000,
+  "notes": "Active - shows a 'Checking site... Please standby' toast, then runs several DOM/cookie/HTML heuristics plus up to 6 fetch/HEAD requests (/wp-login.php, /wp-admin/, /wp-json/, /xmlrpc.php, /readme.html) to determine if the site runs WordPress. Displays results in a modal titled 'WordPress Detection' with a verdict (LIKELY/POSSIBLY/UNLIKELY WordPress) and a checklist, plus a 'List User Accounts' button that (after a warning) opens /wp-json/wp/v2/users in a new tab. hatless1der.com is explicitly referenced in the bookmarklet's own description as a known WordPress test site. Longer wait_ms allows the async fetch checks to complete.",
+  "checks": [
+    {
+      "type": "modal_appears",
+      "text_contains": "WordPress Detection",
+      "comment": "Detection results modal should appear"
+    },
+    {
+      "type": "text_present",
+      "selector": "#wpDetectModal",
+      "text_pattern": "(LIKELY|POSSIBLY|UNLIKELY) WordPress",
+      "comment": "Verdict text should be present"
+    },
+    {
+      "type": "network_request",
+      "url_pattern": "hatless1der\\.com/wp-json/",
+      "comment": "Confirm the WordPress REST API endpoint was probed"
+    },
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

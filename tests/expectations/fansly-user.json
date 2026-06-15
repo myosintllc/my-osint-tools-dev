@@ -1,5 +1,5 @@
 {
-  "slug": "fansly-user-bookmarklet",
+  "slug": "fansly-user",
   "target_url": "https://fansly.com/hatless1der",
   "skip": false,
   "requires_auth": false,

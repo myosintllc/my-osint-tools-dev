@@ -1,0 +1,24 @@
+{
+  "slug": "snapchat-storyspotlight-date-revealer-bookmarklet",
+  "target_url": "https://www.snapchat.com/@khloekardashian",
+  "skip": false,
+  "requires_auth": false,
+  "wait_ms": 4000,
+  "notes": "Passive - parses the page's __NEXT_DATA__ for spotlightHighlights/curatedHighlights timestamps and overlays a '.snapchat-timestamp-added' div on each matching [data-testid=\"content-tile\"], then appends a '.myosint-attribution-badge' div with 'Modified by a Bookmarklet'. Generous wait_ms since it must parse the (large) __NEXT_DATA__ script after the page hydrates. Failure paths show alerts: 'Could not find Snapchat __NEXT_DATA__ on this page.', 'No Spotlight or Stories data found.', or 'No matching cards found to add timestamps to.' - if the profile layout changes those alerts would fire instead.",
+  "checks": [
+    {
+      "type": "modal_appears",
+      "text_contains": "Modified by a Bookmarklet",
+      "comment": "Attribution badge appears after timestamps are added"
+    },
+    {
+      "type": "element_count",
+      "selector": ".snapchat-timestamp-added",
+      "min_count": 1,
+      "comment": "At least one content tile got a timestamp overlay"
+    },
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

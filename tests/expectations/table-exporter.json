@@ -1,0 +1,30 @@
+{
+  "slug": "table-exporter",
+  "target_url": "https://en.wikipedia.org/wiki/Comparison_of_web_browsers",
+  "skip": false,
+  "requires_auth": false,
+  "wait_ms": 3000,
+  "notes": "Passive - scores all <table> elements on the page by row count, column count, and content density, then shows a draggable modal (#tableexport-modal) titled 'Table Export' previewing the best-scoring table with column toggles and a 'Download CSV' button. The Comparison of web browsers article has large wikitables that should score highly.",
+  "checks": [
+    {
+      "type": "modal_appears",
+      "selector": "#tableexport-modal",
+      "comment": "Table Export modal should appear"
+    },
+    {
+      "type": "text_present",
+      "selector": "#tableexport-modal",
+      "text_pattern": "Table Export",
+      "comment": "Modal header text should be present"
+    },
+    {
+      "type": "element_count",
+      "selector": "#tableexport-preview tr",
+      "min_count": 1,
+      "comment": "Preview table should have at least a header row"
+    },
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

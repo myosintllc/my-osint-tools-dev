@@ -1,0 +1,13 @@
+{
+  "slug": "threads-from-instagram-profile",
+  "target_url": "https://www.instagram.com/instagram/",
+  "skip": false,
+  "requires_auth": false,
+  "wait_ms": 1000,
+  "notes": "Passive - extracts the username from the current Instagram profile URL (instagram.com/<username>) and opens 'https://threads.net/@<username>' in a new tab via window.open. Does not show an in-page modal, so we can't assert on the new tab's content in headless CI. Fails with alert('This is not an Instagram page.') if the URL doesn't contain 'instagram.com/'. We just check no_js_errors.",
+  "checks": [
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "slug": "tinder-user-bookmarklet",
+  "target_url": "https://tinder.com/",
+  "skip": true,
+  "skip_reason": "Tinder profile pages (https://tinder.com/@username or similar) require an active logged-in session to view any profile data - anonymous visitors are redirected to a login/marketing page with none of the expected page-source fields (id, username, birth_date, company, schools, gotinder.com photo URLs). The bookmarklet would either find nothing (all fields empty) or error out, neither of which meaningfully exercises the real modal. There's no stable public Tinder profile URL usable in CI.",
+  "requires_auth": true,
+  "wait_ms": 3000,
+  "notes": "Passive - scrapes document.documentElement.innerHTML for profile fields (id, username, birth_date, company/title/schools for jobs/education, and images-ssl.gotinder.com photo URLs) plus performance resource entries for photo URLs, then shows a modal titled 'Tinder Profile Data' with a left photo pane and a right data table, plus Text/JSON/Excel export buttons. Wrapped in try/catch with alert('Bookmarklet error: ...') on failure.",
+  "checks": [
+    {
+      "type": "modal_appears",
+      "text_contains": "Tinder Profile Data",
+      "comment": "Modal title should appear if run on an authenticated profile page"
+    },
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

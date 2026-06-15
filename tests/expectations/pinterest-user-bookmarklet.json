@@ -1,0 +1,29 @@
+{
+  "slug": "pinterest-user-bookmarklet",
+  "target_url": "https://www.pinterest.com/pinterest/",
+  "skip": false,
+  "requires_auth": false,
+  "wait_ms": 6000,
+  "notes": "Active - extracts 'initialReduxState' from an inline script tag, then makes an additional fetch to Pinterest's UserResource API (with credentials:'omit') to pull profile stats (pin/board/story/video counts, followers, following, private flag, about, website). Displays both in a draggable modal titled 'Pinterest User Data'. Uses Pinterest's own official account as a stable public profile.",
+  "checks": [
+    {
+      "type": "modal_appears",
+      "text_contains": "Pinterest User Data",
+      "comment": "Modal title must appear"
+    },
+    {
+      "type": "text_present",
+      "selector": "strong",
+      "text_pattern": ".+",
+      "comment": "At least one strong element with user data content"
+    },
+    {
+      "type": "network_request",
+      "url_pattern": "pinterest\\.com/resource/UserResource/get",
+      "comment": "Confirm Pinterest UserResource API was called"
+    },
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

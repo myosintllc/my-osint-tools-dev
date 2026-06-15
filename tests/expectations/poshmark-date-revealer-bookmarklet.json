@@ -1,0 +1,14 @@
+{
+  "slug": "poshmark-date-revealer-bookmarklet",
+  "target_url": "https://poshmark.com/closet/poshmark",
+  "skip": true,
+  "skip_reason": "Relies on 'window.__INITIAL_STATE__.$_closet.listingsPostData.data' (per-listing 'status_changed_at' timestamps) being populated, and on '.tiles_container > div[data-et-prop-listing_id]' tile elements matching those listing IDs being rendered. This data shape is specific to a closet page that has active listings loaded client-side, and the exact closet/listing URL isn't guaranteed to remain stable or populated the same way over time.",
+  "requires_auth": false,
+  "wait_ms": 4000,
+  "notes": "Passive - reads listing 'status_changed_at' dates from window.__INITIAL_STATE__.$_closet.listingsPostData.data and appends a 'Date Changed: <date>' div to each matching listing tile's '.card' element. No modal is shown; if no data/listings are found it shows an alert() instead.",
+  "checks": [
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

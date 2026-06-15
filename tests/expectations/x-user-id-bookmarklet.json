@@ -1,0 +1,19 @@
+{
+  "slug": "x-user-id-bookmarklet",
+  "target_url": "https://x.com/X",
+  "skip": true,
+  "skip_reason": "This bookmarklet's most data-rich path (identifier/X ID, account creation date, 'About this account' location/source data) relies on an authenticated GraphQL request (AboutAccountQuery) using a csrf token read from the 'ct0' cookie, which is only present for logged-in sessions. Without auth, the request either fails or returns nothing, and several fields (X ID, create date) are themselves usually only embedded in page scripts for logged-in views since X heavily restricts anonymous access to profile pages (often showing a login wall). No stable way to validate the full modal in anonymous CI.",
+  "requires_auth": true,
+  "wait_ms": 6000,
+  "notes": "Active - reads handle from the current URL path, scrapes display name from UserName/User-Name spans, regex-scans page scripts for an 'identifier'/'screen_name' pair (X ID), finds the profile banner image and decodes its upload timestamp from the embedded snowflake/unix ID, and (if a csrf token / ct0 cookie is available) calls the X GraphQL 'AboutAccountQuery' endpoint (x.com/i/api/graphql/.../AboutAccountQuery) for account-based-in/location-accuracy/source/username-change info. Displays everything in a modal titled 'X Profile Data'. On error it calls alert('Bookmarklet error: '+e.message).",
+  "checks": [
+    {
+      "type": "modal_appears",
+      "text_contains": "X Profile Data",
+      "comment": "Modal title should appear if run on an authenticated profile page"
+    },
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

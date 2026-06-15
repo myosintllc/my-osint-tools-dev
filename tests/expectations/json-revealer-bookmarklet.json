@@ -1,0 +1,30 @@
+{
+  "slug": "json-revealer-bookmarklet",
+  "target_url": "https://en.wikipedia.org/wiki/Comparison_of_web_browsers",
+  "skip": false,
+  "requires_auth": false,
+  "wait_ms": 3000,
+  "notes": "Passive - scans all <script> tags for ones of type application/json or whose content starts with '{' or '[', parses them as JSON, and shows a draggable modal titled 'JSON Scripts Found: N' with a dropdown to select between them and a pretty-printed preview. Wikipedia articles embed an application/ld+json script (Wikidata structured data), so this page should always have at least one JSON block.",
+  "checks": [
+    {
+      "type": "modal_appears",
+      "text_contains": "JSON Scripts Found",
+      "comment": "Modal title should appear, indicating at least one JSON script was found"
+    },
+    {
+      "type": "text_present",
+      "selector": "pre",
+      "text_pattern": ".+",
+      "comment": "Pretty-printed JSON preview should have content"
+    },
+    {
+      "type": "element_count",
+      "selector": "select option",
+      "min_count": 1,
+      "comment": "At least one JSON entry in the selector dropdown"
+    },
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

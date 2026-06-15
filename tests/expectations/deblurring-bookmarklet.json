@@ -1,0 +1,19 @@
+{
+  "slug": "deblurring-bookmarklet",
+  "target_url": "https://en.wikipedia.org/wiki/Gaussian_blur",
+  "skip": false,
+  "requires_auth": false,
+  "wait_ms": 1500,
+  "notes": "Passive, generic utility - iterates over every element with a 'class' attribute and removes any class that is exactly 'blur' or starts with 'blur-' (common CSS-blur-overlay class naming used by sites to obscure data). It does not show a modal, make network requests, or read any page-specific data, so it works on any page regardless of whether blurred elements are present. Wikipedia's Gaussian Blur article is a stable, generic public page; the bookmarklet should simply run without errors (whether or not any 'blur'/'blur-*' classes exist to remove). We check that images on the page are still present afterward as a basic sanity check that the page wasn't broken.",
+  "checks": [
+    {
+      "type": "element_count",
+      "selector": "img",
+      "min_count": 1,
+      "comment": "Page should still have images present after running the bookmarklet"
+    },
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

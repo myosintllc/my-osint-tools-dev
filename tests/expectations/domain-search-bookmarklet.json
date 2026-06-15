@@ -1,0 +1,13 @@
+{
+  "slug": "domain-search-bookmarklet",
+  "target_url": "https://example.com",
+  "skip": false,
+  "requires_auth": false,
+  "wait_ms": 2000,
+  "notes": "Active - prompts for a domain name, then opens up to 8 new tabs (whoisology, builtwith, dnslytics, host.io, domaintools, viewdns) for that domain. In headless CI the prompt() is auto-dismissed (returns null), which short-circuits the if-check and no tabs are opened. We only verify no JS errors occur.",
+  "checks": [
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}

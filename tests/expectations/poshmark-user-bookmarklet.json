@@ -1,0 +1,24 @@
+{
+  "slug": "poshmark-user-bookmarklet",
+  "target_url": "https://poshmark.com/closet/poshmark",
+  "skip": false,
+  "requires_auth": false,
+  "wait_ms": 4000,
+  "notes": "Passive - reads window.__INITIAL_STATE__ and recursively searches for a 'closetUserInfo.data' object, then displays it (with null/empty values stripped) in a draggable modal titled 'Poshmark User Data'. Uses Poshmark's own official closet page as a stable public profile.",
+  "checks": [
+    {
+      "type": "modal_appears",
+      "text_contains": "Poshmark User Data",
+      "comment": "Modal title must appear"
+    },
+    {
+      "type": "text_present",
+      "selector": "strong",
+      "text_pattern": ".+",
+      "comment": "At least one strong element with closet user info content"
+    },
+    {
+      "type": "no_js_errors"
+    }
+  ]
+}
