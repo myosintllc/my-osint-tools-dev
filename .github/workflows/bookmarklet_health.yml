@@ -11,6 +11,9 @@ on:
       - '.github/workflows/bookmarklet_health.yml'
   workflow_dispatch:       # allow manual runs from the Actions tab
 
+permissions:
+  contents: write
+
 jobs:
   health-check:
     runs-on: ubuntu-latest

@@ -5,8 +5,10 @@ Reads tests/reports/latest.json (from pytest-json-report) and writes:
   - $GITHUB_STEP_SUMMARY       (shown in the Actions UI run page)
 """
 
+import html
 import json
 import os
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -26,6 +28,39 @@ STATUS_EMOJI = {
 def load_report() -> dict:
     with open(REPORT_PATH) as f:
         return json.load(f)
+
+
+# A bare Playwright/JS stack frame line, e.g. "at UtilityScript.<anonymous> (<anonymous>:1:44)"
+_STACK_FRAME_RE = re.compile(r"^at\s+\S+\s+\(.*:\d+:\d+\)$")
+# Our own check-failure detail lines, e.g. "[text_present] Pattern '...' not found. Got: ..."
+_CHECK_DETAIL_RE = re.compile(r"^\[\w+\]")
+
+
+def extract_detail(longrepr: str) -> str:
+    """
+    Pull the most useful single line out of a pytest longrepr.
+
+    Prefers our own "[check_type] ..." failure details (last one wins, since
+    that's the most specific). Otherwise prefers the first "E " line that
+    isn't a bare stack frame (the actual exception message), falling back to
+    the first/last "E " line if nothing better is found.
+    """
+    e_lines = []
+    for line in longrepr.splitlines():
+        stripped = line.strip()
+        if stripped == "E" or stripped.startswith("E "):
+            e_lines.append(stripped[1:].strip())
+
+    if not e_lines:
+        non_empty = [l.strip() for l in longrepr.splitlines() if l.strip()]
+        return non_empty[-1] if non_empty else ""
+
+    check_details = [l for l in e_lines if _CHECK_DETAIL_RE.match(l)]
+    if check_details:
+        return check_details[-1]
+
+    non_stack = [l for l in e_lines if not _STACK_FRAME_RE.match(l)]
+    return non_stack[0] if non_stack else e_lines[0]
 
 
 def slug_from_node_id(node_id: str) -> str:
@@ -57,8 +92,8 @@ def build_markdown(report: dict) -> str:
         f"**Duration:** {duration:.1f}s  ",
         f"**Health:** {health_pct}% ({passed} passed / {failed} failed / {skipped} skipped / {error} errors)",
         "",
-        "| Status | Bookmarklet | Detail |",
-        "|--------|-------------|--------|",
+        "<table>",
+        "<tr><th>Status</th><th>Bookmarklet</th><th>Detail</th></tr>",
     ]
 
     tests = report.get("tests", [])
@@ -75,10 +110,7 @@ def build_markdown(report: dict) -> str:
         detail = ""
         call = test.get("call", {})
         if call and call.get("longrepr"):
-            # Grab just the last line of the longrepr (the actual assertion message)
-            longrepr = call["longrepr"]
-            last_line = [l.strip() for l in longrepr.splitlines() if l.strip()]
-            detail = last_line[-1][:120] if last_line else ""
+            detail = extract_detail(call["longrepr"])[:200]
 
         # For skipped tests, grab the skip reason
         if outcome == "skipped":
@@ -86,10 +118,15 @@ def build_markdown(report: dict) -> str:
             skip_msg = setup.get("longrepr", "")
             if isinstance(skip_msg, list):
                 skip_msg = skip_msg[-1] if skip_msg else ""
-            detail = str(skip_msg).replace("Skipped: ", "")[:120]
+            detail = str(skip_msg).replace("Skipped: ", "")[:200]
 
-        detail = detail.replace("|", "/")  # avoid breaking markdown table
-        lines.append(f"| {emoji} {outcome} | `{slug}` | {detail} |")
+        detail = html.escape(detail)
+        lines.append(
+            f'<tr><td>{emoji} {outcome}</td><td><code>{html.escape(slug)}</code></td>'
+            f'<td style="white-space:normal;word-break:break-word;max-width:500px;">{detail}</td></tr>'
+        )
+
+    lines.append("</table>")
 
     lines += [
         "",
