@@ -8,6 +8,7 @@ from this combined data so the test suite always reflects what's live.
 import json
 import os
 import re
+import urllib.parse
 import pytest
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -72,6 +73,11 @@ def scrape_bookmarklets() -> list[dict]:
             if tag == "a" and self._in_cell:
                 href = attrs.get("href", "")
                 if href.startswith("javascript:"):
+                    # Some bookmarklets are stored percent-encoded (e.g. "%20", "%7B")
+                    # rather than as raw JS with HTML entities. Decode those so the
+                    # JS handed to page.evaluate() is syntactically valid.
+                    if re.search(r"%[0-9A-Fa-f]{2}", href):
+                        href = urllib.parse.unquote(href)
                     self._in_link = True
                     self._link_href = href
                     self._link_text = ""
