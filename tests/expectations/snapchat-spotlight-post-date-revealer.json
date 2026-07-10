@@ -5,7 +5,7 @@
   "skip_reason": "Individual Snapchat Spotlight post URLs are not permanently stable - the storyId in the URL can change or the specific post can be removed/replaced over time, which would break this test unpredictably even though the bookmarklet itself still works. Skipping until a guaranteed-stable public Spotlight post URL is identified.",
   "requires_auth": false,
   "wait_ms": 4000,
-  "notes": "Passive - V9 modal (id: __scSpotlightModal) titled 'Snapchat Spotlight Data'. Reads JSON-LD script tags (looking for a SocialMediaPosting node in '@graph', or falls back to regex on 'uploadDate'/'datePublished'/'contentUrl'). Shows Upload Date and Date Published each with dual ISO+local format and 🚨 if within 7 days, plus a direct link to the media. Export row has Copy Data/JSON/CSV buttons plus Extracted timestamp pinned at right. Alerts 'No date data found on this page.' if neither date is found.",
+  "notes": "Passive - V9 modal (id: __scSpotlightModal) titled 'Snapchat Spotlight Data'. Reads __NEXT_DATA__ → props.pageProps.spotlightStoryMetadata[0].videoMetadata for uploadDateMs (ms epoch), contentUrl, creator username/name, viewCount, durationMs. Falls back to spotlightHighlights[0].snapList[0].timestampInSec.value if spotlightStoryMetadata is absent. Upload Date shown with dual ISO+local format and 🚨 if within 7 days. Export row has Copy Data/JSON/CSV buttons plus Extracted timestamp. Alerts 'No date data found on this page.' if no timestamp is found. NOTE: Snapchat moved from JSON-LD datePublished to __NEXT_DATA__ uploadDateMs (ms) as of mid-2025.",
   "checks": [
     {
       "type": "modal_appears",
