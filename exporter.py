@@ -223,13 +223,13 @@ class BookmarkletExporter:
         def add_folder_recursively(folder_dict: Dict, indent: int = 1) -> None:
             indent_str = '    ' * indent
 
-            for folder_name, folder_content in folder_dict['folders'].items():
+            for folder_name, folder_content in sorted(folder_dict['folders'].items(), key=lambda x: x[0].lower()):
                 html_parts.append(f'{indent_str}<DT><H3>{self._escape_html(folder_name)}</H3>')
                 html_parts.append(f'{indent_str}<DL><p>')
                 add_folder_recursively(folder_content, indent + 1)
                 html_parts.append(f'{indent_str}</DL><p>')
 
-            for bookmark in folder_dict['bookmarklets']:
+            for bookmark in sorted(folder_dict['bookmarklets'], key=lambda b: b['title'].lower()):
                 escaped_title = self._escape_html(bookmark['title'])
                 escaped_code = self._escape_html(bookmark['code'])
 
