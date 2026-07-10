@@ -4,7 +4,7 @@
   "skip": false,
   "requires_auth": false,
   "wait_ms": 3000,
-  "notes": "Passive - extracts profile data from page scripts and redirects to tools.myosint.training/cashapp-viewer.html. Does NOT show an in-page modal; instead opens a new tab. We check for the network redirect pattern rather than a modal.",
+  "notes": "Passive - V9 modal (id: __cashAppOsintModal) extracts profile data from embedded <script> tags on a Cash App profile page. If data is found, shows the modal; if not, alerts. In headless CI, Cash App may serve different page structures so no_js_errors is the primary check.",
   "checks": [
     {
       "type": "no_js_errors"
