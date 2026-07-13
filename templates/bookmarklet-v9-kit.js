@@ -144,14 +144,22 @@ function v9TimestampRow(label, ts, isMs) {
 /* --------------------------------------------------------------------------
    4. Status badges — ALWAYS render every badge, active or not.
    list: [{label, active, color}]  (color = the "active" background color)
+
+   Placement: this is a FOOTER BAR, the last element appended to the modal
+   (after the content area, which already contains the export row) — not
+   mixed inline into the data rows/stats. Append the returned element
+   directly to `modal` (the v9CreateModal() return value), not to `body`.
+   Matches the precedent in trello-user-bookmarklet.
    -------------------------------------------------------------------------- */
-function v9Badges(list) {
-  const wrap = document.createElement('div');
-  wrap.style.cssText = 'margin-top:12px;';
+function v9BadgesFooter(list) {
+  const footer = document.createElement('div');
+  footer.style.cssText =
+    'padding:12px 20px;background:' + V9.colors.paneBg + ';' +
+    'border-top:1px solid ' + V9.colors.accent + ';border-radius:0 0 8px 8px;flex-shrink:0;';
   const lbl = document.createElement('div');
   lbl.textContent = 'Status:';
   lbl.style.cssText = 'color:' + V9.colors.cyan + ';font-size:11px;font-weight:bold;margin-bottom:8px;';
-  wrap.appendChild(lbl);
+  footer.appendChild(lbl);
   const row = document.createElement('div');
   row.style.cssText = 'display:flex;gap:8px;flex-wrap:wrap;align-items:center;';
   list.forEach(function (b) {
@@ -169,8 +177,8 @@ function v9Badges(list) {
     el.textContent = b.label;
     row.appendChild(el);
   });
-  wrap.appendChild(row);
-  return wrap;
+  footer.appendChild(row);
+  return footer;
 }
 
 /* --------------------------------------------------------------------------
@@ -198,6 +206,10 @@ function v9StatCounters(stats) {
 
 /* --------------------------------------------------------------------------
    6. Two-pane layout (data left, avatar/image right).
+   HARD RULE: any profile/avatar image ALWAYS goes in the right pane via this
+   function — never inline in the left content, never centered at the top
+   of the modal. If a bookmarklet has an image and no other right-pane
+   content, still use this layout just to place the image on the right.
    -------------------------------------------------------------------------- */
 function v9TwoPane(leftEl, imageUrl) {
   const wrap = document.createElement('div');
@@ -326,10 +338,16 @@ function v9Linkify(text) {
       CSS strings. Copy the `const V9 = {...}` palette block too — the
       helpers read from it.
    2. Assemble: const {modal, body} = v9CreateModal('My Bookmarklet Title');
-      body.appendChild(v9Row('Username', v9Esc(data.username)));
-      body.appendChild(v9TimestampRow('Created', data.created_unix));
-      body.appendChild(v9Badges([{label:'Verified', active:data.verified, color:'#00E6F0'}]));
-      body.appendChild(v9ExportRow({text: textBlob, json: JSON.stringify(data,null,2)}));
+      const left = document.createElement('div');
+      left.appendChild(v9Row('Username', v9Esc(data.username)));
+      left.appendChild(v9TimestampRow('Created', data.created_unix));
+      left.appendChild(v9ExportRow({text: textBlob, json: JSON.stringify(data,null,2)}));
+      // If there's a profile image, always use v9TwoPane to put it on the right —
+      // never inline it in `left` or center it at the top:
+      body.appendChild(data.avatarUrl ? v9TwoPane(left, data.avatarUrl) : left);
+      // Badges are a footer bar, appended to the modal itself (after body),
+      // not inside the scrollable content:
+      modal.appendChild(v9BadgesFooter([{label:'Verified', active:data.verified, color:'#00E6F0'}]));
       document.body.appendChild(modal);
    3. Wrap the whole thing in (function(){ ... })(), minify, encodeURIComponent(),
       prepend 'javascript:', and paste into the <a href="..."> in index.html.
