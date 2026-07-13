@@ -226,7 +226,7 @@ function v9TwoPane(leftEl, imageUrl) {
   if (imageUrl) {
     right.innerHTML =
       '<a href="' + v9Esc(imageUrl) + '" target="_blank" rel="noreferrer">' +
-      '<img src="' + v9Esc(imageUrl) + '" style="max-width:300px;max-height:300px;' +
+      '<img src="' + v9Esc(imageUrl) + '" style="width:300px;height:300px;object-fit:cover;' +
       'border:2px solid ' + V9.colors.accent + ';border-radius:6px;display:block;" /></a>';
   } else {
     right.innerHTML =
