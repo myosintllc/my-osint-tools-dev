@@ -1631,8 +1631,20 @@
         if (hash && hash.startsWith('#bm-')) {
           var target = document.querySelector(hash);
           if (target) {
-            // DataTable may have paginated the row off-screen; search for it first
-            dt.search(target.id.replace('bm-', '').replace(/-bookmarklet$/, '').replace(/-/g, ' ')).draw();
+            // Reset every filter/search that could hide the row — a word-derived
+            // text search here is fragile (e.g. a bookmarklet's name may contain a
+            // word that never appears in its description, causing DataTables'
+            // all-words-must-match search to fail) — and show all rows so
+            // pagination can't hide it either.
+            filterCat = 'all';
+            filterType = 'all';
+            filterRecent = false;
+            $('#bm-cat-filters .btn').removeClass('btn-primary').addClass('btn-outline-secondary');
+            $('#bm-cat-filters .btn[data-cat="all"]').removeClass('btn-outline-secondary').addClass('btn-primary');
+            $('#bm-type-filters .btn').removeClass('btn-primary').addClass('btn-outline-secondary');
+            $('#bm-type-filters .btn[data-type="all"]').removeClass('btn-outline-secondary').addClass('btn-primary');
+            $('#btn-recent').removeClass('btn-success').addClass('btn-outline-success');
+            dt.search('').page.len(-1).draw();
             setTimeout(function() {
               target = document.querySelector(hash);
               if (target) {
