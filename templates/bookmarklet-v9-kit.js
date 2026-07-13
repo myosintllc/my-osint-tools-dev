@@ -49,7 +49,8 @@ function v9CreateModal(title, opts) {
     'border:2px solid ' + V9.colors.accent + ';border-radius:10px;' +
     'max-width:92vw;width:' + width + ';max-height:92vh;' +
     'font-family:Arial,sans-serif;box-shadow:0 8px 32px rgba(0,0,0,0.6);' +
-    'display:flex;flex-direction:column;';
+    'display:flex;flex-direction:column;' +
+    'user-select:text;-webkit-user-select:text;';
 
   const header = document.createElement('div');
   header.style.cssText =
