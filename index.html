@@ -1648,7 +1648,17 @@
             setTimeout(function() {
               target = document.querySelector(hash);
               if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                // The table header is position:sticky and covers the top of the
+                // viewport, so a plain scrollIntoView({block:'center'}) can land
+                // the row underneath it. Measure the sticky header's real height
+                // and center the row within the space actually visible below it.
+                var stickyTh = document.querySelector('#bookmarklets-table thead th');
+                var headerHeight = stickyTh ? stickyTh.getBoundingClientRect().height : 0;
+                var availableHeight = window.innerHeight - headerHeight;
+                var rowRect = target.getBoundingClientRect();
+                var rowCenter = rowRect.top + rowRect.height / 2;
+                var desiredCenter = headerHeight + availableHeight / 2;
+                window.scrollBy({ top: rowCenter - desiredCenter, behavior: 'smooth' });
                 target.style.outline = '3px solid #0d6efd';
                 setTimeout(function() { target.style.outline = ''; }, 2000);
               }
