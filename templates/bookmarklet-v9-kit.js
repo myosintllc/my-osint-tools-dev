@@ -236,11 +236,17 @@ function v9BadgesFooter(list) {
    -------------------------------------------------------------------------- */
 function v9StatCounters(stats) {
   const bar = document.createElement('div');
-  bar.style.cssText = 'display:flex;margin:12px 0;';
+  // Always an outer border on the whole bar (in addition to the internal
+  // border-right dividers) — without it the bar blends into the modal
+  // background and looks unfinished.
+  bar.style.cssText =
+    'display:flex;background:' + V9.colors.paneBg + ';' +
+    'border:1px solid ' + V9.colors.accent + ';border-radius:4px;' +
+    'margin:12px 0;overflow:hidden;';
   stats.forEach(function (s, i) {
     const cell = document.createElement('div');
     cell.style.cssText =
-      'flex:1;text-align:center;padding:0 12px;' +
+      'flex:1;text-align:center;padding:8px 4px;' +
       (i < stats.length - 1 ? 'border-right:1px solid ' + V9.colors.rowBorder + ';' : '');
     cell.innerHTML =
       '<div style="color:' + V9.colors.value + ';font-weight:bold;font-family:\'Courier New\',monospace;font-size:16px;">' +
