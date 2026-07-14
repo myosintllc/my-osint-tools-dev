@@ -110,6 +110,47 @@ function v9Row(label, valueHtml) {
 }
 
 /* --------------------------------------------------------------------------
+   2b. Identity block — MANDATORY field order at the top of every extraction
+   modal, before any other data: Username, Display Name, Account ID,
+   Account URL, Account URL (ID-based variant, if the platform has one) —
+   then a visual separator before whatever else the bookmarklet extracts.
+   fields: {username, displayName, accountId, accountUrl, accountUrlWithId}
+   — omit any key the platform doesn't have; the row for it is skipped
+   entirely (never reorder the ones that do exist).
+   -------------------------------------------------------------------------- */
+function v9IdentityBlock(fields) {
+  const wrap = document.createElement('div');
+  if (fields.username) wrap.appendChild(v9Row('Username', v9Esc(fields.username)));
+  if (fields.displayName) wrap.appendChild(v9Row('Display Name', v9Esc(fields.displayName)));
+  if (fields.accountId) wrap.appendChild(v9Row('Account ID', v9Esc(fields.accountId)));
+  if (fields.accountUrl) {
+    wrap.appendChild(v9Row('Account URL',
+      '<a href="' + v9Esc(fields.accountUrl) + '" target="_blank" rel="noreferrer" ' +
+      'style="color:' + V9.colors.cyan + ';text-decoration:none;word-break:break-all;">' +
+      v9Esc(fields.accountUrl) + '</a>'));
+  }
+  if (fields.accountUrlWithId) {
+    wrap.appendChild(v9Row('Account URL (ID)',
+      '<a href="' + v9Esc(fields.accountUrlWithId) + '" target="_blank" rel="noreferrer" ' +
+      'style="color:' + V9.colors.cyan + ';text-decoration:none;word-break:break-all;">' +
+      v9Esc(fields.accountUrlWithId) + '</a>'));
+  }
+  wrap.appendChild(v9IdentitySeparator());
+  return wrap;
+}
+function v9IdentitySeparator() {
+  const sep = document.createElement('div');
+  sep.style.cssText = 'border-top:2px solid ' + V9.colors.accent + ';margin:10px 0 6px;padding-top:8px;';
+  const lbl = document.createElement('div');
+  lbl.textContent = 'Additional Information';
+  lbl.style.cssText =
+    'color:' + V9.colors.cyan + ';font-size:10px;font-weight:700;' +
+    'text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;';
+  sep.appendChild(lbl);
+  return sep;
+}
+
+/* --------------------------------------------------------------------------
    3. Timestamps — MANDATORY dual format (UTC/ISO + local) on every date.
    Pass isMs=true if the source timestamp is already milliseconds.
    -------------------------------------------------------------------------- */
@@ -340,7 +381,11 @@ function v9Linkify(text) {
       helpers read from it.
    2. Assemble: const {modal, body} = v9CreateModal('My Bookmarklet Title');
       const left = document.createElement('div');
-      left.appendChild(v9Row('Username', v9Esc(data.username)));
+      left.appendChild(v9IdentityBlock({
+        username: data.username, displayName: data.displayName,
+        accountId: data.id, accountUrl: data.profileUrl,
+        accountUrlWithId: data.profileUrlById // omit key entirely if platform has none
+      }));
       left.appendChild(v9TimestampRow('Created', data.created_unix));
       left.appendChild(v9ExportRow({text: textBlob, json: JSON.stringify(data,null,2)}));
       // If there's a profile image, always use v9TwoPane to put it on the right —
