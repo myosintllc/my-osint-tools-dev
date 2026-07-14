@@ -41,13 +41,22 @@ const V9 = {
    -------------------------------------------------------------------------- */
 function v9CreateModal(title, opts) {
   opts = opts || {};
-  const width = opts.width || '520px';
+  // Responsive by default: width scales with the viewport (via clamp),
+  // bounded so it never gets uncomfortably narrow or absurdly wide. A fixed
+  // px width plus a max-width:92vw cap only ever SHRINKS on narrow viewports
+  // and never grows on wide ones — that reads as "static" to a user who
+  // resizes their window expecting the modal to follow. Pass opts.width to
+  // force an exact fixed width in the rare case a layout genuinely needs one
+  // (e.g. a two-pane modal where both panes have hard-pixel minimums); every
+  // other bookmarklet should use the clamp default.
+  const width = opts.width ||
+    'clamp(' + (opts.minWidth || '420px') + ', ' + (opts.vw || '70vw') + ', ' + (opts.maxWidth || '900px') + ')';
   const modal = document.createElement('div');
   modal.style.cssText =
     'position:fixed;top:60px;left:50%;transform:translateX(-50%);' +
     'z-index:999999;background:' + V9.colors.modalBg + ';' +
     'border:2px solid ' + V9.colors.accent + ';border-radius:10px;' +
-    'max-width:92vw;width:' + width + ';max-height:92vh;' +
+    'max-width:96vw;width:' + width + ';max-height:92vh;' +
     'font-family:Arial,sans-serif;box-shadow:0 8px 32px rgba(0,0,0,0.6);' +
     'display:flex;flex-direction:column;' +
     'user-select:text;-webkit-user-select:text;';
