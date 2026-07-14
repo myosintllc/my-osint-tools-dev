@@ -101,9 +101,7 @@ function v9CreateModal(title, opts) {
    -------------------------------------------------------------------------- */
 function v9Row(label, valueHtml) {
   const row = document.createElement('div');
-  row.style.cssText =
-    'color:' + V9.colors.label + ';padding:6px 0;' +
-    'border-bottom:1px solid ' + V9.colors.rowBorder + ';font-size:13px;';
+  row.style.cssText = 'color:' + V9.colors.label + ';padding:6px 0;font-size:13px;';
   row.innerHTML = v9Esc(label) + ': <span style="color:' + V9.colors.value +
     ';font-weight:bold;font-family:\'Courier New\',monospace;">' + valueHtml + '</span>';
   return row;
@@ -171,8 +169,7 @@ function v9IsWithin7Days(ts, isMs) {
 function v9TimestampRow(label, ts, isMs) {
   const urgent = v9IsWithin7Days(ts, isMs);
   const row = document.createElement('div');
-  row.style.cssText =
-    'padding:6px 0;border-bottom:1px solid ' + V9.colors.rowBorder + ';font-size:13px;';
+  row.style.cssText = 'padding:6px 0;font-size:13px;';
   row.innerHTML =
     '<span style="color:' + V9.colors.label + ';">' + v9Esc(label) + ':</span> ' +
     (urgent ? '<span style="color:' + V9.colors.urgent + ';">🚨</span> ' : '') +
@@ -364,6 +361,22 @@ function v9Esc(s) {
     return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[c];
   });
 }
+/* v9Linkify: the MANDATORY baseline for every bio/description field — every
+   bare URL gets hyperlinked in place, target=_blank. Some platforms (X/Twitter's
+   t.co, etc.) shorten links in the raw bio text and provide the real expanded
+   destination + a friendlier display string elsewhere on the page; when that
+   data is available, resolve to it instead of linking to the shortener,
+   appending the external-link marker (see v9Linkify's plain-URL style below).
+   Anchor the resolver on the shortened URL itself (guaranteed to appear
+   verbatim in the raw bio text) and scan a window on BOTH sides of it for the
+   display/expanded fields — don't assume they appear in a fixed order relative
+   to each other, that's not a documented contract and silently breaks the
+   whole match if the platform ever orders them differently (see
+   [[project-x-twitter-jsonld-pattern]] for a full worked example). If a bio
+   mixes shortened links and bare URLs, resolve the shortened ones first, then
+   only run v9Linkify's bare-URL pass on text segments not already inside an
+   <a> tag you just built — otherwise it will also match and corrupt the
+   href="..." attribute value of those just-inserted links. */
 function v9Linkify(text) {
   return v9Esc(text).replace(/(https?:\/\/[^\s]+|www\.[^\s]+)/g, function (url) {
     const href = url.startsWith('http') ? url : 'https://' + url;
