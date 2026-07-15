@@ -224,7 +224,8 @@ class BookmarkletExporter:
         def add_folder_recursively(folder_dict: Dict, indent: int = 1) -> None:
             indent_str = '    ' * indent
 
-            for folder_name, folder_content in sorted(folder_dict['folders'].items(), key=lambda x: x[0].lower()):
+            # Alphabetical, except "Social Media" is always pinned to the top.
+            for folder_name, folder_content in sorted(folder_dict['folders'].items(), key=lambda x: (x[0] != 'Social Media', x[0].lower())):
                 html_parts.append(f'{indent_str}<DT><H3>{self._escape_html(folder_name)}</H3>')
                 html_parts.append(f'{indent_str}<DL><p>')
                 add_folder_recursively(folder_content, indent + 1)
