@@ -295,7 +295,7 @@ function v9TwoPane(leftEl, imageUrl) {
     V9.colors.accent + ';padding:16px;display:flex;align-items:flex-start;justify-content:center;';
   if (imageUrl) {
     right.innerHTML =
-      '<a href="' + v9Esc(imageUrl) + '" target="_blank" rel="noreferrer">' +
+      '<a href="' + v9Esc(v9SafeUrl(imageUrl)) + '" target="_blank" rel="noreferrer">' +
       '<img src="' + v9Esc(imageUrl) + '" style="width:300px;height:300px;object-fit:cover;' +
       'border:2px solid ' + V9.colors.accent + ';border-radius:6px;display:block;" /></a>';
   } else {
@@ -391,6 +391,22 @@ function v9Esc(s) {
   return String(s).replace(/[&<>"']/g, function (c) {
     return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[c];
   });
+}
+/* v9SafeUrl: MANDATORY guard for any page/API-derived value used as an href
+   or window.open() target (bio link, website/wishlist field, social link,
+   avatar URL from an og:image meta tag, etc.) — self-constructed URLs (e.g.
+   `baseUrl + '/users/show/' + uid`, or a hardcoded per-provider template)
+   don't need this. HTML-escaping alone does NOT stop a value from carrying
+   a `javascript:` scheme, which executes same-origin JS with the target
+   site's session if a user clicks it. This forces anything not already
+   starting with http(s):// to get that prefix, turning a `javascript:...`
+   payload into a harmless, non-executing string instead
+   (`https://javascript:alert(1)`). Apply at the point of use for the href;
+   leave the displayed link TEXT as the original raw value. Found missing on
+   7 shipped bookmarklets in the 2026-07-15 audit — see
+   [[project-v9-sweep-progress]]. */
+function v9SafeUrl(u) {
+  return /^https?:\/\//i.test(u) ? u : 'https://' + u;
 }
 /* v9Linkify: the MANDATORY baseline for every bio/description field — every
    bare URL gets hyperlinked in place, target=_blank. Some platforms (X/Twitter's
