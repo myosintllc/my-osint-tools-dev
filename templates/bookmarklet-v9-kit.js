@@ -61,15 +61,31 @@ function v9CreateModal(title, opts) {
     'display:flex;flex-direction:column;' +
     'user-select:text;-webkit-user-select:text;';
 
+  // Version suffix (opts.version): a plain per-bookmarklet counter bumped by
+  // hand whenever that bookmarklet is edited — NOT semver, NOT a shared/global
+  // counter. It answers "has this specific bookmarklet changed since the user
+  // last screenshotted it," nothing more, so it lives next to the title (the
+  // thing it's actually versioning), styled as secondary info via the same
+  // cyan already used for the hint/attribution line, not italics (no other
+  // element in this design system uses italics).
+  const versionHtml = opts.version
+    ? ' <span style="color:' + V9.colors.cyan + ';font-weight:400;font-size:11px;">(v' + opts.version + ')</span>'
+    : '';
+
   const header = document.createElement('div');
   header.style.cssText =
     'background:' + V9.colors.accent + ';padding:10px 16px;' +
     'border-radius:8px 8px 0 0;text-align:center;cursor:grab;' +
     'user-select:none;position:relative;flex-shrink:0;';
+  // Two rows, not three: title(+version), then hint+attribution combined on
+  // one logical line (it wraps to a visual second line on narrow modals,
+  // which is fine — the point is not forcing a THIRD row's worth of margin).
+  // The attribution text itself must stay byte-for-byte identical to
+  // V9.attribution — tests/test_bookmarklets.py's UNIVERSAL_ATTRIBUTION
+  // constant and ~30 expectation JSON files substring-match on it.
   header.innerHTML =
-    '<div style="color:#FFF;font-weight:600;font-size:14px;">' + title + '</div>' +
-    '<div style="color:' + V9.colors.cyan + ';font-size:9px;">✋🏼 Click here to move window</div>' +
-    '<div style="color:' + V9.colors.cyan + ';font-size:9px;">' + V9.attribution + '</div>';
+    '<div style="color:#FFF;font-weight:600;font-size:14px;">' + title + versionHtml + '</div>' +
+    '<div style="color:' + V9.colors.cyan + ';font-size:9px;margin-top:2px;">✋🏼 Drag to move · ' + V9.attribution + '</div>';
 
   const closeBtn = document.createElement('span');
   closeBtn.innerHTML = '×';
