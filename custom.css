@@ -690,15 +690,16 @@ a.badge-link:hover .badge-passive {
 .callout {
   padding: 20px;
   margin: 20px 0;
-  border-left: 4px solid #0d6efd;
+  border: 1px solid #0d6efd;
+  border-left-width: 4px;
   background-color: #f8f9fa;
   border-radius: 4px;
 }
 
-.callout-info    { border-left-color: #0d6efd; }
-.callout-warning { border-left-color: #ffc107; }
-.callout-danger  { border-left-color: #dc3545; }
-.callout-success { border-left-color: #198754; }
+.callout-info    { border-color: #0d6efd; }
+.callout-warning { border-color: #ffc107; }
+.callout-danger  { border-color: #dc3545; }
+.callout-success { border-color: #198754; }
 
 /* Compact variant for use inside table description cells (bookmarklet
    table Description column) — same color language, sized for a table
