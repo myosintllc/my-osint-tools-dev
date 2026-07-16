@@ -832,3 +832,78 @@ a.badge-link:hover .badge-passive {
 
 /* Remove default iframe border (YouTube embed, etc.) */
 .embed-iframe { border: 0; }
+
+
+/* ----------------------------------------------------------
+   11. Components — Sample Output thumbnails + lightbox
+   ---------------------------------------------------------- */
+.bm-example-thumb {
+  display: inline-block;
+  cursor: zoom-in;
+}
+
+.bm-example-thumb img {
+  width: 110px;
+  height: 78px;
+  object-fit: cover;
+  border: 1px solid #dbe1e7;
+  border-radius: 4px;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.bm-example-thumb:hover img {
+  border-color: #0d6efd;
+  transform: scale(1.04);
+}
+
+.bm-example-placeholder {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 110px;
+  height: 78px;
+  border: 1px dashed #ced4da;
+  border-radius: 4px;
+  color: #adb5bd;
+  font-size: 0.72rem;
+  text-align: center;
+  line-height: 1.2;
+  padding: 4px;
+}
+
+.bm-example-placeholder i { font-size: 1.1rem; }
+
+.bm-example-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background: rgba(0, 0, 0, 0.82);
+  align-items: center;
+  justify-content: center;
+}
+
+.bm-example-overlay img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border: 2px solid #0d6efd;
+  border-radius: 6px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+}
+
+.bm-example-close {
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 34px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 10px;
+}
+
+.bm-example-close:hover { color: #0d6efd; }
