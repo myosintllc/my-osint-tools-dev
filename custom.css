@@ -700,6 +700,15 @@ a.badge-link:hover .badge-passive {
 .callout-danger  { border-left-color: #dc3545; }
 .callout-success { border-left-color: #198754; }
 
+/* Compact variant for use inside table description cells (bookmarklet
+   table Description column) — same color language, sized for a table
+   cell instead of blog-post prose. */
+.callout-sm {
+  padding: 6px 10px;
+  margin: 8px 0 0;
+  font-size: 0.92em;
+}
+
 
 /* ----------------------------------------------------------
    9. Components — "Get All Bookmarklets" Download Card
