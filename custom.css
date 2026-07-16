@@ -449,9 +449,13 @@ h3 {
   text-decoration: none;
 }
 
-.mot-dropdown-toggle:hover,
-.mot-dropdown-toggle:focus {
-  outline: none;
+.mot-dropdown-toggle:hover {
+  opacity: 0.85;
+}
+
+.mot-dropdown-toggle:focus-visible {
+  outline: 2px solid #00e6f0;
+  outline-offset: 2px;
   opacity: 0.85;
 }
 
@@ -509,11 +513,16 @@ h3 {
   transition: background 0.12s ease, color 0.12s ease;
 }
 
-.mot-dropdown-item a:hover,
-.mot-dropdown-item a:focus {
+.mot-dropdown-item a:hover {
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
-  outline: none;
+}
+
+.mot-dropdown-item a:focus-visible {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  outline: 2px solid #00e6f0;
+  outline-offset: -2px;
 }
 
 .mot-more-menu > li.mot-has-dropdown > .mot-dropdown-menu {
@@ -641,7 +650,7 @@ h3 {
 /* Script-type badges */
 .badge-active {
   display: inline-block;
-  background: #ff6b6b;
+  background: #dc3545;
   color: white;
   padding: 4px 12px;
   border-radius: 4px;
@@ -651,7 +660,7 @@ h3 {
 
 .badge-passive {
   display: inline-block;
-  background: #51cf66;
+  background: #198754;
   color: white;
   padding: 4px 12px;
   border-radius: 4px;
