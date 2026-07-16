@@ -1427,13 +1427,12 @@
           const cells = row.querySelectorAll('td');
           if (cells.length <= dateCol) return;
           const cell = cells[dateCol];
-          if (cell.querySelector('.badge')) return; // already done on this draw
+          if (cell.querySelector('.recent-flag')) return; // already done on this draw
           const dateText = cell.textContent.trim();
           const d = new Date(dateText);
           if (!isNaN(d) && d >= cutoff && d <= today) {
-            cell.style.backgroundColor = '#90EE90';
-            cell.style.fontWeight = 'bold';
-            cell.innerHTML = dateText + '<br><span class="badge bg-success ms-1">Updated/New!</span>';
+            cell.classList.add('table-success');
+            cell.innerHTML = dateText + ' <span class="recent-flag" title="Updated or added within the last 14 days" style="cursor:help;">🚨<span class="visually-hidden"> Updated or added within the last 14 days</span></span>';
           }
         });
       }
