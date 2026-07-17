@@ -784,6 +784,13 @@ a.badge-link:hover .badge-passive {
 
 .mot-blog-card .btn-blog:hover { background-color: #006fa0; }
 
+.mot-blog-card .btn-youtube {
+  background-color: #CC0000;
+  color: #fff;
+}
+
+.mot-blog-card .btn-youtube:hover { background-color: #a30000; }
+
 
 /* ----------------------------------------------------------
    10b. Components — Recently Updated Strip
