@@ -249,6 +249,17 @@ function v9BadgesFooter(list) {
    5. Compact stat counters (followers/following/answers/etc.) — horizontal
    bar, bold value over uppercase label, divided by border-right (not gap).
    stats: [{value, label}]
+
+   Prefer width over height: any time you have 2+ short scalar values that
+   would otherwise become a run of stacked v9Row()s (engagement counts, raw/
+   unconfirmed platform fields, secondary stats — not just the canonical
+   followers/following/posts trio), reach for v9StatCounters() instead. A
+   modal that scrolls forever because everything is one value per line reads
+   worse than one that uses the two-pane's left-column width. Multiple stat
+   bars in the same modal are fine — group related values into their own bar
+   rather than cramming everything into one. (Established 2026-07-21 on
+   lemon8-user-bookmarklet: 8 stacked rows of engagement counts + raw fields
+   collapsed into two 4-cell stat bars.)
    -------------------------------------------------------------------------- */
 function v9StatCounters(stats) {
   const bar = document.createElement('div');
