@@ -61,6 +61,42 @@ function v9CreateModal(title, opts) {
     'display:flex;flex-direction:column;' +
     'user-select:text;-webkit-user-select:text;';
 
+  // Selection/copy guard: some target sites apply a blanket `*{user-select:none}`
+  // reset to every element site-wide to deter scraping (confirmed on Lemon8,
+  // 2026-07-21 — its global CSS reset includes `*{...user-select:none}`). That's
+  // a DIRECT rule match on every one of our modal's own descendants, not just
+  // inheritance — so setting user-select:text on the modal container alone
+  // does NOT help; each child gets user-select:none straight from the page's
+  // own `*` rule, which always beats an inherited value regardless of the
+  // parent's own resolved value. (Distinct from the earlier Tinder case, a
+  // single class selector — see the note above this function.) Fix: inject a
+  // scoped, !important override keyed to a random per-instance attribute, so
+  // it can't collide with anything the page defines and always wins on
+  // specificity (attribute selector > the page's universal `*` selector)
+  // regardless of !important on their side.
+  const selGuardId = 'mot-' + Math.random().toString(36).slice(2);
+  modal.setAttribute('data-mot-sel-guard', selGuardId);
+  const guardStyle = document.createElement('style');
+  guardStyle.textContent =
+    '[data-mot-sel-guard="' + selGuardId + '"],[data-mot-sel-guard="' + selGuardId + '"] *{' +
+    'user-select:text!important;-webkit-user-select:text!important;-moz-user-select:text!important;}';
+  modal.appendChild(guardStyle);
+  // Defensive belt-and-suspenders for an actual JS-based blocker (a document/
+  // window-level bubble-phase listener that calls preventDefault() on
+  // contextmenu/selectstart/copy) rather than a CSS-only block: shield our
+  // own subtree by stopping propagation in the CAPTURE phase at the modal
+  // boundary, before the event can descend to the target and later bubble
+  // back out to any such ancestor listener. Deliberately does NOT call
+  // preventDefault() itself — the goal is to let the browser's normal
+  // behavior (real context menu, real selection) proceed, not add another
+  // block. This cannot defeat a CAPTURE-phase blocker already registered on
+  // an ancestor (document/window) before we run — nothing can, once that
+  // handler's preventDefault() has fired — but that's a rarer implementation
+  // than the common bubble-phase case.
+  ['contextmenu', 'selectstart', 'copy', 'dragstart'].forEach(function (evt) {
+    modal.addEventListener(evt, function (e) { e.stopPropagation(); }, true);
+  });
+
   // Version suffix (opts.version): a plain per-bookmarklet counter bumped by
   // hand whenever that bookmarklet is edited — NOT semver, NOT a shared/global
   // counter. It answers "has this specific bookmarklet changed since the user
