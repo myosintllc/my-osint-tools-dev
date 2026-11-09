@@ -147,7 +147,7 @@ h3 {
   .header__nav .header__nav-item a:hover,
   .header__nav .header__nav-item button:active,
   .header__nav .header__nav-item button:hover {
-    background-color: #00a2e1;
+    background-color: #006a94;
     color: #fff;
   }
 
@@ -683,7 +683,7 @@ a.badge-link:hover .badge-passive {
 /* Permalink icon in description cells */
 .bm-permalink {
   display: inline-block;
-  color: #adb5bd;
+  color: #6c757d;
   margin-right: 5px;
   text-decoration: none;
   vertical-align: middle;
@@ -742,7 +742,7 @@ a.badge-link:hover .badge-passive {
 .mot-download-card .card-text { font-size: 0.9rem; }
 
 .mot-download-card .btn-download {
-  background-color: #008BC4;
+  background-color: #006a94;
   color: #fff;
 }
 
@@ -755,7 +755,7 @@ a.badge-link:hover .badge-passive {
   border: 1px solid rgba(0, 139, 196, 0.35);
   border-radius: 4px;
   padding: 1px 6px;
-  color: #008BC4;
+  color: #006a94;
   white-space: nowrap;
 }
 
@@ -778,11 +778,11 @@ a.badge-link:hover .badge-passive {
 .mot-blog-card .card-text { font-size: 0.9rem; }
 
 .mot-blog-card .btn-blog {
-  background-color: #2ECC71;
+  background-color: #1E8449;
   color: #fff;
 }
 
-.mot-blog-card .btn-blog:hover { background-color: #27AE60; }
+.mot-blog-card .btn-blog:hover { background-color: #176938; }
 
 .mot-blog-card .btn-youtube {
   background-color: #CC0000;
@@ -810,7 +810,7 @@ a.badge-link:hover .badge-passive {
 .recent-strip-label {
   font-size: 0.82rem;
   font-weight: 600;
-  color: #6c757d;
+  color: #5a6268;
   white-space: nowrap;
 }
 
@@ -849,7 +849,7 @@ a.badge-link:hover .badge-passive {
 
 /* Links inside the primary (blue) welcome card body */
 .card.text-bg-primary .card-body a:not(.btn) {
-  color: rgb(169, 253, 253);
+  color: #fff;
 }
 
 /* Links inside dark secondary cards (e.g. "What is a Bookmarklet") */
@@ -893,7 +893,7 @@ a.badge-link:hover .badge-passive {
   height: 78px;
   border: 1px dashed #ced4da;
   border-radius: 4px;
-  color: #adb5bd;
+  color: #6c757d;
   font-size: 0.72rem;
   text-align: center;
   line-height: 1.2;
