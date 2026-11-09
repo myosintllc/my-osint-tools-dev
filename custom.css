@@ -778,11 +778,11 @@ a.badge-link:hover .badge-passive {
 .mot-blog-card .card-text { font-size: 0.9rem; }
 
 .mot-blog-card .btn-blog {
-  background-color: #008BC4;
+  background-color: #2ECC71;
   color: #fff;
 }
 
-.mot-blog-card .btn-blog:hover { background-color: #006fa0; }
+.mot-blog-card .btn-blog:hover { background-color: #27AE60; }
 
 .mot-blog-card .btn-youtube {
   background-color: #CC0000;
