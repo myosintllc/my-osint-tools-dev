@@ -844,7 +844,17 @@ a.badge-link:hover .badge-passive {
   border-radius: 0.25rem;
   font-size: 0.85rem;
 }
-.mot-subscribe-card #mergeRow-gdpr {
+/* Mailchimp's own `#mc_embed_signup .mc-field-group` rule (min-height:50px,
+   padding-bottom:3%, width:96%, display:grid) ties this on specificity and,
+   since its stylesheet loads after custom.css, wins ties — so this selector
+   needs the #mc_embed_signup ID prefix too (two IDs > one ID + one class) to
+   actually override it. Same story below for the Subscribe button, which
+   Mailchimp targets directly by its own #mc-embedded-subscribe id. */
+#mc_embed_signup #mergeRow-gdpr {
+  min-height: 0;
+  padding-bottom: 0;
+  width: 100%;
+  display: block;
   margin-top: 0.35rem;
   font-size: 0.75rem;
   color: #6c757d;
@@ -870,6 +880,9 @@ a.badge-link:hover .badge-passive {
   line-height: 1.3;
 }
 .mot-subscribe-card .content__gdprLegal a { color: #006a94; }
+#mc_embed_signup #mc-embedded-subscribe.btn-subscribe {
+  margin: 0;
+}
 .mot-subscribe-card .btn-subscribe {
   background-color: #008BC4;
   color: #fff;
