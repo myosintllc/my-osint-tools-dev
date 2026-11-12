@@ -795,11 +795,11 @@ a.badge-link:hover .badge-passive {
 .mot-subscribe-card { border: 1px solid #008BC4; }
 
 .mot-subscribe-card .card-header {
-  background-color: #033556;
-  border-bottom: 2px solid #008BC4;
+  background-color: #008BC4;
+  border-bottom: 2px solid #00E6F0;
 }
 
-.mot-subscribe-card .card-header i { color: #00E6F0; }
+.mot-subscribe-card .card-header i { color: #fff; }
 
 .mot-subscribe-card .card-header span {
   color: #fff;
