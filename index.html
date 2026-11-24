@@ -44,7 +44,20 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.min.css" integrity="sha384-3ptzuE+Rcpo/oIGgcQ40Oz3iGZ2GxGeQ/RZEyYncPivDl3lFBCI4eiS7PZAghYuS" crossorigin="anonymous">
     <link rel="stylesheet" href="/custom.css">
     <link href="https://cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' https: 'unsafe-inline'; style-src 'self' https: 'unsafe-inline'; img-src 'self' https: data:; font-src 'self' https: data:; connect-src 'self' https:; frame-ancestors 'self';">
+    <!-- script-src/style-src keep 'unsafe-inline': the page relies on ~190
+         inline ondrop/ondragover/ondragstart handlers for the bookmarklet drag
+         UX and inline style="" attributes throughout — removing it would need
+         a full refactor to addEventListener/CSS-class wiring, out of scope
+         here. What IS tightened: every host is an explicit allowlist (the
+         known CDNs, confirmed by observing real network traffic) instead of
+         a bare "https:" wildcard, so an arbitrary https script/style host
+         can no longer be loaded even via injected markup. frame-ancestors
+         was dropped — browsers ignore that directive entirely when delivered
+         via <meta> (only a real HTTP header enforces it), so it was a no-op
+         that just produced a console warning; GitHub Pages serves static
+         files with no custom-header support, so there's no way to get real
+         clickjacking protection here short of moving off static hosting. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://cdn.datatables.net https://code.jquery.com https://s3.amazonaws.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://cdn.datatables.net https://cdn-images.mailchimp.com; img-src 'self' https: data:; font-src 'self' https://cdnjs.cloudflare.com data:; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com; frame-src 'self' https://www.youtube.com;">
     <meta property="og:title" content="My OSINT Training's Tools">
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="website">
@@ -117,6 +130,7 @@
     </script>
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to bookmarklet list</a>
     <div class="header__container">
       <div class="header__wrapper">
         <section class="header__logo header__logo___2909e">
@@ -227,7 +241,7 @@
     </div>
 
     <!-- Main Body -->
-    <div class="container-lg px-2 my-4 markdown-body">
+    <div id="main-content" class="container-lg px-2 my-4 markdown-body" tabindex="-1">
       <div class="row justify-content-center mt-1 mb-5 g-3">
         <div class="col-xl-4 col-lg-4 col-md-6">
           <div class="card shadow-sm mot-download-card h-100">
@@ -320,26 +334,26 @@
                title="Click any button to filter the table">
             <span class="bm-filter-label"><i class="fa-solid fa-filter me-1"></i>Category:</span>
             <div class="d-flex flex-wrap gap-1" id="bm-cat-filters">
-              <button class="btn btn-sm btn-primary" data-cat="all">All</button>
-              <button class="btn btn-sm btn-outline-secondary" data-cat="social">Social Media</button>
-              <button class="btn btn-sm btn-outline-secondary" data-cat="finance">Finance</button>
-              <button class="btn btn-sm btn-outline-secondary" data-cat="people">People Search</button>
-              <button class="btn btn-sm btn-outline-secondary" data-cat="misc">Misc</button>
-              <button class="btn btn-sm btn-outline-secondary" data-cat="adult">Adult &amp; Dating</button>
+              <button class="btn btn-sm btn-primary" data-cat="all" aria-pressed="true">All</button>
+              <button class="btn btn-sm btn-outline-secondary" data-cat="social" aria-pressed="false">Social Media</button>
+              <button class="btn btn-sm btn-outline-secondary" data-cat="finance" aria-pressed="false">Finance</button>
+              <button class="btn btn-sm btn-outline-secondary" data-cat="people" aria-pressed="false">People Search</button>
+              <button class="btn btn-sm btn-outline-secondary" data-cat="misc" aria-pressed="false">Misc</button>
+              <button class="btn btn-sm btn-outline-secondary" data-cat="adult" aria-pressed="false">Adult &amp; Dating</button>
             </div>
             <div class="vr mx-1"></div>
             <span class="bm-filter-label">Type:</span>
             <div class="btn-group" role="group" id="bm-type-filters">
-              <button class="btn btn-sm btn-primary" data-type="all">All</button>
-              <button class="btn btn-sm btn-outline-secondary" data-type="active">
+              <button class="btn btn-sm btn-primary" data-type="all" aria-pressed="true">All</button>
+              <button class="btn btn-sm btn-outline-secondary" data-type="active" aria-pressed="false">
                 <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i> Active
               </button>
-              <button class="btn btn-sm btn-outline-secondary" data-type="passive">
+              <button class="btn btn-sm btn-outline-secondary" data-type="passive" aria-pressed="false">
                 <i class="fas fa-desktop" aria-hidden="true"></i> Passive
               </button>
             </div>
             <div class="vr mx-1"></div>
-            <button class="btn btn-sm btn-outline-success" id="btn-recent"
+            <button class="btn btn-sm btn-outline-success" id="btn-recent" aria-pressed="false"
                     title="Show only bookmarklets updated in the last 14 days">
               <i class="fas fa-certificate me-1"></i>Recently Updated
             </button>
@@ -1682,6 +1696,44 @@
         });
       }
 
+      // ── Copy-bookmarklet-code fallback ──────────────────────────────────────
+      // Dragging a javascript: link to the bookmarks bar has no keyboard
+      // equivalent in any browser. This button lets a keyboard-only or
+      // screen-reader user copy the bookmarklet's own code instead, to paste
+      // into a manually created bookmark's URL field (browser's native
+      // "Add bookmark" / "Edit bookmark" dialog).
+      function addCopyCodeButtons() {
+        document.querySelectorAll('tr[id^="bm-"]').forEach(function(row) {
+          const td = row.querySelector('td');
+          if (!td) return;
+          const dragLink = td.querySelector('a.btn[draggable="true"][href^="javascript:"]');
+          if (!dragLink || td.querySelector('.bm-copy-code')) return;
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'btn btn-sm btn-outline-secondary d-block w-100 mt-1 bm-copy-code';
+          const label = 'Copy bookmarklet code — for keyboard/screen reader users who can’t drag to the bookmarks bar; paste into a manually created bookmark’s URL field';
+          btn.title = label;
+          btn.setAttribute('aria-label', label);
+          btn.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i> Copy code';
+          btn.addEventListener('click', function() {
+            const code = dragLink.getAttribute('href');
+            navigator.clipboard.writeText(code).catch(function() {
+              const ta = document.createElement('textarea');
+              ta.value = code;
+              ta.style.cssText = 'position:fixed;opacity:0;';
+              document.body.appendChild(ta);
+              ta.select();
+              document.execCommand('copy');
+              document.body.removeChild(ta);
+            });
+            const orig = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Copied!';
+            setTimeout(function() { btn.innerHTML = orig; }, 1500);
+          });
+          dragLink.parentElement.appendChild(btn);
+        });
+      }
+
       // ── Wrap Active/Passive badges in anchor links ────────────────────────────
       function addBadgeLinks() {
         document.querySelectorAll('td .badge-active').forEach(function(badge) {
@@ -1824,28 +1876,29 @@
           drawCallback: function() {
             highlightRecentUpdates('bookmarklets-table');
             addPermalinks();
+            addCopyCodeButtons();
             addBadgeLinks();
           }
         });
 
         // ── Filter button click handlers ────────────────────────────────────────
         $('#bm-cat-filters .btn').on('click', function() {
-          $('#bm-cat-filters .btn').removeClass('btn-primary').addClass('btn-outline-secondary');
-          $(this).removeClass('btn-outline-secondary').addClass('btn-primary');
+          $('#bm-cat-filters .btn').removeClass('btn-primary').addClass('btn-outline-secondary').attr('aria-pressed', 'false');
+          $(this).removeClass('btn-outline-secondary').addClass('btn-primary').attr('aria-pressed', 'true');
           filterCat = $(this).data('cat');
           dt.draw();
         });
 
         $('#bm-type-filters .btn').on('click', function() {
-          $('#bm-type-filters .btn').removeClass('btn-primary').addClass('btn-outline-secondary');
-          $(this).removeClass('btn-outline-secondary').addClass('btn-primary');
+          $('#bm-type-filters .btn').removeClass('btn-primary').addClass('btn-outline-secondary').attr('aria-pressed', 'false');
+          $(this).removeClass('btn-outline-secondary').addClass('btn-primary').attr('aria-pressed', 'true');
           filterType = $(this).data('type');
           dt.draw();
         });
 
         $('#btn-recent').on('click', function() {
           filterRecent = !filterRecent;
-          $(this).toggleClass('btn-outline-success btn-success');
+          $(this).toggleClass('btn-outline-success btn-success').attr('aria-pressed', filterRecent ? 'true' : 'false');
           dt.draw();
         });
 
@@ -1871,11 +1924,11 @@
           filterCat = 'all';
           filterType = 'all';
           filterRecent = false;
-          $('#bm-cat-filters .btn').removeClass('btn-primary').addClass('btn-outline-secondary');
-          $('#bm-cat-filters .btn[data-cat="all"]').removeClass('btn-outline-secondary').addClass('btn-primary');
-          $('#bm-type-filters .btn').removeClass('btn-primary').addClass('btn-outline-secondary');
-          $('#bm-type-filters .btn[data-type="all"]').removeClass('btn-outline-secondary').addClass('btn-primary');
-          $('#btn-recent').removeClass('btn-success').addClass('btn-outline-success');
+          $('#bm-cat-filters .btn').removeClass('btn-primary').addClass('btn-outline-secondary').attr('aria-pressed', 'false');
+          $('#bm-cat-filters .btn[data-cat="all"]').removeClass('btn-outline-secondary').addClass('btn-primary').attr('aria-pressed', 'true');
+          $('#bm-type-filters .btn').removeClass('btn-primary').addClass('btn-outline-secondary').attr('aria-pressed', 'false');
+          $('#bm-type-filters .btn[data-type="all"]').removeClass('btn-outline-secondary').addClass('btn-primary').attr('aria-pressed', 'true');
+          $('#btn-recent').removeClass('btn-success').addClass('btn-outline-success').attr('aria-pressed', 'false');
           dt.search('').page.len(-1).draw();
           setTimeout(function() {
             var target = document.querySelector(hash);
