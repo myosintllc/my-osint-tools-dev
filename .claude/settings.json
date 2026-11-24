@@ -1,0 +1,101 @@
+{
+  "permissions": {
+    "defaultMode": "default",
+    "blockReadsOutsideWorkingDirectories": true,
+    "blockWritesOutsideWorkingDirectories": true,
+    "allow": [
+      "Read",
+      "Edit(**)",
+
+      "Bash(git status)",
+      "Bash(git status *)",
+      "Bash(git diff)",
+      "Bash(git diff *)",
+      "Bash(git log)",
+      "Bash(git log *)",
+      "Bash(git show *)",
+      "Bash(git branch)",
+      "Bash(git rev-parse *)",
+      "Bash(git remote -v)",
+      "Bash(git remote show *)",
+      "Bash(git stash)",
+      "Bash(git stash *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git fetch origin)",
+      "Bash(git fetch origin *)",
+      "Bash(git pull --rebase origin main)",
+      "Bash(git push)",
+      "Bash(git push origin main)",
+
+      "Bash(node -c *)",
+      "Bash(node *)",
+      "Bash(python3 *)",
+      "Bash(python *)",
+
+      "Bash(ls)",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(grep *)",
+      "Bash(find . *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(wc *)",
+      "Bash(diff *)",
+      "Bash(stat *)",
+
+      "Bash(cp * *)",
+      "Bash(mkdir -p *)"
+    ],
+    "ask": [
+      "Bash(git remote add *)",
+      "Bash(git remote set-url *)",
+      "Bash(git remote remove *)",
+      "Bash(git remote rename *)",
+      "Bash(git checkout -- *)",
+      "Bash(git restore *)",
+      "Bash(git tag *)",
+
+      "Bash(curl *)",
+      "Bash(wget *)",
+      "Bash(pip install *)",
+      "Bash(pip3 install *)",
+      "Bash(npm install *)",
+      "Bash(gh *)",
+
+      "Bash(rm *)",
+      "Bash(rm -r *)",
+      "Bash(mv * *)"
+    ],
+    "deny": [
+      "Bash(sudo *)",
+      "Bash(su *)",
+      "Bash(doas *)",
+
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "Bash(git push --delete*)",
+      "Bash(git reset --hard*)",
+      "Bash(git clean -f*)",
+      "Bash(git clean -fd*)",
+      "Bash(git branch -D*)",
+
+      "Bash(* myosintllc/my-osint-tools.git*)",
+      "Bash(*github.com/myosintllc/my-osint-tools.git*)",
+      "Bash(*github.com:myosintllc/my-osint-tools.git*)",
+      "Bash(git remote add * myosintllc/my-osint-tools.git*)",
+      "Bash(git remote set-url * myosintllc/my-osint-tools.git*)",
+
+      "Bash(rm -rf /*)",
+      "Bash(rm -rf ~*)",
+      "Bash(rm -rf .)",
+      "Bash(rm -rf ..)",
+      "Bash(rm -rf .git*)",
+      "Bash(chmod -R 777 *)",
+      "Bash(curl * | sh*)",
+      "Bash(curl * | bash*)",
+      "Bash(wget * | sh*)",
+      "Bash(wget * | bash*)"
+    ]
+  }
+}
